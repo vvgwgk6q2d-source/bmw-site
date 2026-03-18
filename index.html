@@ -9,7 +9,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--blue:#1E90FF;--dark:#04070f;--border:rgba(30,144,255,0.15);--muted:rgba(255,255,255,0.38);--panel:rgba(4,7,15,0.95)}
 body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;overflow:hidden;height:100vh}
-
 #hdr{position:fixed;top:0;left:0;right:0;z-index:50;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:var(--panel);border-bottom:1px solid var(--border)}
 .logo{font-family:'Orbitron',monospace;font-size:1.35rem;font-weight:900;letter-spacing:6px;color:#fff}
 .logo em{color:var(--blue);font-style:normal}
@@ -19,10 +18,8 @@ body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;over
 .hbtn:hover{color:#fff;border-color:var(--blue)}
 .hbtn.on{border-color:rgba(30,144,255,.5);color:var(--blue)}
 .hbtn.p{background:var(--blue);border-color:var(--blue);color:#fff!important}
-
 #wrap{position:fixed;left:255px;right:0;top:52px;bottom:64px;background:var(--dark)}
 canvas{display:block;width:100%!important;height:100%!important}
-
 #lp{position:fixed;left:0;top:52px;bottom:64px;width:255px;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:20}
 .lph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border)}
 .lbadge{font-size:.53rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;display:block;margin-bottom:.35rem}
@@ -43,7 +40,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .pn{font-size:.8rem;font-weight:600;color:#fff}.ps{font-size:.64rem;color:var(--muted);margin-top:.05rem}
 .pa{color:var(--blue);font-size:.8rem;opacity:0;transition:opacity .2s;margin-left:auto}
 .pi.on .pa,.pi:hover .pa{opacity:1}
-
 #rp{position:fixed;right:0;top:52px;bottom:64px;width:270px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:20;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
 #rp.on{transform:translateX(0)}
 .rph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between}
@@ -57,7 +53,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sr{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .sr:last-child{border:none}
 .sk{font-size:.72rem;color:var(--muted)}.sv{font-size:.74rem;color:#fff;font-weight:600;text-align:right}
-
 #bb{position:fixed;bottom:0;left:255px;right:0;height:64px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:20;transition:right .3s}
 #bb.rpon{right:270px}
 .sb{display:flex;flex-direction:column;align-items:center;padding:0 1.6rem;border-right:1px solid var(--border)}
@@ -66,7 +61,7 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sn span{font-size:.68rem;color:var(--blue)}
 .sl2{font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:.22rem;font-weight:700}
 
-/* ── LOADING SCREEN ── */
+/* LOADING */
 #ld{position:fixed;inset:0;background:var(--dark);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;transition:opacity .8s}
 #ld.out{opacity:0;pointer-events:none}
 .ll{font-family:'Orbitron',monospace;font-size:3rem;font-weight:900;letter-spacing:8px;color:#fff}
@@ -75,18 +70,13 @@ canvas{display:block;width:100%!important;height:100%!important}
 .lbar-w{width:280px;height:3px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
 .lbar{height:100%;background:var(--blue);width:0;border-radius:3px;transition:width .3s ease}
 .ltxt{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center}
-.lspeed{font-size:.6rem;color:rgba(30,144,255,.6);font-weight:600;min-height:1em}
+.lspeed{font-size:.6rem;color:rgba(30,144,255,.6);font-weight:600;min-height:1em;text-align:center}
 
-/* ── ERROR SCREEN ── */
+/* ERROR */
 #err{position:fixed;inset:0;background:var(--dark);z-index:99;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.3rem;padding:2rem}
-.err-ico{font-size:2.8rem}
 .err-title{font-family:'Orbitron',monospace;font-size:1rem;color:#fff;font-weight:700;letter-spacing:1px;text-align:center}
-.err-box{background:rgba(255,60,60,.06);border:1px solid rgba(255,60,60,.2);border-radius:10px;padding:1rem 1.4rem;max-width:480px;width:100%}
-.err-box p{font-size:.76rem;color:var(--muted);line-height:1.8}
+.err-box{background:rgba(255,60,60,.06);border:1px solid rgba(255,60,60,.2);border-radius:10px;padding:1rem 1.4rem;max-width:480px;width:100%;font-size:.76rem;color:var(--muted);line-height:1.8}
 .err-box code{color:var(--blue);background:rgba(30,144,255,.12);padding:.1rem .4rem;border-radius:3px;font-size:.7rem}
-.err-steps{font-size:.76rem;color:var(--muted);max-width:480px;width:100%;line-height:2}
-.err-steps li{list-style:none;padding-left:.5rem}
-.err-steps li::before{content:'→ ';color:var(--blue)}
 .err-actions{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
 .ebtn{padding:.46rem 1.3rem;border-radius:5px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all .2s;border:none}
 .ebtn.p{background:var(--blue);color:#fff}
@@ -115,20 +105,11 @@ canvas{display:block;width:100%!important;height:100%!important}
 
 <!-- ERROR -->
 <div id="err">
-  <div class="err-ico">⚠️</div>
-  <div class="err-title">Modèle introuvable sur GitHub</div>
-  <div class="err-box">
-    <p>Impossible de charger <code>bmw_m4_f82.glb</code> depuis<br>
-    <code>github.com/vvgwgk6q2d-source/bmw-site</code></p>
-  </div>
-  <ul class="err-steps">
-    <li>Le repo <strong style="color:#fff">vvgwgk6q2d-source/bmw-site</strong> doit être <strong style="color:#fff">public</strong></li>
-    <li>Le fichier doit s'appeler exactement <code>bmw_m4_f82.glb</code></li>
-    <li>Il doit être à la <strong style="color:#fff">racine</strong> du repo (pas dans un sous-dossier)</li>
-    <li>La branche doit être <code>main</code></li>
-  </ul>
+  <div style="font-size:2.5rem">⚠️</div>
+  <div class="err-title">Impossible de charger le modèle</div>
+  <div class="err-box" id="err-msg">Erreur inconnue</div>
   <div class="err-actions">
-    <button class="ebtn p" onclick="retryAll()">↺ Réessayer</button>
+    <button class="ebtn p" onclick="location.reload()">↺ Réessayer</button>
     <button class="ebtn s" onclick="document.getElementById('file-input').click()">📂 Charger depuis mon PC</button>
   </div>
 </div>
@@ -154,18 +135,12 @@ canvas{display:block;width:100%!important;height:100%!important}
     <h2>BMW M4 F82</h2>
     <div class="sub">S55 B30T0 · 3.0L I6 Biturbo · 431 ch</div>
   </div>
-  <div class="lps">
-    <div class="lpt">Teinte carrosserie</div>
-    <div class="sws" id="sws"></div>
-  </div>
-  <div class="lps" style="border-bottom:none;padding-bottom:.1rem">
-    <div class="lpt">Composants</div>
-  </div>
+  <div class="lps"><div class="lpt">Teinte carrosserie</div><div class="sws" id="sws"></div></div>
+  <div class="lps" style="border-bottom:none;padding-bottom:.1rem"><div class="lpt">Composants</div></div>
   <div class="pl" id="pl"></div>
 </div>
 
 <div id="wrap"><canvas id="c"></canvas></div>
-
 <div class="corner tl"></div><div class="corner tr"></div>
 <div class="corner bl"></div><div class="corner br"></div>
 
@@ -192,19 +167,13 @@ canvas{display:block;width:100%!important;height:100%!important}
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script>
-// ══════════════════════════════════════════
-//  SOURCES DU MODÈLE — ordre de priorité
-// ══════════════════════════════════════════
-const SOURCES = [
-  // 1. jsDelivr CDN (le plus rapide, cache mondial)
-  'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/bmw_m4_f82.glb',
-  // 2. GitHub raw direct (fallback)
-  'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/bmw_m4_f82.glb',
-];
+// ════════════════════════════════════════════
+//  CHEMIN DU MODÈLE
+//  Le GLB est dans le même repo que index.html
+//  Vercel le sert directement → chemin relatif
+// ════════════════════════════════════════════
+const GLB_PATH = './bmw_m4_f82.glb';
 
-// ══════════════════════════════════════════
-//  DATA
-// ══════════════════════════════════════════
 const COLORS=[
   {h:'#1a1a2e',n:'Noir Saphir'},{h:'#b8b8b8',n:'Argent Brooklands'},
   {h:'#1B3A8C',n:'Bleu Lagoon'},{h:'#8B1A1A',n:'Rouge Imola'},
@@ -222,21 +191,14 @@ const PARTS=[
   {k:'interieur',i:'💺',n:'Habitacle F82',s:'Baquets · HUD · iDrive 6',d:'Sièges baquets M Sport, volant M chauffant paddles, HUD M, iDrive 6.',sp:[['Sièges','M Sport baquets'],['Volant','M + paddles'],['HUD','M Head-Up'],['Système','iDrive 6']]}
 ];
 
-// ══════════════════════════════════════════
-//  STATE
-// ══════════════════════════════════════════
-let color=COLORS[0].h,selPart=null,rotOn=true,wireOn=false,carModel=null,srcIdx=0;
+let color=COLORS[0].h,selPart=null,rotOn=true,wireOn=false,carModel=null;
 
-// ══════════════════════════════════════════
-//  THREE.JS
-// ══════════════════════════════════════════
+// THREE.JS
 const cv=document.getElementById('c');
 const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=1.5;
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.5;
 renderer.outputEncoding=THREE.sRGBEncoding;
 
 const scene=new THREE.Scene();
@@ -260,11 +222,9 @@ sun.shadow.mapSize.set(2048,2048);
 sun.shadow.camera.left=-8;sun.shadow.camera.right=8;
 sun.shadow.camera.top=7;sun.shadow.camera.bottom=-4;
 sun.shadow.bias=-.0003;scene.add(sun);
-scene.add(Object.assign(new THREE.DirectionalLight(0x2244bb,.9),{position:{set:function(x,y,z){THREE.DirectionalLight.prototype.position.set.call(this,x,y,z);return this}}}));
 const fill=new THREE.DirectionalLight(0x2244bb,.9);fill.position.set(-6,3,-4);scene.add(fill);
 const rim=new THREE.DirectionalLight(0x88aaff,2.0);rim.position.set(0,6,-8);scene.add(rim);
 scene.add(new THREE.PointLight(0x0d2266,.7,18));
-
 try{const p=new THREE.PMREMGenerator(renderer);p.compileEquirectangularShader();scene.environment=p.fromScene(new THREE.RoomEnvironment()).texture;}catch(e){}
 
 const gnd=new THREE.Mesh(new THREE.CircleGeometry(14,64),new THREE.MeshStandardMaterial({color:0x060b1a,roughness:.03,metalness:.95}));
@@ -273,43 +233,24 @@ const grid=new THREE.GridHelper(24,24,0x0d2255,0x070e28);grid.position.y=.001;sc
 const ring=new THREE.Mesh(new THREE.RingGeometry(2,2.5,64),new THREE.MeshBasicMaterial({color:0x1E90FF,transparent:true,opacity:.1,side:THREE.DoubleSide}));
 ring.rotation.x=-Math.PI/2;ring.position.y=.002;scene.add(ring);
 
-// ══════════════════════════════════════════
-//  LOADERS
-// ══════════════════════════════════════════
+// LOADERS
 const gltfLoader=new THREE.GLTFLoader();
 const dracoLoader=new THREE.DRACOLoader();
 dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
 gltfLoader.setDRACOLoader(dracoLoader);
 
-// ══════════════════════════════════════════
-//  LOAD FROM GITHUB
-// ══════════════════════════════════════════
-function retryAll(){
-  srcIdx=0;
-  document.getElementById('err').style.display='none';
-  document.getElementById('ld').style.opacity='1';
-  document.getElementById('ld').style.pointerEvents='all';
-  document.getElementById('ld').classList.remove('out');
-  tryLoad();
-}
-
-function tryLoad(){
-  if(srcIdx>=SOURCES.length){
-    document.getElementById('ld').style.display='none';
-    document.getElementById('err').style.display='flex';
-    return;
-  }
-  const url=SOURCES[srcIdx];
-  const label=srcIdx===0?'jsDelivr CDN':'GitHub Raw';
-  setLD(8,`Connexion ${label}…`);
-  document.getElementById('lspeed').textContent=url.replace('https://','');
-
+// CHARGEMENT
+function loadModel(){
+  setLD(5,'Chargement de bmw_m4_f82.glb…');
+  document.getElementById('lspeed').textContent='Servi par Vercel · chemin relatif';
   let t0=Date.now();
 
   gltfLoader.load(
-    url,
+    GLB_PATH,
     (gltf)=>{
+      const elapsed=((Date.now()-t0)/1000).toFixed(1);
       setLD(92,'Construction de la scène…');
+      document.getElementById('lspeed').textContent=`Chargé en ${elapsed}s`;
       onLoaded(gltf);
     },
     (xhr)=>{
@@ -319,14 +260,18 @@ function tryLoad(){
         const kbps=elapsed>0?Math.round(xhr.loaded/elapsed/1024):0;
         const mb=(xhr.loaded/1024/1024).toFixed(1);
         const tot=(xhr.total/1024/1024).toFixed(1);
-        setLD(10+pct*78,`Téléchargement… ${mb} / ${tot} MB`);
-        if(kbps>0) document.getElementById('lspeed').textContent=`${kbps} KB/s · ${label}`;
+        setLD(8+pct*80,`Téléchargement… ${mb} / ${tot} MB`);
+        if(kbps>0) document.getElementById('lspeed').textContent=`${kbps} KB/s`;
       }
     },
     (err)=>{
-      console.warn(`Source ${srcIdx} (${label}) échouée:`,err.message||err);
-      srcIdx++;
-      setTimeout(tryLoad,300);
+      console.error('Erreur GLB:',err);
+      document.getElementById('ld').style.display='none';
+      document.getElementById('err').style.display='flex';
+      document.getElementById('err-msg').innerHTML=
+        `Fichier <code>bmw_m4_f82.glb</code> introuvable.<br>
+         Vérifie que le fichier est bien dans ton repo Vercel à la racine.<br><br>
+         <em>Erreur : ${err.message||err}</em>`;
     }
   );
 }
@@ -374,29 +319,24 @@ function setLD(pct,txt){
   document.getElementById('ltxt').textContent=txt;
 }
 
-// ══════════════════════════════════════════
-//  UPLOAD LOCAL (fallback)
-// ══════════════════════════════════════════
+// UPLOAD LOCAL
 document.getElementById('file-input').addEventListener('change',e=>{
   const file=e.target.files[0];if(!file)return;
   document.getElementById('err').style.display='none';
   document.getElementById('ld').style.display='flex';
-  document.getElementById('ld').style.opacity='1';
   document.getElementById('ld').classList.remove('out');
-  setLD(10,'Lecture du fichier local…');
-  document.getElementById('lspeed').textContent=file.name+' · '+(file.size/1024/1024).toFixed(1)+' MB';
+  document.getElementById('ld').style.opacity='1';
+  setLD(10,'Lecture locale…');
+  document.getElementById('lspeed').textContent=file.name;
   const reader=new FileReader();
   reader.onload=ev=>{
-    setLD(60,'Décodage GLTF…');
-    gltfLoader.parse(ev.target.result,'',gltf=>{setLD(90,'Assemblage…');onLoaded(gltf);},err=>alert('Fichier invalide: '+err.message));
+    setLD(60,'Décodage…');
+    gltfLoader.parse(ev.target.result,'',gltf=>onLoaded(gltf),err=>alert('Fichier invalide: '+err.message));
   };
   reader.readAsArrayBuffer(file);
   e.target.value='';
 });
 
-// ══════════════════════════════════════════
-//  COLOR
-// ══════════════════════════════════════════
 function applyColor(hex){
   color=hex;
   if(!carModel){renderUI();return;}
@@ -414,9 +354,6 @@ function applyColor(hex){
   renderUI();
 }
 
-// ══════════════════════════════════════════
-//  UI
-// ══════════════════════════════════════════
 function renderUI(){
   document.getElementById('sws').innerHTML=COLORS.map(c=>`<div class="sw${c.h===color?' on':''}" style="background:${c.h}" title="${c.n}" onclick="applyColor('${c.h}')"></div>`).join('');
   document.getElementById('pl').innerHTML=PARTS.map(pt=>`<div class="pi${selPart===pt.k?' on':''}" onclick="selP('${pt.k}')"><div class="pico">${pt.i}</div><div style="flex:1"><div class="pn">${pt.n}</div><div class="ps">${pt.s}</div></div><div class="pa">›</div></div>`).join('');
@@ -447,11 +384,10 @@ window.addEventListener('resize',onResize);onResize();
 
 const clk=new THREE.Clock();
 function animate(){requestAnimationFrame(animate);controls.update();ring.material.opacity=.07+Math.sin(clk.getElapsedTime()*1.3)*.04;renderer.render(scene,camera);}
-animate();
-renderUI();
+animate();renderUI();
 
-// Démarrage automatique
-tryLoad();
+// DÉMARRAGE
+loadModel();
 </script>
 </body>
 </html>
