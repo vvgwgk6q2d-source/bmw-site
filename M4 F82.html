@@ -9,8 +9,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--blue:#1E90FF;--dark:#04070f;--border:rgba(30,144,255,0.15);--muted:rgba(255,255,255,0.38);--panel:rgba(4,7,15,0.97)}
 body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;overflow:hidden;height:100vh}
-
-/* HEADER */
 #hdr{position:fixed;top:0;left:0;right:0;z-index:50;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:var(--panel);border-bottom:1px solid var(--border)}
 .logo{font-family:'Orbitron',monospace;font-size:1.35rem;font-weight:900;letter-spacing:6px;color:#fff;text-decoration:none}
 .logo em{color:var(--blue);font-style:normal}
@@ -19,12 +17,8 @@ body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;over
 .hbtn{padding:.3rem .9rem;font-size:.64rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--muted);cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:600;transition:all .2s}
 .hbtn:hover{color:#fff;border-color:var(--blue)}
 .hbtn.on{border-color:rgba(30,144,255,.5);color:var(--blue)}
-
-/* CANVAS */
 #wrap{position:fixed;left:255px;right:0;top:52px;bottom:64px;background:var(--dark)}
 canvas{display:block;width:100%!important;height:100%!important}
-
-/* LEFT PANEL */
 #lp{position:fixed;left:0;top:52px;bottom:64px;width:255px;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:20;overflow:hidden}
 .lph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border);flex-shrink:0}
 .lbadge{font-size:.53rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;display:block;margin-bottom:.35rem}
@@ -45,8 +39,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .pn{font-size:.8rem;font-weight:600;color:#fff}.ps{font-size:.64rem;color:var(--muted);margin-top:.05rem}
 .pa{color:var(--blue);font-size:.8rem;opacity:0;transition:opacity .2s;margin-left:auto}
 .pi.on .pa,.pi:hover .pa{opacity:1}
-
-/* RIGHT PANEL */
 #rp{position:fixed;right:0;top:52px;bottom:64px;width:270px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:20;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
 #rp.on{transform:translateX(0)}
 .rph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
@@ -60,8 +52,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sr{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .sr:last-child{border:none}
 .sk{font-size:.72rem;color:var(--muted)}.sv{font-size:.74rem;color:#fff;font-weight:600;text-align:right}
-
-/* BOTTOM BAR */
 #bb{position:fixed;bottom:0;left:255px;right:0;height:64px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:20;transition:right .3s}
 #bb.rpon{right:270px}
 .sb{display:flex;flex-direction:column;align-items:center;padding:0 1.6rem;border-right:1px solid var(--border)}
@@ -69,8 +59,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sn{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;color:#fff;line-height:1}
 .sn span{font-size:.68rem;color:var(--blue)}
 .sl2{font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:.22rem;font-weight:700}
-
-/* LOADING SCREEN */
 #ld{position:fixed;inset:0;background:var(--dark);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;transition:opacity .8s}
 #ld.out{opacity:0;pointer-events:none}
 .ll{font-family:'Orbitron',monospace;font-size:3rem;font-weight:900;letter-spacing:8px;color:#fff}
@@ -80,15 +68,12 @@ canvas{display:block;width:100%!important;height:100%!important}
 .lbar{height:100%;background:var(--blue);width:0;border-radius:3px;transition:width .3s ease}
 .ltxt{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center}
 .lspeed{font-size:.6rem;color:rgba(30,144,255,.6);font-weight:600;min-height:1em;text-align:center;max-width:400px;word-break:break-all}
-
-/* ERREUR CHARGEMENT */
 #errmsg{position:fixed;inset:0;background:var(--dark);z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;text-align:center;padding:2rem}
 #errmsg.active{display:flex}
 .err-icon{font-size:2.5rem}
 .err-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:#fff}
 .err-sub{font-size:.76rem;color:var(--muted);line-height:1.8;max-width:420px}
 .err-sub code{color:rgba(30,144,255,.7);font-size:.68rem}
-
 .corner{position:fixed;width:28px;height:28px;z-index:25;pointer-events:none}
 .corner.tl{top:60px;left:262px;border-top:1px solid rgba(30,144,255,.2);border-left:1px solid rgba(30,144,255,.2)}
 .corner.tr{top:60px;right:6px;border-top:1px solid rgba(30,144,255,.2);border-right:1px solid rgba(30,144,255,.2)}
@@ -98,8 +83,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 </style>
 </head>
 <body>
-
-<!-- LOADING -->
 <div id="ld">
   <div class="ll">BM<em>W</em></div>
   <div class="lsub">M4 F82 · Configurateur 3D</div>
@@ -107,8 +90,6 @@ canvas{display:block;width:100%!important;height:100%!important}
   <div class="ltxt" id="ltxt">Initialisation…</div>
   <div class="lspeed" id="lspeed"></div>
 </div>
-
-<!-- ERREUR (si toutes les sources échouent) -->
 <div id="errmsg">
   <div class="err-icon">⚠</div>
   <div class="err-title">Modèle introuvable</div>
@@ -119,8 +100,6 @@ canvas{display:block;width:100%!important;height:100%!important}
     Ouvrez cette page via <strong style="color:rgba(255,255,255,.5)">GitHub Pages</strong> pour éviter les restrictions CORS.
   </div>
 </div>
-
-<!-- HEADER -->
 <div id="hdr">
   <a href="index.html" class="logo">BM<em>W</em></a>
   <div style="display:flex;align-items:center;gap:.8rem">
@@ -133,8 +112,6 @@ canvas{display:block;width:100%!important;height:100%!important}
     <button class="hbtn" id="wirebtn" onclick="toggleWire()">◻ Wireframe</button>
   </div>
 </div>
-
-<!-- LEFT PANEL -->
 <div id="lp">
   <div class="lph">
     <span class="lbadge">BMW M Series · F82 Coupé</span>
@@ -154,8 +131,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 <div id="wrap"><canvas id="c"></canvas></div>
 <div class="corner tl"></div><div class="corner tr"></div>
 <div class="corner bl"></div><div class="corner br"></div>
-
-<!-- RIGHT PANEL -->
 <div id="rp">
   <div class="rph">
     <div><span class="rl">Spécifications techniques</span><h3 id="rtitle">—</h3></div>
@@ -164,8 +139,6 @@ canvas{display:block;width:100%!important;height:100%!important}
   <div class="rdesc" id="rdesc"></div>
   <div class="rsl" id="rsl"></div>
 </div>
-
-<!-- BOTTOM BAR -->
 <div id="bb">
   <div class="sb"><div class="sn">431<span>ch</span></div><div class="sl2">Puissance</div></div>
   <div class="sb"><div class="sn">4.1<span>s</span></div><div class="sl2">0–100 km/h</div></div>
@@ -174,25 +147,17 @@ canvas{display:block;width:100%!important;height:100%!important}
   <div class="sb"><div class="sn">3.0<span>L</span></div><div class="sl2">Cylindrée</div></div>
 </div>
 <div id="hint">🖱 Glisser · Scroll zoom · Double-clic reset</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-
 <script>
-// ══════════════════════════════════════════
-//  URLS DU MODÈLE
-// ══════════════════════════════════════════
+
 const MODEL_URLS = [
   './bmw_m4_f82.glb',
   'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/bmw_m4_f82.glb',
   'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/bmw_m4_f82.glb',
 ];
-
-// ══════════════════════════════════════════
-//  DATA
-// ══════════════════════════════════════════
 const COLORS = [
   {h:'#1a1a2e', n:'Noir Saphir'},
   {h:'#b8b8b8', n:'Argent Brooklands'},
@@ -208,7 +173,6 @@ const COLORS = [
   {h:'#2d2d2d', n:'Gris Frozen'},
   {h:'#b5451b', n:'Orange Atacama'},
 ];
-
 const PARTS = [
   {k:'moteur',i:'⚙',n:'Moteur S55 B30T0',s:'3.0L I6 · 431 ch',d:'Six cylindres en ligne, deux turbos Twin-Scroll séquentiels. Conçu exclusivement pour BMW M GmbH.',sp:[['Type','L6 Biturbo DOHC'],['Cylindrée','2 979 cm³'],['Puissance','431 ch'],['Couple','550 Nm'],['Régime max','7 600 tr/min']]},
   {k:'boite',i:'🔩',n:'M-DCT 7 rapports',s:'< 80 ms · Launch Control',d:'Double embrayage 7 rapports, passages ultra-rapides, Launch Control, paddles au volant.',sp:[['Type','DCT 7 rapports'],['Passages','< 80 ms'],['Launch Control','Oui'],['Diff.','M Active LSD'],['Propulsion','RWD']]},
@@ -220,14 +184,7 @@ const PARTS = [
   {k:'interieur',i:'💺',n:'Habitacle F82',s:'Baquets · HUD · iDrive 6',d:'Sièges baquets M Sport, volant M chauffant paddles, HUD M, iDrive 6.',sp:[['Sièges','M Sport baquets'],['Volant','M + paddles'],['HUD','M Head-Up'],['Système','iDrive 6']]},
 ];
 
-// ══════════════════════════════════════════
-//  STATE
-// ══════════════════════════════════════════
 let color = COLORS[0].h, selPart = null, rotOn = true, wireOn = false, carModel = null, urlIdx = 0;
-
-// ══════════════════════════════════════════
-//  THREE.JS SETUP
-// ══════════════════════════════════════════
 const cv = document.getElementById('c');
 const renderer = new THREE.WebGLRenderer({canvas: cv, antialias: true, alpha: false});
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -253,8 +210,7 @@ controls.maxPolarAngle = Math.PI * 0.55;
 controls.autoRotate = true;
 controls.autoRotateSpeed = 0.9;
 controls.target.set(0, 0.5, 0);
-
-// Lumières
+  
 scene.add(new THREE.AmbientLight(0x334466, 1.2));
 const sun = new THREE.DirectionalLight(0xfff5e8, 3.5);
 sun.position.set(6, 12, 6);
@@ -272,14 +228,12 @@ rim.position.set(0, 6, -8);
 scene.add(rim);
 scene.add(new THREE.PointLight(0x0d2266, 0.7, 18));
 
-// Environnement réflectif
 try {
   const pmrem = new THREE.PMREMGenerator(renderer);
   pmrem.compileEquirectangularShader();
   scene.environment = pmrem.fromScene(new THREE.RoomEnvironment()).texture;
 } catch(e) {}
 
-// Sol
 const gnd = new THREE.Mesh(
   new THREE.CircleGeometry(14, 64),
   new THREE.MeshStandardMaterial({color: 0x060b1a, roughness: 0.03, metalness: 0.95})
@@ -300,24 +254,17 @@ ring.rotation.x = -Math.PI / 2;
 ring.position.y = 0.002;
 scene.add(ring);
 
-// ══════════════════════════════════════════
-//  LOADERS
-// ══════════════════════════════════════════
 const gltfLoader = new THREE.GLTFLoader();
 const dracoLoader = new THREE.DRACOLoader();
 dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
 gltfLoader.setDRACOLoader(dracoLoader);
 
-// ══════════════════════════════════════════
-//  CHARGEMENT DU MODÈLE
-// ══════════════════════════════════════════
 function tryLoad() {
   if (urlIdx >= MODEL_URLS.length) {
     document.getElementById('ld').style.display = 'none';
     document.getElementById('errmsg').classList.add('active');
-    return;
-  }
-
+    return; }
+  
   const url = MODEL_URLS[urlIdx];
   const label = ['Chemin local', 'jsDelivr CDN', 'GitHub Raw'][urlIdx] || 'Source ' + urlIdx;
   setLD(8, `Connexion — ${label}…`);
@@ -397,10 +344,6 @@ function setLD(pct, txt) {
   document.getElementById('ltxt').textContent = txt;
 }
 
-// ══════════════════════════════════════════
-//  COULEUR — correctif luminosité
-// ══════════════════════════════════════════
-// Mots-clés pour détecter les meshes roues/jantes/pneus
 const WHEEL_KEYS = ['wheel','roue','jante','tire','tyre','pneu','rim','felge','roda','ruota','brake','disque','caliper','etrier'];
 
 function isWheelMesh(name) {
@@ -432,9 +375,6 @@ function applyColor(hex) {
   renderUI();
 }
 
-// ══════════════════════════════════════════
-//  UI
-// ══════════════════════════════════════════
 function renderUI() {
   document.getElementById('sws').innerHTML = COLORS.map(c =>
     `<div class="sw${c.h === color ? ' on' : ''}" style="background:${c.h}" title="${c.n}" onclick="applyColor('${c.h}')"></div>`
@@ -469,9 +409,6 @@ function closeRP() {
   document.querySelectorAll('.pi').forEach(e => e.classList.remove('on'));
 }
 
-// ══════════════════════════════════════════
-//  CONTRÔLES CAMÉRA
-// ══════════════════════════════════════════
 function toggleRot() {
   rotOn = !rotOn;
   controls.autoRotate = rotOn;
@@ -494,9 +431,6 @@ function resetCam() {
 }
 cv.addEventListener('dblclick', resetCam);
 
-// ══════════════════════════════════════════
-//  RESIZE
-// ══════════════════════════════════════════
 function onResize() {
   const w = innerWidth - 255;
   const h = innerHeight - 52 - 64;
@@ -507,9 +441,6 @@ function onResize() {
 window.addEventListener('resize', onResize);
 onResize();
 
-// ══════════════════════════════════════════
-//  BOUCLE DE RENDU
-// ══════════════════════════════════════════
 const clk = new THREE.Clock();
 function animate() {
   requestAnimationFrame(animate);
