@@ -400,12 +400,22 @@ function setLD(pct, txt) {
 // ══════════════════════════════════════════
 //  COULEUR — correctif luminosité
 // ══════════════════════════════════════════
+// Mots-clés pour détecter les meshes roues/jantes/pneus
+const WHEEL_KEYS = ['wheel','roue','jante','tire','tyre','pneu','rim','felge','roda','ruota','brake','disque','caliper','etrier'];
+
+function isWheelMesh(name) {
+  const n = (name || '').toLowerCase();
+  return WHEEL_KEYS.some(k => n.includes(k));
+}
+
 function applyColor(hex) {
   color = hex;
   if (!carModel) { renderUI(); return; }
   const c = new THREE.Color(hex);
   carModel.traverse(n => {
     if (!n.isMesh) return;
+    // Exclure : roues, jantes, pneus, freins
+    if (isWheelMesh(n.name)) return;
     const mats = Array.isArray(n.material) ? n.material : [n.material];
     mats.forEach(m => {
       if (!m || !m.color) return;
@@ -415,7 +425,6 @@ function applyColor(hex) {
       if (m.emissive && (m.emissive.r + m.emissive.g + m.emissive.b) > 0.15) return;
       // Exclure : transparent (vitres)
       if (m.transparent && m.opacity < 0.6) return;
-      // Appliquer sur tout le reste (carrosserie, plastiques, etc.)
       m.color.set(c);
       m.needsUpdate = true;
     });
