@@ -19,8 +19,6 @@ body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;over
 .hbtn{padding:.3rem .9rem;font-size:.64rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--muted);cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:600;transition:all .2s}
 .hbtn:hover{color:#fff;border-color:var(--blue)}
 .hbtn.on{border-color:rgba(30,144,255,.5);color:var(--blue)}
-.hbtn.accent{background:var(--blue);border-color:var(--blue);color:#fff!important}
-.hbtn.accent:hover{background:#3da5ff}
 
 /* CANVAS */
 #wrap{position:fixed;left:255px;right:0;top:52px;bottom:64px;background:var(--dark)}
@@ -83,33 +81,13 @@ canvas{display:block;width:100%!important;height:100%!important}
 .ltxt{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center}
 .lspeed{font-size:.6rem;color:rgba(30,144,255,.6);font-weight:600;min-height:1em;text-align:center;max-width:400px;word-break:break-all}
 
-/* DROP ZONE — s'affiche si le fichier GitHub échoue */
-#dropzone{
-  position:fixed;inset:0;background:var(--dark);z-index:90;
-  display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
-}
-#dropzone.active{display:flex}
-.dz-box{
-  width:420px;max-width:90vw;
-  border:2px dashed rgba(30,144,255,.35);border-radius:16px;
-  padding:3rem 2rem;text-align:center;
-  background:rgba(30,144,255,.04);
-  transition:border-color .3s, background .3s;
-  cursor:pointer;
-}
-#dropzone.dragging .dz-box{border-color:var(--blue);background:rgba(30,144,255,.1);}
-.dz-icon{font-size:2.8rem;margin-bottom:.8rem}
-.dz-title{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
-.dz-sub{font-size:.76rem;color:var(--muted);line-height:1.7}
-.dz-btn{
-  margin-top:1.2rem;display:inline-flex;align-items:center;gap:.5rem;
-  padding:.55rem 1.6rem;background:var(--blue);border:none;border-radius:4px;
-  color:#fff;font-family:'Rajdhani',sans-serif;font-size:.72rem;letter-spacing:2px;
-  text-transform:uppercase;font-weight:700;cursor:pointer;transition:all .2s;
-}
-.dz-btn:hover{background:#3da5ff;transform:translateY(-1px)}
-.dz-info{font-size:.64rem;color:rgba(255,255,255,.2);text-align:center;max-width:360px;line-height:1.8}
-.dz-info code{color:rgba(30,144,255,.6);font-size:.6rem}
+/* ERREUR CHARGEMENT */
+#errmsg{position:fixed;inset:0;background:var(--dark);z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;text-align:center;padding:2rem}
+#errmsg.active{display:flex}
+.err-icon{font-size:2.5rem}
+.err-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:#fff}
+.err-sub{font-size:.76rem;color:var(--muted);line-height:1.8;max-width:420px}
+.err-sub code{color:rgba(30,144,255,.7);font-size:.68rem}
 
 .corner{position:fixed;width:28px;height:28px;z-index:25;pointer-events:none}
 .corner.tl{top:60px;left:262px;border-top:1px solid rgba(30,144,255,.2);border-left:1px solid rgba(30,144,255,.2)}
@@ -120,7 +98,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 </style>
 </head>
 <body>
-<input type="file" id="file-input" accept=".glb,.gltf" style="display:none">
 
 <!-- LOADING -->
 <div id="ld">
@@ -131,19 +108,15 @@ canvas{display:block;width:100%!important;height:100%!important}
   <div class="lspeed" id="lspeed"></div>
 </div>
 
-<!-- DROP ZONE (fallback si GitHub échoue) -->
-<div id="dropzone">
-  <div class="dz-box" id="dz-box">
-    <div class="dz-icon">📦</div>
-    <div class="dz-title">Charger le modèle 3D</div>
-    <div class="dz-sub">Glissez-déposez votre fichier <strong style="color:#fff">bmw_m4_f82.glb</strong><br>ou cliquez pour parcourir vos fichiers</div>
-    <button class="dz-btn" onclick="document.getElementById('file-input').click()">📂 Sélectionner le fichier GLB</button>
-  </div>
-  <div class="dz-info">
-    Le modèle GitHub n'a pas pu être chargé.<br>
-    Vérifiez que le repo <code>vvgwgk6q2d-source/bmw-site</code> est <strong style="color:rgba(255,255,255,.4)">public</strong><br>
-    et que <code>bmw_m4_f82.glb</code> est à la racine sur la branche <code>main</code>.<br><br>
-    Ou ouvrez ce fichier via <strong style="color:rgba(255,255,255,.4)">GitHub Pages</strong> pour éviter les restrictions CORS.
+<!-- ERREUR (si toutes les sources échouent) -->
+<div id="errmsg">
+  <div class="err-icon">⚠</div>
+  <div class="err-title">Modèle introuvable</div>
+  <div class="err-sub">
+    Le fichier <code>bmw_m4_f82.glb</code> n'a pas pu être chargé.<br>
+    Vérifiez que le repo <code>vvgwgk6q2d-source/bmw-site</code> est <strong style="color:rgba(255,255,255,.5)">public</strong><br>
+    et que le fichier est à la racine sur la branche <code>main</code>.<br><br>
+    Ouvrez cette page via <strong style="color:rgba(255,255,255,.5)">GitHub Pages</strong> pour éviter les restrictions CORS.
   </div>
 </div>
 
@@ -158,7 +131,6 @@ canvas{display:block;width:100%!important;height:100%!important}
     <button class="hbtn on" id="rotbtn" onclick="toggleRot()">⟳ Rotation</button>
     <button class="hbtn" onclick="resetCam()">⊹ Reset</button>
     <button class="hbtn" id="wirebtn" onclick="toggleWire()">◻ Wireframe</button>
-    <button class="hbtn accent" onclick="document.getElementById('file-input').click()">📂 Charger GLB</button>
   </div>
 </div>
 
@@ -203,7 +175,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 </div>
 <div id="hint">🖱 Glisser · Scroll zoom · Double-clic reset</div>
 
-<!-- THREE.JS — version cohérente partout -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
@@ -211,17 +182,11 @@ canvas{display:block;width:100%!important;height:100%!important}
 
 <script>
 // ══════════════════════════════════════════
-//  URL DU MODÈLE
-//  → jsDelivr (cache mondial, CORS OK)
-//  → GitHub raw (fallback)
-//  → Chemin relatif (si même repo GitHub Pages)
+//  URLS DU MODÈLE
 // ══════════════════════════════════════════
 const MODEL_URLS = [
-  // Chemin relatif — fonctionne si le HTML est servi depuis le même repo (GitHub Pages, serveur local)
   './bmw_m4_f82.glb',
-  // jsDelivr CDN — CORS libre, cache mondial
   'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/bmw_m4_f82.glb',
-  // GitHub raw — fallback
   'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/bmw_m4_f82.glb',
 ];
 
@@ -229,15 +194,21 @@ const MODEL_URLS = [
 //  DATA
 // ══════════════════════════════════════════
 const COLORS = [
-  {h:'#1a1a2e',n:'Noir Saphir'},
-  {h:'#b8b8b8',n:'Argent Brooklands'},
-  {h:'#1B3A8C',n:'Bleu Lagoon'},
-  {h:'#8B1A1A',n:'Rouge Imola'},
-  {h:'#edecea',n:'Blanc Alpine'},
-  {h:'#080808',n:'Noir Carbone'},
-  {h:'#2a4a1e',n:'Vert Brooklyn'},
-  {h:'#4a3020',n:'Cognac Mat'},
+  {h:'#1a1a2e', n:'Noir Saphir'},
+  {h:'#b8b8b8', n:'Argent Brooklands'},
+  {h:'#1B3A8C', n:'Bleu Lagoon'},
+  {h:'#8B1A1A', n:'Rouge Imola'},
+  {h:'#edecea', n:'Blanc Alpine'},
+  {h:'#080808', n:'Noir Carbone'},
+  {h:'#2a4a1e', n:'Vert Brooklyn'},
+  {h:'#6b3d1e', n:'Cognac Mat'},
+  {h:'#c8860a', n:'Jaune M Competition'},
+  {h:'#1a3a2a', n:'Vert Isle of Man'},
+  {h:'#7a1f3d', n:'Violet Twilight'},
+  {h:'#2d2d2d', n:'Gris Frozen'},
+  {h:'#b5451b', n:'Orange Atacama'},
 ];
+
 const PARTS = [
   {k:'moteur',i:'⚙',n:'Moteur S55 B30T0',s:'3.0L I6 · 431 ch',d:'Six cylindres en ligne, deux turbos Twin-Scroll séquentiels. Conçu exclusivement pour BMW M GmbH.',sp:[['Type','L6 Biturbo DOHC'],['Cylindrée','2 979 cm³'],['Puissance','431 ch'],['Couple','550 Nm'],['Régime max','7 600 tr/min']]},
   {k:'boite',i:'🔩',n:'M-DCT 7 rapports',s:'< 80 ms · Launch Control',d:'Double embrayage 7 rapports, passages ultra-rapides, Launch Control, paddles au volant.',sp:[['Type','DCT 7 rapports'],['Passages','< 80 ms'],['Launch Control','Oui'],['Diff.','M Active LSD'],['Propulsion','RWD']]},
@@ -342,9 +313,8 @@ gltfLoader.setDRACOLoader(dracoLoader);
 // ══════════════════════════════════════════
 function tryLoad() {
   if (urlIdx >= MODEL_URLS.length) {
-    // Toutes les sources ont échoué → drop zone
     document.getElementById('ld').style.display = 'none';
-    document.getElementById('dropzone').classList.add('active');
+    document.getElementById('errmsg').classList.add('active');
     return;
   }
 
@@ -381,14 +351,12 @@ function tryLoad() {
 }
 
 function onModelLoaded(gltf) {
-  // Nettoyer ancien modèle
   if (carModel) {
     scene.remove(carModel);
     carModel.traverse(c => { if (c.geometry) c.geometry.dispose(); });
   }
   carModel = gltf.scene;
 
-  // Centrer et normaliser
   const box = new THREE.Box3().setFromObject(carModel);
   const size = box.getSize(new THREE.Vector3());
   const center = box.getCenter(new THREE.Vector3());
@@ -398,7 +366,6 @@ function onModelLoaded(gltf) {
   const box2 = new THREE.Box3().setFromObject(carModel);
   carModel.position.y -= box2.min.y;
 
-  // Ombres + env map
   carModel.traverse(n => {
     if (!n.isMesh) return;
     n.castShadow = true;
@@ -408,7 +375,6 @@ function onModelLoaded(gltf) {
   });
   scene.add(carModel);
 
-  // Caméra adaptée à la taille du modèle
   const box3 = new THREE.Box3().setFromObject(carModel);
   const sz = box3.getSize(new THREE.Vector3());
   camera.position.set(sz.x * 0.9, sz.y * 0.85, sz.z * 1.7);
@@ -432,49 +398,7 @@ function setLD(pct, txt) {
 }
 
 // ══════════════════════════════════════════
-//  CHARGEMENT LOCAL (drag & drop ou input)
-// ══════════════════════════════════════════
-function loadFromFile(file) {
-  if (!file) return;
-  document.getElementById('dropzone').classList.remove('active');
-  document.getElementById('ld').style.display = 'flex';
-  document.getElementById('ld').style.opacity = '1';
-  document.getElementById('ld').classList.remove('out');
-  setLD(10, 'Lecture du fichier…');
-  document.getElementById('lspeed').textContent = file.name + ' · ' + (file.size / 1024 / 1024).toFixed(1) + ' MB';
-
-  const reader = new FileReader();
-  reader.onload = ev => {
-    setLD(55, 'Décodage GLTF…');
-    gltfLoader.parse(
-      ev.target.result, '',
-      gltf => { setLD(88, 'Assemblage…'); onModelLoaded(gltf); },
-      err => { alert('Fichier invalide : ' + (err.message || err)); }
-    );
-  };
-  reader.readAsArrayBuffer(file);
-}
-
-document.getElementById('file-input').addEventListener('change', e => {
-  loadFromFile(e.target.files[0]);
-  e.target.value = '';
-});
-
-// Drag & Drop sur la drop zone
-const dz = document.getElementById('dropzone');
-dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragging'); });
-dz.addEventListener('dragleave', () => dz.classList.remove('dragging'));
-dz.addEventListener('drop', e => {
-  e.preventDefault();
-  dz.classList.remove('dragging');
-  const file = e.dataTransfer.files[0];
-  if (file && (file.name.endsWith('.glb') || file.name.endsWith('.gltf'))) loadFromFile(file);
-});
-// Clic sur la box entière
-document.getElementById('dz-box').addEventListener('click', () => document.getElementById('file-input').click());
-
-// ══════════════════════════════════════════
-//  COULEUR
+//  COULEUR — correctif luminosité
 // ══════════════════════════════════════════
 function applyColor(hex) {
   color = hex;
@@ -485,12 +409,15 @@ function applyColor(hex) {
     const mats = Array.isArray(n.material) ? n.material : [n.material];
     mats.forEach(m => {
       if (!m || !m.color) return;
-      const lum = m.color.r * 0.3 + m.color.g * 0.59 + m.color.b * 0.11;
-      if (!m.transparent && lum > 0.06 && lum < 0.94
-          && !(m.metalness > 0.82 && m.roughness < 0.22)
-          && !(m.emissive && (m.emissive.r + m.emissive.g + m.emissive.b) > 0.12)) {
-        m.color.set(c);
-      }
+      // Exclure : métal très poli (chrome, alu)
+      if (m.metalness > 0.85 && m.roughness < 0.18) return;
+      // Exclure : émissif (phares, LEDs)
+      if (m.emissive && (m.emissive.r + m.emissive.g + m.emissive.b) > 0.15) return;
+      // Exclure : transparent (vitres)
+      if (m.transparent && m.opacity < 0.6) return;
+      // Appliquer sur tout le reste (carrosserie, plastiques, etc.)
+      m.color.set(c);
+      m.needsUpdate = true;
     });
   });
   renderUI();
@@ -583,10 +510,6 @@ function animate() {
 }
 animate();
 renderUI();
-
-// ══════════════════════════════════════════
-//  DÉMARRAGE
-// ══════════════════════════════════════════
 tryLoad();
 </script>
 </body>
