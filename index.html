@@ -20,13 +20,10 @@
 html{scroll-behavior:smooth}
 body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;overflow-x:hidden}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.02;pointer-events:none;z-index:9999}
-
 #cdot,#cring{position:fixed;pointer-events:none;z-index:9998;border-radius:50%;transform:translate(-50%,-50%)}
 #cdot{width:5px;height:5px;background:#fff}
 #cring{width:32px;height:32px;border:1px solid rgba(30,144,255,.5);transition:width .22s,height .22s,border-color .22s}
 body.hovered #cring{width:52px;height:52px;border-color:var(--blue)}
-
-/* HEADER */
 header{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(2,4,9,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
 .logo{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;letter-spacing:7px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:.6rem}
 .logo-ring{width:30px;height:30px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:.42rem;letter-spacing:.5px;color:var(--blue);font-weight:700;flex-shrink:0}
@@ -36,8 +33,6 @@ nav a::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;
 nav a:hover{color:#fff}nav a:hover::after{width:100%}
 .hcta{padding:.38rem 1.3rem;border:1px solid rgba(30,144,255,.45);border-radius:2px;color:var(--blue);font-size:.63rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Rajdhani',sans-serif;cursor:pointer;background:transparent;transition:all .2s}
 .hcta:hover{background:var(--blue);color:#fff}
-
-/* HERO */
 #hero{height:100vh;min-height:640px;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 3.5rem 0 4rem;position:relative;overflow:hidden;gap:3rem}
 .hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(30,144,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(30,144,255,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 85% 80% at 60% 50%,black 20%,transparent 100%)}
 .hero-glow{position:absolute;right:-5%;top:15%;width:55%;height:65%;background:radial-gradient(ellipse,rgba(30,144,255,.07) 0%,transparent 65%)}
@@ -63,23 +58,17 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .scroll-ind{position:absolute;bottom:2.8rem;left:4rem;z-index:1;display:flex;align-items:center;gap:.65rem;font-size:.54rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);animation:fu .8s .55s ease both;transition:opacity 1s}
 .scroll-ind::before{content:'';width:1px;height:28px;background:linear-gradient(to bottom,transparent,rgba(30,144,255,.4));display:block}
 @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-
-/* STRIP */
 .strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.65rem 0;overflow:hidden;background:rgba(8,13,24,.7)}
 .strip-inner{display:flex;gap:3rem;animation:marquee 30s linear infinite;white-space:nowrap}
 .strip-item{font-size:.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted2);font-weight:700;display:flex;align-items:center;gap:.55rem;flex-shrink:0}
 .strip-item::before{content:'·';color:rgba(30,144,255,.6);font-size:.85rem}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* SECTION */
 .section-eyebrow{font-size:.54rem;letter-spacing:5px;text-transform:uppercase;color:var(--blue);font-weight:700;display:flex;align-items:center;gap:.7rem}
 .section-eyebrow::before{content:'';width:18px;height:1px;background:var(--blue)}
 .section-title{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:700;color:#fff;line-height:1.1}
 .section-title em{color:var(--blue);font-style:normal}
 .section-sub{font-size:.88rem;color:var(--muted);max-width:560px;line-height:1.75}
 .divider{width:100%;height:1px;background:var(--border)}
-
-/* BRAND */
 #brand{padding:7rem 3.5rem;display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:center}
 .brand-left .section-eyebrow{margin-bottom:1.1rem}
 .brand-left .section-title{margin-bottom:1.3rem}
@@ -96,8 +85,6 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .brf:hover .brf-ico{background:rgba(30,144,255,.2);box-shadow:0 0 14px rgba(30,144,255,.18)}
 .brf-title{font-family:'Orbitron',monospace;font-size:.76rem;font-weight:700;color:#fff}
 .brf-text{font-size:.72rem;color:var(--muted);line-height:1.6}
-
-/* RANGE */
 #range{padding:7rem 3.5rem}
 .range-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;gap:2rem;flex-wrap:wrap}
 .range-header-left{display:flex;flex-direction:column;gap:.9rem}
@@ -105,13 +92,10 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .rtab{padding:.34rem 1rem;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Rajdhani',sans-serif;border-radius:2px;cursor:pointer;transition:all .22s;border:1px solid var(--border);background:transparent;color:var(--muted)}
 .rtab:hover{color:#fff;border-color:rgba(30,144,255,.4)}
 .rtab.active{background:rgba(30,144,255,.15);border-color:rgba(30,144,255,.5);color:var(--blue)}
-
 .cars-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
+  gap:18px;}
 .car-card{
   background:rgba(8,14,26,.92);
   border:1px solid var(--border);
@@ -122,43 +106,34 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
   position:relative;
   text-decoration:none;
   display:flex;
-  flex-direction:column;
-}
+  flex-direction:column;}
 .car-card:hover{
   transform:translateY(-6px);
   border-color:rgba(30,144,255,.45);
-  box-shadow:0 20px 48px rgba(0,0,0,.5), 0 0 0 1px rgba(30,144,255,.1);
-}
+  box-shadow:0 20px 48px rgba(0,0,0,.5), 0 0 0 1px rgba(30,144,255,.1);}
 .car-card.featured{grid-column:1 / -1;flex-direction:row}
 .car-card.span2{grid-column:span 2}
-
 .card-vis{overflow:hidden;position:relative;flex-shrink:0;background:#060d1c}
 .car-card:not(.featured) .card-vis{height:210px}
 .car-card.featured .card-vis{width:52%;height:300px}
 .car-card.span2:not(.featured) .card-vis{height:210px}
-
 .card-photo{
   width:100%;height:100%;
   object-fit:cover;
   object-position:center 40%;
   transition:transform .5s cubic-bezier(.4,0,.2,1),filter .4s;
   filter:brightness(.85) saturate(1.1);
-  display:block;
-}
+  display:block;}
 .car-card:hover .card-photo{
   transform:scale(1.06);
-  filter:brightness(.95) saturate(1.2);
-}
+  filter:brightness(.95) saturate(1.2);}
 .card-vis-overlay{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(8,14,26,.85) 0%,rgba(8,14,26,.2) 45%,transparent 100%);
-  pointer-events:none;
-}
+  pointer-events:none;}
 .car-card.featured .card-vis-overlay{
   background:linear-gradient(to right,rgba(8,14,26,.6) 0%,transparent 60%),
-             linear-gradient(to top,rgba(8,14,26,.5) 0%,transparent 50%);
-}
-
+             linear-gradient(to top,rgba(8,14,26,.5) 0%,transparent 50%);}
 .card-badge{position:absolute;top:.9rem;left:.9rem;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.24rem .65rem;border-radius:2px;z-index:2;line-height:1.4}
 .badge-m{background:rgba(30,144,255,.18);border:1px solid rgba(30,144,255,.42);color:var(--blue)}
 .badge-new{background:rgba(255,168,30,.1);border:1px solid rgba(255,168,30,.35);color:#ffa81e}
@@ -167,7 +142,6 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .badge-elec{background:rgba(80,200,255,.1);border:1px solid rgba(80,200,255,.32);color:#50c8ff}
 .badge-hybrid{background:rgba(100,200,80,.1);border:1px solid rgba(100,200,80,.3);color:#78d44f}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-
 .card-body{padding:1.5rem 1.6rem;display:flex;flex-direction:column;flex:1}
 .car-card.featured .card-body{justify-content:center;padding:2.2rem 2.6rem}
 .card-series{font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:.3rem}
@@ -186,35 +160,21 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .car-card:hover .card-cta-text{letter-spacing:3px}
 .card-arrow{width:28px;height:28px;border-radius:50%;border:1px solid rgba(30,144,255,.3);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:.85rem;transition:all .25s;flex-shrink:0}
 .car-card:hover .card-arrow{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateX(3px)}
-
-/* ═══════════════════════════════════════════
-   HERITAGE — TIMELINE REDESIGNÉE
-   Disposition : rail horizontal avec cartes
-   verticales empilées en quinconce
-═══════════════════════════════════════════ */
 #heritage{
   padding:7rem 3.5rem 8rem;
   background:var(--mid);
-  overflow:hidden;
-}
-
+  overflow:hidden;}
 .timeline-header{
   text-align:center;
   margin-bottom:5rem;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:.9rem;
-}
-
-/* Rail horizontal scrollable sur mobile */
+  gap:.9rem;}
 .timeline-track{
   position:relative;
   max-width:1100px;
-  margin:0 auto;
-}
-
-/* Ligne centrale */
+  margin:0 auto;}
 .timeline-track::before{
   content:'';
   position:absolute;
@@ -227,115 +187,82 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
     rgba(30,144,255,.25) 92%,
     transparent 100%);
   transform:translateY(-50%);
-  pointer-events:none;
-}
-
-/* Grille en 4 colonnes × 2 rangées */
+  pointer-events:none;}
 .timeline-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   row-gap:0;
   column-gap:1.6rem;
-  position:relative;
-}
-
-/* Chaque item occupe 1 col, alternance haut/bas */
+  position:relative;}
 .te{
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:0;
-  position:relative;
-}
-
-/* Items rang HAUT (impairs 1,3,5,7) */
+  position:relative;}
 .te.top{
   grid-row:1;
-  flex-direction:column-reverse; /* contenu → connecteur → point */
-  padding-bottom:0;
-}
-
-/* Items rang BAS (pairs 2,4,6,8) */
+  flex-direction:column-reverse; 
+  padding-bottom:0;}
 .te.bottom{
   grid-row:2;
-  flex-direction:column; /* point → connecteur → contenu */
-  padding-top:0;
-}
-
-/* Connecteur vertical entre contenu et axe */
+  flex-direction:column; 
+  padding-top:0;}
 .te-connector{
   width:1px;
   height:44px;
   background:linear-gradient(to bottom, rgba(30,144,255,.35), rgba(30,144,255,.1));
-  flex-shrink:0;
-}
+  flex-shrink:0;}
 .te.top .te-connector{
-  background:linear-gradient(to top, rgba(30,144,255,.35), rgba(30,144,255,.1));
-}
-
-/* Point sur l'axe */
+  background:linear-gradient(to top, rgba(30,144,255,.35), rgba(30,144,255,.1));}
 .te-node{
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:5px;
   flex-shrink:0;
-  z-index:2;
-}
+  z-index:2;}
 .te-dot{
   width:10px;height:10px;
   border-radius:50%;
   background:var(--blue);
   box-shadow:0 0 0 3px rgba(30,144,255,.15), 0 0 12px rgba(30,144,255,.5);
-  transition:box-shadow .3s;
-}
+  transition:box-shadow .3s;}
 .te:hover .te-dot{
-  box-shadow:0 0 0 5px rgba(30,144,255,.2), 0 0 20px rgba(30,144,255,.7);
-}
+  box-shadow:0 0 0 5px rgba(30,144,255,.2), 0 0 20px rgba(30,144,255,.7);}
 .te-year{
   font-family:'Orbitron',monospace;
   font-size:.58rem;
   font-weight:700;
   color:var(--blue);
   letter-spacing:1px;
-  white-space:nowrap;
-}
-
-/* Carte contenu */
+  white-space:nowrap;}
 .te-card{
   background:rgba(8,14,26,.95);
   border:1px solid var(--border);
   border-radius:8px;
   padding:1.1rem 1.2rem;
   width:100%;
-  transition:border-color .3s, background .3s, transform .3s;
-}
+  transition:border-color .3s, background .3s, transform .3s;}
 .te:hover .te-card{
   border-color:rgba(30,144,255,.38);
   background:rgba(10,18,36,.98);
-  transform:translateY(-3px);
-}
+  transform:translateY(-3px);}
 .te.bottom:hover .te-card{
-  transform:translateY(3px);
-}
-
-/* Petite icone dans coin */
+  transform:translateY(3px);}
 .te-icon{
   font-size:.9rem;
   margin-bottom:.4rem;
   display:block;
-  opacity:.7;
-}
-
+  opacity:.7;}
 .te-title{
   font-family:'Orbitron',monospace;
   font-size:.72rem;
   font-weight:700;
   color:#fff;
   margin-bottom:.35rem;
-  line-height:1.2;
-}
-.te-badge{
+  line-height:1.2;}
+  .te-badge{
   display:inline-block;
   font-size:.44rem;
   letter-spacing:2px;
@@ -346,26 +273,16 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
   background:rgba(30,144,255,.12);
   border:1px solid rgba(30,144,255,.3);
   color:var(--blue);
-  margin-bottom:.5rem;
-}
+  margin-bottom:.5rem;}
 .te-desc{
   font-size:.68rem;
   color:var(--muted);
-  line-height:1.65;
-}
-
-/* Espace entre les deux rangées — l'axe occupe cet espace */
+  line-height:1.65;}
 .te.top{ padding-bottom:1px; }
 .te.bottom{ padding-top:1px; }
-
-/* Séparateur visuel pour les nœuds "top" : l'année est SOUS le point */
 .te.top .te-node{flex-direction:column-reverse;}
-
-/* Align row: top cards flush bottom toward axis, bottom cards flush top toward axis */
 .te.top{ justify-content:flex-end; align-self:end; }
 .te.bottom{ justify-content:flex-start; align-self:start; }
-
-/* FOOTER */
 footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 3.5rem 2.5rem}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
 .footer-logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;letter-spacing:6px;color:#fff;margin-bottom:.9rem}
@@ -378,20 +295,15 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;flex-wrap:wrap;gap:1rem}
 .footer-copy{font-size:.62rem;color:var(--muted2)}
 .footer-copy em{color:rgba(30,144,255,.5);font-style:normal}
-
-/* REVEAL */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
-
-/* RESPONSIVE */
 @media(max-width:1100px){
   .cars-grid{grid-template-columns:1fr 1fr;gap:14px}
   .car-card.featured{grid-column:span 2;flex-direction:column}
   .car-card.featured .card-vis{width:100%;height:240px}
   .car-card.span2{grid-column:span 2}
-  .timeline-grid{grid-template-columns:repeat(4,1fr);column-gap:1rem}
-}
+  .timeline-grid{grid-template-columns:repeat(4,1fr);column-gap:1rem}}
 @media(max-width:900px){
   #hero{grid-template-columns:1fr;padding-top:90px}.hero-right{display:none}
   #brand{grid-template-columns:1fr}
@@ -400,8 +312,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
   .timeline-track::before{display:none}
   .timeline-grid{
     grid-template-columns:1fr;
-    gap:0;
-  }
+    gap:0; }
   .te, .te.top, .te.bottom{
     grid-row:auto;
     flex-direction:row;
@@ -409,28 +320,23 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     justify-content:flex-start;
     align-self:auto;
     padding:0;
-    margin-bottom:1.2rem;
-  }
+    margin-bottom:1.2rem;}
   .te-node{
     flex-direction:column;
     align-items:center;
     margin-right:1rem;
     padding-top:.2rem;
     flex-shrink:0;
-    width:48px;
-  }
+    width:48px;}
   .te.top .te-node{flex-direction:column;}
   .te-connector{
     width:1px;height:100%;min-height:24px;
     background:linear-gradient(to bottom,rgba(30,144,255,.3),transparent);
-    margin-top:4px;
-  }
+    margin-top:4px;}
   .te.top .te-connector{
-    background:linear-gradient(to bottom,rgba(30,144,255,.3),transparent);
-  }
+    background:linear-gradient(to bottom,rgba(30,144,255,.3),transparent); }
   .te-card{flex:1}
-  .te:hover .te-card, .te.bottom:hover .te-card{transform:translateY(0);}
-}
+  .te:hover .te-card, .te.bottom:hover .te-card{transform:translateY(0);}}
 @media(max-width:640px){
   header{padding:0 1.5rem}nav{display:none}
   #hero,#brand,#range,#heritage,footer{padding-left:1.5rem;padding-right:1.5rem}
@@ -438,8 +344,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
   .car-card.featured,.car-card.span2{grid-column:span 1}
   .car-card.featured{flex-direction:column}
   .car-card.featured .card-vis{width:100%;height:180px}
-  .timeline-grid{grid-template-columns:1fr}
-}
+  .timeline-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -459,7 +364,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
   </nav>
 </header>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg-grid"></div>
   <div class="hero-glow"></div>
@@ -491,7 +395,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 </div>
 <hr class="divider">
 
-<!-- BRAND -->
 <section id="brand">
   <div class="brand-left reveal">
     <div class="section-eyebrow" style="margin-bottom:.9rem">Notre ADN</div>
@@ -517,7 +420,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 
 <hr class="divider">
 
-<!-- RANGE -->
 <section id="range">
   <div class="range-header reveal">
     <div class="range-header-left">
@@ -719,11 +621,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 </section>
 
 <hr class="divider">
-
-<!-- ═══════════════════════════════════
-     HERITAGE — TIMELINE REDESIGNÉE
-     8 jalons en quinconce sur un axe
-═══════════════════════════════════ -->
 <section id="heritage">
   <div class="timeline-header reveal">
     <div class="section-eyebrow" style="justify-content:center">Chronologie Vérifiée</div>
@@ -733,10 +630,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 
   <div class="timeline-track reveal">
     <div class="timeline-grid">
-
-      <!-- ── RANGÉE HAUTE (top) ── -->
-
-      <!-- 1916 -->
       <div class="te top">
         <div class="te-card">
           <span class="te-icon">✈️</span>
@@ -751,7 +644,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
         </div>
       </div>
 
-      <!-- 1933 -->
       <div class="te top">
         <div class="te-card">
           <span class="te-icon">🎨</span>
@@ -766,7 +658,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
         </div>
       </div>
 
-      <!-- 1972 -->
       <div class="te top">
         <div class="te-card">
           <span class="te-icon">🏁</span>
@@ -781,7 +672,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
         </div>
       </div>
 
-      <!-- 1987 -->
       <div class="te top">
         <div class="te-card">
           <span class="te-icon">🏆</span>
@@ -796,9 +686,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
         </div>
       </div>
 
-      <!-- ── RANGÉE BASSE (bottom) ── -->
-
-      <!-- 1923 -->
       <div class="te bottom">
         <div class="te-node">
           <div class="te-dot"></div>
@@ -813,7 +700,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
         </div>
       </div>
 
-      <!-- 1959 -->
       <div class="te bottom">
         <div class="te-node">
           <div class="te-dot"></div>
@@ -828,7 +714,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
         </div>
       </div>
 
-      <!-- 1978 -->
       <div class="te bottom">
         <div class="te-node">
           <div class="te-dot"></div>
@@ -843,7 +728,6 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
         </div>
       </div>
 
-      <!-- 2013 -->
       <div class="te bottom">
         <div class="te-node">
           <div class="te-dot"></div>
@@ -857,13 +741,11 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
           <div class="te-desc">Lancement de la i3 en production en série — première grande voiture électrique de luxe à structure en CFRP. La i8 hybride rechargeable suit. BMW est la première grande marque premium à construire une plateforme 100% dédiée à l'électrique.</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <hr class="divider">
-
 <footer id="contact">
   <div class="footer-top">
     <div>
@@ -879,15 +761,11 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 </footer>
 
 <script>
-
-// Scroll reveal
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.09});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Scroll indicator fade
 setTimeout(()=>{const s=document.getElementById('scrollind');if(s)s.style.opacity='0';},5000);
 
-// Filter tabs
 document.querySelectorAll('.rtab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.rtab').forEach(t=>t.classList.remove('active'));
@@ -903,7 +781,6 @@ document.querySelectorAll('.rtab').forEach(tab=>{
   });
 });
 
-// Image fallback
 document.querySelectorAll('.card-photo').forEach(img=>{
   img.addEventListener('error',function(){
     this.parentElement.style.background='linear-gradient(135deg,#060c1e,#0a1530)';
