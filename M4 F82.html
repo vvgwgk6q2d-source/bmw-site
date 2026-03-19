@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMW M4 F82 — Configurateur 3D</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1E90FF;--dark:#04070f;--border:rgba(30,144,255,0.15);--muted:rgba(255,255,255,0.38);--panel:rgba(4,7,15,0.95)}
+body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;overflow:hidden;height:100vh}
+
+#hdr{position:fixed;top:0;left:0;right:0;z-index:50;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:var(--panel);border-bottom:1px solid var(--border)}
+.logo{font-family:'Orbitron',monospace;font-size:1.35rem;font-weight:900;letter-spacing:6px;color:#fff}
+.logo em{color:var(--blue);font-style:normal}
+.mbadge{padding:.26rem .85rem;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(30,144,255,.4);border-radius:3px;color:var(--blue);font-weight:700;background:rgba(30,144,255,.08)}
+.hbtns{display:flex;gap:.55rem}
+.hbtn{padding:.3rem .9rem;font-size:.64rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--muted);cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:600;transition:all .2s}
+.hbtn:hover{color:#fff;border-color:var(--blue)}
+.hbtn.on{border-color:rgba(30,144,255,.5);color:var(--blue)}
+.hbtn.p{background:var(--blue);border-color:var(--blue);color:#fff!important}
+
+#wrap{position:fixed;left:255px;right:0;top:52px;bottom:64px;background:var(--dark)}
+canvas{display:block;width:100%!important;height:100%!important}
+
+#lp{position:fixed;left:0;top:52px;bottom:64px;width:255px;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:20}
+.lph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border)}
+.lbadge{font-size:.53rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;display:block;margin-bottom:.35rem}
+.lph h2{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:#fff}
+.lph .sub{font-size:.7rem;color:var(--muted);margin-top:.2rem}
+.lps{padding:.7rem 1.2rem;border-bottom:1px solid var(--border)}
+.lpt{font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.48rem;font-weight:700}
+.sws{display:flex;gap:.36rem;flex-wrap:wrap}
+.sw{width:21px;height:21px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.sw:hover{transform:scale(1.22)}.sw.on{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.16)}
+.pl{flex:1;overflow-y:auto;padding:.42rem .52rem}
+.pl::-webkit-scrollbar{width:2px}.pl::-webkit-scrollbar-thumb{background:var(--border)}
+.pi{display:flex;align-items:center;gap:.7rem;padding:.56rem .62rem;border-radius:8px;cursor:pointer;transition:all .2s;margin-bottom:.2rem;border:1px solid transparent}
+.pi:hover{background:rgba(30,144,255,.07);border-color:rgba(30,144,255,.2)}
+.pi.on{background:rgba(30,144,255,.13);border-color:rgba(30,144,255,.42)}
+.pico{width:29px;height:29px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.88rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.pi.on .pico{background:rgba(30,144,255,.18);border-color:rgba(30,144,255,.4)}
+.pn{font-size:.8rem;font-weight:600;color:#fff}.ps{font-size:.64rem;color:var(--muted);margin-top:.05rem}
+.pa{color:var(--blue);font-size:.8rem;opacity:0;transition:opacity .2s;margin-left:auto}
+.pi.on .pa,.pi:hover .pa{opacity:1}
+
+#rp{position:fixed;right:0;top:52px;bottom:64px;width:270px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:20;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+#rp.on{transform:translateX(0)}
+.rph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between}
+.rl{font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;display:block;margin-bottom:.28rem}
+.rph h3{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:700;color:#fff}
+.rc{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;transition:all .2s;flex-shrink:0}
+.rc:hover{background:rgba(255,60,60,.15);border-color:rgba(255,60,60,.4);color:#fff}
+.rdesc{margin:.62rem 1.2rem;padding:.7rem;border-radius:8px;background:rgba(30,144,255,.06);border:1px solid rgba(30,144,255,.2);font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.6}
+.rsl{flex:1;overflow-y:auto;padding:.85rem 1.2rem}
+.rsl::-webkit-scrollbar{width:2px}.rsl::-webkit-scrollbar-thumb{background:var(--border)}
+.sr{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.sr:last-child{border:none}
+.sk{font-size:.72rem;color:var(--muted)}.sv{font-size:.74rem;color:#fff;font-weight:600;text-align:right}
+
+#bb{position:fixed;bottom:0;left:255px;right:0;height:64px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:20;transition:right .3s}
+#bb.rpon{right:270px}
+.sb{display:flex;flex-direction:column;align-items:center;padding:0 1.6rem;border-right:1px solid var(--border)}
+.sb:last-child{border:none}
+.sn{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;color:#fff;line-height:1}
+.sn span{font-size:.68rem;color:var(--blue)}
+.sl2{font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:.22rem;font-weight:700}
+
+/* ── LOADING SCREEN ── */
+#ld{position:fixed;inset:0;background:var(--dark);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;transition:opacity .8s}
+#ld.out{opacity:0;pointer-events:none}
+.ll{font-family:'Orbitron',monospace;font-size:3rem;font-weight:900;letter-spacing:8px;color:#fff}
+.ll em{color:var(--blue);font-style:normal}
+.lsub{font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:-.9rem}
+.lbar-w{width:280px;height:3px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.lbar{height:100%;background:var(--blue);width:0;border-radius:3px;transition:width .3s ease}
+.ltxt{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center}
+.lspeed{font-size:.6rem;color:rgba(30,144,255,.6);font-weight:600;min-height:1em}
+
+/* ── ERROR SCREEN ── */
+#err{position:fixed;inset:0;background:var(--dark);z-index:99;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.3rem;padding:2rem}
+.err-ico{font-size:2.8rem}
+.err-title{font-family:'Orbitron',monospace;font-size:1rem;color:#fff;font-weight:700;letter-spacing:1px;text-align:center}
+.err-box{background:rgba(255,60,60,.06);border:1px solid rgba(255,60,60,.2);border-radius:10px;padding:1rem 1.4rem;max-width:480px;width:100%}
+.err-box p{font-size:.76rem;color:var(--muted);line-height:1.8}
+.err-box code{color:var(--blue);background:rgba(30,144,255,.12);padding:.1rem .4rem;border-radius:3px;font-size:.7rem}
+.err-steps{font-size:.76rem;color:var(--muted);max-width:480px;width:100%;line-height:2}
+.err-steps li{list-style:none;padding-left:.5rem}
+.err-steps li::before{content:'→ ';color:var(--blue)}
+.err-actions{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.ebtn{padding:.46rem 1.3rem;border-radius:5px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all .2s;border:none}
+.ebtn.p{background:var(--blue);color:#fff}
+.ebtn.s{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.ebtn.s:hover{color:#fff;border-color:var(--blue)}
+
+.corner{position:fixed;width:28px;height:28px;z-index:25;pointer-events:none}
+.corner.tl{top:60px;left:262px;border-top:1px solid rgba(30,144,255,.2);border-left:1px solid rgba(30,144,255,.2)}
+.corner.tr{top:60px;right:6px;border-top:1px solid rgba(30,144,255,.2);border-right:1px solid rgba(30,144,255,.2)}
+.corner.bl{bottom:70px;left:262px;border-bottom:1px solid rgba(30,144,255,.2);border-left:1px solid rgba(30,144,255,.2)}
+.corner.br{bottom:70px;right:6px;border-bottom:1px solid rgba(30,144,255,.2);border-right:1px solid rgba(30,144,255,.2)}
+#hint{position:fixed;bottom:78px;left:50%;transform:translateX(-50%);background:rgba(4,7,15,.92);border:1px solid var(--border);border-radius:20px;padding:.28rem .95rem;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);pointer-events:none;z-index:30;transition:opacity 1.2s;white-space:nowrap}
+</style>
+</head>
+<body>
+<input type="file" id="file-input" accept=".glb,.gltf" style="display:none">
+
+<!-- LOADING -->
+<div id="ld">
+  <div class="ll">BM<em>W</em></div>
+  <div class="lsub">M4 F82 · Configurateur 3D</div>
+  <div class="lbar-w"><div class="lbar" id="lbar"></div></div>
+  <div class="ltxt" id="ltxt">Chargement du modèle…</div>
+  <div class="lspeed" id="lspeed"></div>
+</div>
+
+<!-- ERROR -->
+<div id="err">
+  <div class="err-ico">⚠️</div>
+  <div class="err-title">Modèle introuvable sur GitHub</div>
+  <div class="err-box">
+    <p>Impossible de charger <code>bmw_m4_f82.glb</code> depuis<br>
+    <code>github.com/vvgwgk6q2d-source/bmw-site</code></p>
+  </div>
+  <ul class="err-steps">
+    <li>Le repo <strong style="color:#fff">vvgwgk6q2d-source/bmw-site</strong> doit être <strong style="color:#fff">public</strong></li>
+    <li>Le fichier doit s'appeler exactement <code>bmw_m4_f82.glb</code></li>
+    <li>Il doit être à la <strong style="color:#fff">racine</strong> du repo (pas dans un sous-dossier)</li>
+    <li>La branche doit être <code>main</code></li>
+  </ul>
+  <div class="err-actions">
+    <button class="ebtn p" onclick="retryAll()">↺ Réessayer</button>
+    <button class="ebtn s" onclick="document.getElementById('file-input').click()">📂 Charger depuis mon PC</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div id="hdr">
+  <div class="logo">BM<em>W</em></div>
+  <div style="display:flex;align-items:center;gap:.8rem">
+    <div class="mbadge">M4 F82</div>
+    <div style="font-size:.68rem;color:var(--muted);font-weight:600">S55B30 · 431 ch · RWD</div>
+  </div>
+  <div class="hbtns">
+    <button class="hbtn on" id="rotbtn" onclick="toggleRot()">⟳ Rotation</button>
+    <button class="hbtn" onclick="resetCam()">⊹ Reset</button>
+    <button class="hbtn" id="wirebtn" onclick="toggleWire()">◻ Wireframe</button>
+    <button class="hbtn p" onclick="document.getElementById('file-input').click()">📂 Charger GLB</button>
+  </div>
+</div>
+
+<div id="lp">
+  <div class="lph">
+    <span class="lbadge">BMW M Series · F82 Coupé</span>
+    <h2>BMW M4 F82</h2>
+    <div class="sub">S55 B30T0 · 3.0L I6 Biturbo · 431 ch</div>
+  </div>
+  <div class="lps">
+    <div class="lpt">Teinte carrosserie</div>
+    <div class="sws" id="sws"></div>
+  </div>
+  <div class="lps" style="border-bottom:none;padding-bottom:.1rem">
+    <div class="lpt">Composants</div>
+  </div>
+  <div class="pl" id="pl"></div>
+</div>
+
+<div id="wrap"><canvas id="c"></canvas></div>
+
+<div class="corner tl"></div><div class="corner tr"></div>
+<div class="corner bl"></div><div class="corner br"></div>
+
+<div id="rp">
+  <div class="rph">
+    <div><span class="rl">Spécifications techniques</span><h3 id="rtitle">—</h3></div>
+    <div class="rc" onclick="closeRP()">✕</div>
+  </div>
+  <div class="rdesc" id="rdesc"></div>
+  <div class="rsl" id="rsl"></div>
+</div>
+
+<div id="bb">
+  <div class="sb"><div class="sn">431<span>ch</span></div><div class="sl2">Puissance</div></div>
+  <div class="sb"><div class="sn">4.1<span>s</span></div><div class="sl2">0–100 km/h</div></div>
+  <div class="sb"><div class="sn">250<span>km/h</span></div><div class="sl2">Vmax</div></div>
+  <div class="sb"><div class="sn">550<span>Nm</span></div><div class="sl2">Couple</div></div>
+  <div class="sb"><div class="sn">3.0L</div><div class="sl2">Cylindrée</div></div>
+</div>
+<div id="hint">🖱 Glisser · Scroll zoom · Double-clic reset</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// ══════════════════════════════════════════
+//  SOURCES DU MODÈLE — ordre de priorité
+// ══════════════════════════════════════════
+const SOURCES = [
+  // 1. jsDelivr CDN (le plus rapide, cache mondial)
+  'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/bmw_m4_f82.glb',
+  // 2. GitHub raw direct (fallback)
+  'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/bmw_m4_f82.glb',
+];
+
+// ══════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════
+const COLORS=[
+  {h:'#1a1a2e',n:'Noir Saphir'},{h:'#b8b8b8',n:'Argent Brooklands'},
+  {h:'#1B3A8C',n:'Bleu Lagoon'},{h:'#8B1A1A',n:'Rouge Imola'},
+  {h:'#edecea',n:'Blanc Alpine'},{h:'#080808',n:'Noir Carbone'},
+  {h:'#2a4a1e',n:'Vert Brooklyn'},{h:'#4a3020',n:'Cognac Mat'},
+];
+const PARTS=[
+  {k:'moteur',i:'⚙',n:'Moteur S55 B30T0',s:'3.0L I6 · 431 ch',d:'Six cylindres en ligne, deux turbos Twin-Scroll séquentiels. Conçu exclusivement pour BMW M GmbH.',sp:[['Type','L6 Biturbo DOHC'],['Cylindrée','2 979 cm³'],['Puissance','431 ch'],['Couple','550 Nm'],['Régime max','7 600 tr/min']]},
+  {k:'boite',i:'🔩',n:'M-DCT 7 rapports',s:'< 80 ms · Launch Control',d:'Double embrayage 7 rapports, passages ultra-rapides, Launch Control, paddles au volant.',sp:[['Type','DCT 7 rapports'],['Passages','< 80 ms'],['Launch Control','Oui'],['Diff.','M Active LSD'],['Propulsion','RWD']]},
+  {k:'freinage',i:'🔴',n:'Freinage M Compound',s:'380 mm · 4 pistons',d:'Étriers M 4 pistons monobloc, disques ventilés 380 mm. Option CCB Carbon Ceramic.',sp:[['Ø avant','380 mm'],['Ø arrière','370 mm'],['Étriers av.','4 pistons M'],['Option','CCB Carbon']]},
+  {k:'carrosserie',i:'🚗',n:'Coupé F82',s:'CFRP · 1 497 kg · Cx 0.32',d:'Panneaux aluminium, toit CFRP de série. Passages de roues élargis M, aérodynamisme optimisé.',sp:[['Longueur','4 671 mm'],['Largeur','1 870 mm'],['Hauteur','1 383 mm'],['Poids','1 497 kg'],['Toit','CFRP série']]},
+  {k:'suspensions',i:'⬇',n:'M Adaptive EDC',s:'Comfort / Sport / Sport+',d:'Double triangulation avant, essieu 5 bras arrière. Amortisseurs EDC électroniques continus.',sp:[['Avant','Double triangulation'],['Arrière','Essieu 5 bras M'],['Amort.','EDC continu'],['Modes','Comfort/Sport/Sport+']]},
+  {k:'jantes',i:'⭕',n:'M Double Spoke 437M',s:'18" av. · 19" ar.',d:'Jantes Double Spoke 437M série. Michelin Pilot Super Sport co-développés BMW M.',sp:[['Avant','255/35 ZR18'],['Arrière','275/35 ZR19'],['Design','437M Double Spoke'],['Pneus','Michelin PSS']]},
+  {k:'aero',i:'💨',n:'Aérodynamique M',s:'Diffuseur · Splitter',d:'Lèvre avant intégrée, diffuseur double sortie, aileron fixe option carbon.',sp:[['Lèvre','Intégrée bumper'],['Diffuseur','Double sortie'],['Aileron','Fixe — option carbon']]},
+  {k:'interieur',i:'💺',n:'Habitacle F82',s:'Baquets · HUD · iDrive 6',d:'Sièges baquets M Sport, volant M chauffant paddles, HUD M, iDrive 6.',sp:[['Sièges','M Sport baquets'],['Volant','M + paddles'],['HUD','M Head-Up'],['Système','iDrive 6']]}
+];
+
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+let color=COLORS[0].h,selPart=null,rotOn=true,wireOn=false,carModel=null,srcIdx=0;
+
+// ══════════════════════════════════════════
+//  THREE.JS
+// ══════════════════════════════════════════
+const cv=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.5;
+renderer.outputEncoding=THREE.sRGBEncoding;
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x04070f);
+scene.fog=new THREE.Fog(0x04070f,18,35);
+
+const camera=new THREE.PerspectiveCamera(42,1,.05,100);
+camera.position.set(5,2.5,7);
+
+const controls=new THREE.OrbitControls(camera,cv);
+controls.enableDamping=true;controls.dampingFactor=.055;
+controls.minDistance=1.5;controls.maxDistance=18;
+controls.maxPolarAngle=Math.PI*.55;
+controls.autoRotate=true;controls.autoRotateSpeed=.9;
+controls.target.set(0,.5,0);
+
+scene.add(new THREE.AmbientLight(0x334466,1.2));
+const sun=new THREE.DirectionalLight(0xfff5e8,3.5);
+sun.position.set(6,12,6);sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+sun.shadow.camera.left=-8;sun.shadow.camera.right=8;
+sun.shadow.camera.top=7;sun.shadow.camera.bottom=-4;
+sun.shadow.bias=-.0003;scene.add(sun);
+scene.add(Object.assign(new THREE.DirectionalLight(0x2244bb,.9),{position:{set:function(x,y,z){THREE.DirectionalLight.prototype.position.set.call(this,x,y,z);return this}}}));
+const fill=new THREE.DirectionalLight(0x2244bb,.9);fill.position.set(-6,3,-4);scene.add(fill);
+const rim=new THREE.DirectionalLight(0x88aaff,2.0);rim.position.set(0,6,-8);scene.add(rim);
+scene.add(new THREE.PointLight(0x0d2266,.7,18));
+
+try{const p=new THREE.PMREMGenerator(renderer);p.compileEquirectangularShader();scene.environment=p.fromScene(new THREE.RoomEnvironment()).texture;}catch(e){}
+
+const gnd=new THREE.Mesh(new THREE.CircleGeometry(14,64),new THREE.MeshStandardMaterial({color:0x060b1a,roughness:.03,metalness:.95}));
+gnd.rotation.x=-Math.PI/2;gnd.receiveShadow=true;scene.add(gnd);
+const grid=new THREE.GridHelper(24,24,0x0d2255,0x070e28);grid.position.y=.001;scene.add(grid);
+const ring=new THREE.Mesh(new THREE.RingGeometry(2,2.5,64),new THREE.MeshBasicMaterial({color:0x1E90FF,transparent:true,opacity:.1,side:THREE.DoubleSide}));
+ring.rotation.x=-Math.PI/2;ring.position.y=.002;scene.add(ring);
+
+// ══════════════════════════════════════════
+//  LOADERS
+// ══════════════════════════════════════════
+const gltfLoader=new THREE.GLTFLoader();
+const dracoLoader=new THREE.DRACOLoader();
+dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
+gltfLoader.setDRACOLoader(dracoLoader);
+
+// ══════════════════════════════════════════
+//  LOAD FROM GITHUB
+// ══════════════════════════════════════════
+function retryAll(){
+  srcIdx=0;
+  document.getElementById('err').style.display='none';
+  document.getElementById('ld').style.opacity='1';
+  document.getElementById('ld').style.pointerEvents='all';
+  document.getElementById('ld').classList.remove('out');
+  tryLoad();
+}
+
+function tryLoad(){
+  if(srcIdx>=SOURCES.length){
+    document.getElementById('ld').style.display='none';
+    document.getElementById('err').style.display='flex';
+    return;
+  }
+  const url=SOURCES[srcIdx];
+  const label=srcIdx===0?'jsDelivr CDN':'GitHub Raw';
+  setLD(8,`Connexion ${label}…`);
+  document.getElementById('lspeed').textContent=url.replace('https://','');
+
+  let t0=Date.now();
+
+  gltfLoader.load(
+    url,
+    (gltf)=>{
+      setLD(92,'Construction de la scène…');
+      onLoaded(gltf);
+    },
+    (xhr)=>{
+      if(xhr.total){
+        const pct=xhr.loaded/xhr.total;
+        const elapsed=(Date.now()-t0)/1000;
+        const kbps=elapsed>0?Math.round(xhr.loaded/elapsed/1024):0;
+        const mb=(xhr.loaded/1024/1024).toFixed(1);
+        const tot=(xhr.total/1024/1024).toFixed(1);
+        setLD(10+pct*78,`Téléchargement… ${mb} / ${tot} MB`);
+        if(kbps>0) document.getElementById('lspeed').textContent=`${kbps} KB/s · ${label}`;
+      }
+    },
+    (err)=>{
+      console.warn(`Source ${srcIdx} (${label}) échouée:`,err.message||err);
+      srcIdx++;
+      setTimeout(tryLoad,300);
+    }
+  );
+}
+
+function onLoaded(gltf){
+  if(carModel){scene.remove(carModel);carModel.traverse(c=>{if(c.geometry)c.geometry.dispose();});}
+  carModel=gltf.scene;
+
+  const box=new THREE.Box3().setFromObject(carModel);
+  const size=box.getSize(new THREE.Vector3());
+  const center=box.getCenter(new THREE.Vector3());
+  const scale=5.2/Math.max(size.x,size.y,size.z);
+  carModel.scale.setScalar(scale);
+  carModel.position.sub(center.multiplyScalar(scale));
+  const box2=new THREE.Box3().setFromObject(carModel);
+  carModel.position.y-=box2.min.y;
+
+  carModel.traverse(n=>{
+    if(!n.isMesh)return;
+    n.castShadow=true;n.receiveShadow=true;
+    const mats=Array.isArray(n.material)?n.material:[n.material];
+    mats.forEach(m=>{if(m){m.envMapIntensity=1.4;m.needsUpdate=true;}});
+  });
+  scene.add(carModel);
+
+  const box3=new THREE.Box3().setFromObject(carModel);
+  const sz=box3.getSize(new THREE.Vector3());
+  camera.position.set(sz.x*.9,sz.y*.85,sz.z*1.7);
+  controls.target.set(0,sz.y*.36,0);
+  controls.update();
+
+  setLD(100,'Modèle chargé ✓');
+  setTimeout(()=>{
+    document.getElementById('ld').classList.add('out');
+    setTimeout(()=>document.getElementById('ld').style.display='none',900);
+    setTimeout(()=>document.getElementById('hint').style.opacity='0',6000);
+  },500);
+
+  applyColor(color);
+  renderUI();
+}
+
+function setLD(pct,txt){
+  document.getElementById('lbar').style.width=pct+'%';
+  document.getElementById('ltxt').textContent=txt;
+}
+
+// ══════════════════════════════════════════
+//  UPLOAD LOCAL (fallback)
+// ══════════════════════════════════════════
+document.getElementById('file-input').addEventListener('change',e=>{
+  const file=e.target.files[0];if(!file)return;
+  document.getElementById('err').style.display='none';
+  document.getElementById('ld').style.display='flex';
+  document.getElementById('ld').style.opacity='1';
+  document.getElementById('ld').classList.remove('out');
+  setLD(10,'Lecture du fichier local…');
+  document.getElementById('lspeed').textContent=file.name+' · '+(file.size/1024/1024).toFixed(1)+' MB';
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    setLD(60,'Décodage GLTF…');
+    gltfLoader.parse(ev.target.result,'',gltf=>{setLD(90,'Assemblage…');onLoaded(gltf);},err=>alert('Fichier invalide: '+err.message));
+  };
+  reader.readAsArrayBuffer(file);
+  e.target.value='';
+});
+
+// ══════════════════════════════════════════
+//  COLOR
+// ══════════════════════════════════════════
+function applyColor(hex){
+  color=hex;
+  if(!carModel){renderUI();return;}
+  const c=new THREE.Color(hex);
+  carModel.traverse(n=>{
+    if(!n.isMesh)return;
+    const mats=Array.isArray(n.material)?n.material:[n.material];
+    mats.forEach(m=>{
+      if(!m?.color)return;
+      const lum=m.color.r*.3+m.color.g*.59+m.color.b*.11;
+      if(!m.transparent&&lum>.06&&lum<.94&&!(m.metalness>.82&&m.roughness<.22)&&!(m.emissive&&m.emissive.r+m.emissive.g+m.emissive.b>.12))
+        m.color.set(c);
+    });
+  });
+  renderUI();
+}
+
+// ══════════════════════════════════════════
+//  UI
+// ══════════════════════════════════════════
+function renderUI(){
+  document.getElementById('sws').innerHTML=COLORS.map(c=>`<div class="sw${c.h===color?' on':''}" style="background:${c.h}" title="${c.n}" onclick="applyColor('${c.h}')"></div>`).join('');
+  document.getElementById('pl').innerHTML=PARTS.map(pt=>`<div class="pi${selPart===pt.k?' on':''}" onclick="selP('${pt.k}')"><div class="pico">${pt.i}</div><div style="flex:1"><div class="pn">${pt.n}</div><div class="ps">${pt.s}</div></div><div class="pa">›</div></div>`).join('');
+  if(selPart){
+    const pt=PARTS.find(x=>x.k===selPart);
+    if(pt){
+      document.getElementById('rtitle').textContent=pt.n;
+      document.getElementById('rdesc').textContent=pt.d;
+      document.getElementById('rsl').innerHTML=pt.sp.map(([k,v])=>`<div class="sr"><span class="sk">${k}</span><span class="sv">${v}</span></div>`).join('');
+      document.getElementById('rp').classList.add('on');
+      document.getElementById('bb').classList.add('rpon');
+    }
+  }
+}
+function selP(k){selPart=k;renderUI();}
+function closeRP(){document.getElementById('rp').classList.remove('on');document.getElementById('bb').classList.remove('rpon');selPart=null;document.querySelectorAll('.pi').forEach(e=>e.classList.remove('on'));}
+function toggleRot(){rotOn=!rotOn;controls.autoRotate=rotOn;document.getElementById('rotbtn').className='hbtn'+(rotOn?' on':'');}
+function toggleWire(){
+  wireOn=!wireOn;document.getElementById('wirebtn').className='hbtn'+(wireOn?' on':'');
+  if(!carModel)return;
+  carModel.traverse(n=>{if(!n.isMesh)return;const mats=Array.isArray(n.material)?n.material:[n.material];mats.forEach(m=>{if(m)m.wireframe=wireOn;});});
+}
+function resetCam(){camera.position.set(5,2.5,7);controls.target.set(0,.5,0);controls.update();}
+cv.addEventListener('dblclick',resetCam);
+
+function onResize(){const w=innerWidth-255,h=innerHeight-52-64;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}
+window.addEventListener('resize',onResize);onResize();
+
+const clk=new THREE.Clock();
+function animate(){requestAnimationFrame(animate);controls.update();ring.material.opacity=.07+Math.sin(clk.getElapsedTime()*1.3)*.04;renderer.render(scene,camera);}
+animate();
+renderUI();
+
+// Démarrage automatique
+tryLoad();
+</script>
+</body>
+</html>
