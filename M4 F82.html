@@ -219,10 +219,9 @@ canvas{display:block;width:100%!important;height:100%!important}
       <!-- FILE MODE -->
       <div id="fileMode">
         <div class="sp-dropzone" id="dropzone" onclick="document.getElementById('audioFileInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="onFileDrop(event)">
-          <div class="sp-drop-icon">🎵</div>
-          <div class="sp-drop-title">Glisser le MP3 ici</div>
-          <div class="sp-drop-sub">ou cliquer pour parcourir</div>
-          <div class="sp-drop-sub" style="margin-top:.3rem;color:rgba(30,144,255,.5);font-size:.55rem">bmw_m4_engine.mp3 · wav · ogg</div>
+          <div class="sp-drop-icon">⏳</div>
+          <div class="sp-drop-title" id="dropTitle">Chargement…</div>
+          <div class="sp-drop-sub" id="dropSub">S55 moteur.mp3 depuis le repo</div>
         </div>
         <input type="file" id="audioFileInput" accept="audio/*" style="display:none" onchange="onFileSelect(event)">
 
@@ -441,6 +440,45 @@ function onFileDrop(e) {
   document.getElementById('dropzone').classList.remove('drag');
   const f = e.dataTransfer.files[0];
   if (f && f.type.startsWith('audio/')) loadAudioFile(f);
+}
+
+// Auto-load from GitHub repo
+const REPO_MP3_URLS = [
+  'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/S55%20moteur.mp3',
+  'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/S55%20moteur.mp3',
+];
+
+function autoLoadRepoAudio() {
+  let idx = 0;
+  function tryUrl() {
+    if (idx >= REPO_MP3_URLS.length) {
+      // All failed — show manual drop zone
+      document.getElementById('dropTitle').textContent = 'Glisser le MP3 ici';
+      document.getElementById('dropSub').textContent = 'ou cliquer pour parcourir';
+      document.querySelector('#dropzone .sp-drop-icon').textContent = '🎵';
+      return;
+    }
+    const url = REPO_MP3_URLS[idx];
+    const audio = document.getElementById('engineAudio');
+    audio.src = url;
+    audio.volume = 0.8;
+    audio.oncanplaythrough = () => {
+      document.getElementById('fileName').textContent = '🎵 S55 moteur.mp3';
+      document.getElementById('dropzone').style.display = 'none';
+      document.getElementById('filePlayer').style.display = 'block';
+      document.getElementById('exhaustLabelFile').textContent = 'Fichier chargé — appuyer sur ▶';
+      audio.oncanplaythrough = null;
+      audio.onerror = null;
+    };
+    audio.onerror = () => {
+      audio.onerror = null;
+      audio.oncanplaythrough = null;
+      idx++;
+      tryUrl();
+    };
+    audio.load();
+  }
+  tryUrl();
 }
 
 function loadAudioFile(file) {
@@ -785,6 +823,7 @@ function animate(){requestAnimationFrame(animate);controls.update();ring.materia
 animate();
 renderUI();
 tryLoad();
+autoLoadRepoAudio();
 </script>
 </body>
 </html>
