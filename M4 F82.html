@@ -497,13 +497,39 @@ function toggleFileSound() {
   const audio = document.getElementById('engineAudio');
   const btn = document.getElementById('playBtnFile');
   if (!audio.src) return;
+
   if (audio.paused) {
-    audio.play();
-    isFilePlaying = true;
-    btn.textContent = '⏹';
-    btn.classList.add('playing');
-    startFileWaveAnim();
-    document.getElementById('exhaustLabelFile').textContent = '🔥 S55 B30T0 — 3.0L I6 Biturbo en marche';
+    // Créer AudioContext sur geste utilisateur (obligatoire pour Chrome/Safari)
+    if (!fileAudioCtx) {
+      try {
+        fileAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fileAnalyser = fileAudioCtx.createAnalyser();
+        fileAnalyser.fftSize = 64;
+        fileSource2 = fileAudioCtx.createMediaElementSource(audio);
+        fileSource2.connect(fileAnalyser);
+        fileAnalyser.connect(fileAudioCtx.destination);
+      } catch(e) { fileAudioCtx = null; }
+    }
+    if (fileAudioCtx && fileAudioCtx.state === 'suspended') fileAudioCtx.resume();
+
+    const p = audio.play();
+    if (p !== undefined) {
+      p.then(() => {
+        isFilePlaying = true;
+        btn.textContent = '⏹';
+        btn.classList.add('playing');
+        startFileWaveAnim();
+        document.getElementById('exhaustLabelFile').textContent = '🔥 S55 B30T0 — 3.0L I6 Biturbo en marche';
+      }).catch(() => {
+        document.getElementById('exhaustLabelFile').textContent = '⚠ Cliquer à nouveau pour démarrer';
+      });
+    } else {
+      isFilePlaying = true;
+      btn.textContent = '⏹';
+      btn.classList.add('playing');
+      startFileWaveAnim();
+      document.getElementById('exhaustLabelFile').textContent = '🔥 S55 B30T0 — 3.0L I6 Biturbo en marche';
+    }
   } else {
     stopFileSound();
   }
@@ -555,33 +581,26 @@ function startFileWaveAnim() {
   buildWaveBarsFor('waveVizFile');
   const bars = document.querySelectorAll('#waveVizFile .sp-bar');
   const audio = document.getElementById('engineAudio');
-  // Try to use Web Audio analyser for real waveform
-  try {
-    if (!fileAudioCtx) {
-      fileAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      fileAnalyser = fileAudioCtx.createAnalyser();
-      fileAnalyser.fftSize = 64;
-      fileSource2 = fileAudioCtx.createMediaElementSource(audio);
-      fileSource2.connect(fileAnalyser);
-      fileAnalyser.connect(fileAudioCtx.destination);
-    }
-    if (fileAudioCtx.state === 'suspended') fileAudioCtx.resume();
-    const dataArr = new Uint8Array(fileAnalyser.frequencyBinCount);
-    function tick() {
-      fileAnalyser.getByteFrequencyData(dataArr);
-      bars.forEach((b, i) => {
-        const val = dataArr[i] || 0;
-        const h = 2 + (val / 255) * 18;
-        b.style.height = h.toFixed(1) + 'px';
-        const ratio = val / 255;
-        b.style.background = `rgb(${Math.round(30+ratio*225)},${Math.round(144-ratio*80)},${Math.round(255-ratio*200)})`;
-      });
-      fileWaveAnimId = requestAnimationFrame(tick);
-    }
-    tick();
-    return;
-  } catch(e) {}
-  // Fallback: animated bars without analyser
+  // Utilise l'analyser déjà créé dans toggleFileSound (geste utilisateur)
+  if (fileAnalyser) {
+    try {
+      if (fileAudioCtx.state === 'suspended') fileAudioCtx.resume();
+      const dataArr = new Uint8Array(fileAnalyser.frequencyBinCount);
+      function tick() {
+        fileAnalyser.getByteFrequencyData(dataArr);
+        bars.forEach((b, i) => {
+          const val = dataArr[i] || 0;
+          const h = 2 + (val / 255) * 18;
+          b.style.height = h.toFixed(1) + 'px';
+          const ratio = val / 255;
+          b.style.background = `rgb(${Math.round(30+ratio*225)},${Math.round(144-ratio*80)},${Math.round(255-ratio*200)})`;
+        });
+        fileWaveAnimId = requestAnimationFrame(tick);
+      }
+      tick();
+      return;
+    } catch(e) {}
+  }
   function tickFallback() {
     const rate = audio.playbackRate || 1;
     bars.forEach((b, i) => {
