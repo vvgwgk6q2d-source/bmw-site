@@ -52,8 +52,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sr{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .sr:last-child{border:none}
 .sk{font-size:.72rem;color:var(--muted)}.sv{font-size:.74rem;color:#fff;font-weight:600;text-align:right}
-
-/* ── SOUND PLAYER ── */
 #sndBox{margin:.7rem 1.2rem;padding:.8rem;border-radius:10px;background:rgba(30,144,255,.06);border:1px solid rgba(30,144,255,.25)}
 #sndBox .stitle{font-size:.55rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:.6rem}
 #sndBox .srow{display:flex;align-items:center;gap:.6rem}
@@ -68,7 +66,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sndSlider::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--blue);cursor:pointer}
 .sndLabel{font-size:.55rem;color:rgba(255,255,255,.28);letter-spacing:.5px;text-align:center}
 #sndStatus{font-size:.55rem;color:rgba(255,255,255,.3);margin-top:.3rem;min-height:1em}
-
 #bb{position:fixed;bottom:0;left:255px;right:0;height:64px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:20;transition:right .3s}
 #bb.rpon{right:270px}
 .sb{display:flex;flex-direction:column;align-items:center;padding:0 1.6rem;border-right:1px solid var(--border)}
@@ -104,36 +101,36 @@ canvas{display:block;width:100%!important;height:100%!important}
   <div class="ll">BM<em>W</em></div>
   <div class="lsub">M3 G80 · Configurateur 3D</div>
   <div class="lbar-w"><div class="lbar" id="lbar"></div></div>
-  <div class="ltxt" id="ltxt">Initialisation…</div>
+  <div class="ltxt" id="ltxt">Initialisation...</div>
   <div class="lspeed" id="lspeed"></div>
 </div>
 <div id="errmsg">
-  <div class="err-icon">⚠</div>
-  <div class="err-title">Modèle introuvable</div>
+  <div class="err-icon">&#9888;</div>
+  <div class="err-title">Modele introuvable</div>
   <div class="err-sub">
-    Le fichier <code>bmw_m3_g80.glb</code> n'a pas pu être chargé.<br>
-    Vérifiez que le repo <code>vvgwgk6q2d-source/bmw-site</code> est <strong style="color:rgba(255,255,255,.5)">public</strong><br>
-    et que le fichier est à la racine sur la branche <code>main</code>.<br><br>
-    Ouvrez cette page via <strong style="color:rgba(255,255,255,.5)">GitHub Pages</strong> pour éviter les restrictions CORS.
+    Le fichier <code>bmw_m3_g80.glb</code> n'a pas pu etre charge.<br>
+    Verifiez que le repo <code>vvgwgk6q2d-source/bmw-site</code> est <strong style="color:rgba(255,255,255,.5)">public</strong><br>
+    et que le fichier est a la racine sur la branche <code>main</code>.<br><br>
+    Ouvrez cette page via <strong style="color:rgba(255,255,255,.5)">GitHub Pages</strong> pour eviter les restrictions CORS.
   </div>
 </div>
 <div id="hdr">
   <a href="index.html" class="logo">BM<em>W</em></a>
   <div style="display:flex;align-items:center;gap:.8rem">
-    <div class="mbadge">M3 G80 · 2025</div>
-    <div style="font-size:.68rem;color:var(--muted);font-weight:600">S58B30T0 · 530 ch · xDrive / RWD</div>
+    <div class="mbadge">M3 G80 &middot; 2025</div>
+    <div style="font-size:.68rem;color:var(--muted);font-weight:600">S58B30T0 &middot; 530 ch &middot; xDrive / RWD</div>
   </div>
   <div class="hbtns">
-    <button class="hbtn on" id="rotbtn" onclick="toggleRot()">⟳ Rotation</button>
-    <button class="hbtn" onclick="resetCam()">⊹ Reset</button>
-    <button class="hbtn" id="wirebtn" onclick="toggleWire()">◻ Wireframe</button>
+    <button class="hbtn on" id="rotbtn" onclick="toggleRot()">&#10227; Rotation</button>
+    <button class="hbtn" onclick="resetCam()">&#8853; Reset</button>
+    <button class="hbtn" id="wirebtn" onclick="toggleWire()">&#9645; Wireframe</button>
   </div>
 </div>
 <div id="lp">
   <div class="lph">
-    <span class="lbadge">BMW M Series · G80 Berline · 2025</span>
+    <span class="lbadge">BMW M Series &middot; G80 Berline &middot; 2025</span>
     <h2>BMW M3 G80</h2>
-    <div class="sub">S58 B30T0 · 3.0L I6 Biturbo · 530 ch</div>
+    <div class="sub">S58 B30T0 &middot; 3.0L I6 Biturbo &middot; 530 ch</div>
   </div>
   <div class="lps">
     <div class="lpt">Teinte carrosserie</div>
@@ -151,39 +148,35 @@ canvas{display:block;width:100%!important;height:100%!important}
 
 <div id="rp">
   <div class="rph">
-    <div><span class="rl">Spécifications techniques</span><h3 id="rtitle">—</h3></div>
-    <div class="rc" onclick="closeRP()">✕</div>
+    <div><span class="rl">Specifications techniques</span><h3 id="rtitle">-</h3></div>
+    <div class="rc" onclick="closeRP()">&#10005;</div>
   </div>
   <div class="rdesc" id="rdesc"></div>
-
-  <!-- SOUND PLAYER — visible uniquement pour le moteur -->
   <div id="sndBox" style="display:none">
-    <div class="stitle">🔊 Écouter le moteur S58</div>
+    <div class="stitle">&#128266; Ecouter le moteur S58</div>
     <div class="srow">
-      <button id="sndPlayBtn" onclick="sndToggle()">▶</button>
+      <button id="sndPlayBtn" onclick="sndToggle()">&#9654;</button>
       <div class="sndR">
         <div class="sndWave" id="sndWave"></div>
         <input type="range" class="sndSlider" id="sndVol" min="0" max="100" value="80" oninput="sndSetVol(this.value)">
         <div class="sndLabel">Volume</div>
       </div>
     </div>
-    <div id="sndStatus">Chargement…</div>
+    <div id="sndStatus">Chargement...</div>
   </div>
-
   <div class="rsl" id="rsl"></div>
 </div>
 
-<!-- Élément audio -->
 <audio id="sndAudio" loop preload="auto" crossorigin="anonymous"></audio>
 
 <div id="bb">
   <div class="sb"><div class="sn">530<span>ch</span></div><div class="sl2">Puissance</div></div>
-  <div class="sb"><div class="sn">3.5<span>s</span></div><div class="sl2">0–100 km/h</div></div>
+  <div class="sb"><div class="sn">3.5<span>s</span></div><div class="sl2">0-100 km/h</div></div>
   <div class="sb"><div class="sn">290<span>km/h</span></div><div class="sl2">Vmax</div></div>
   <div class="sb"><div class="sn">650<span>Nm</span></div><div class="sl2">Couple</div></div>
-  <div class="sb"><div class="sn">3.0<span>L</span></div><div class="sl2">Cylindrée</div></div>
+  <div class="sb"><div class="sn">3.0<span>L</span></div><div class="sl2">Cylindree</div></div>
 </div>
-<div id="hint">🖱 Glisser · Scroll zoom · Double-clic reset</div>
+<div id="hint">Glisser &middot; Scroll zoom &middot; Double-clic reset</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -192,39 +185,56 @@ canvas{display:block;width:100%!important;height:100%!important}
 <script>
 
 const MODEL_URLS = [
-  './bmw_m3_g80.glb',
   'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/bmw_m3_g80.glb',
   'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/bmw_m3_g80.glb',
+  './bmw_m3_g80.glb'
 ];
 
-// Couleurs spécifiques BMW M3 G80 2025
 const COLORS = [
-  {h:'#1a1a2e', n:'Noir Saphir Métallisé'},
-  {h:'#b8b8b8', n:'Argent Brooklyn Métallisé'},
-  {h:'#0b2d6b', n:'Bleu Portimao Métallisé'},
-  {h:'#8B1A1A', n:'Rouge Toronto Métallisé'},
+  {h:'#1a1a2e', n:'Noir Saphir Metallise'},
+  {h:'#b8b8b8', n:'Argent Brooklyn Metallise'},
+  {h:'#0b2d6b', n:'Bleu Portimao Metallise'},
+  {h:'#8B1A1A', n:'Rouge Toronto Metallise'},
   {h:'#edecea', n:'Blanc Alpine'},
   {h:'#080808', n:'Noir Carbone'},
-  {h:'#2d2d2d', n:'Gris Dravit Métallisé'},
-  {h:'#3d5c3a', n:'Vert Isle of Man Métallisé'},
+  {h:'#2d2d2d', n:'Gris Dravit Metallise'},
+  {h:'#3d5c3a', n:'Vert Isle of Man Metallise'},
   {h:'#c8860a', n:'Jaune M Competition'},
   {h:'#4a3728', n:'Marron Frozen'},
-  {h:'#1c3c5a', n:'Bleu Atlantis Métallisé'},
-  {h:'#b5451b', n:'Orange Atacama Métallisé'},
-  {h:'#e8e0d0', n:'Blanc Frozen Brillant'},
+  {h:'#1c3c5a', n:'Bleu Atlantis Metallise'},
+  {h:'#b5451b', n:'Orange Atacama Metallise'},
+  {h:'#e8e0d0', n:'Blanc Frozen Brillant'}
 ];
 
-// Composants BMW M3 G80 2025
 const PARTS = [
-  {k:'moteur',i:'⚙',n:'Moteur S58 B30T0',s:'3.0L I6 · 530 ch · Competition',d:'Six cylindres en ligne biturbo S58, exclusivement développé par BMW M GmbH. Architecture revue en 2025 avec injection haute pression améliorée et turbocompresseurs à débit optimisé.',sp:[['Type','L6 Biturbo DOHC'],['Cylindrée','2 993 cm³'],['Puissance','530 ch / 390 kW'],['Couple','650 Nm'],['Régime max','7 200 tr/min'],['Injection','Haute pression directe']],sound:true},
-  {k:'transmission',i:'🔩',n:'M Steptronic 8 rapports',s:'< 100 ms · Launch Control · xDrive',d:'Boîte automatique 8 rapports M Steptronic avec convertisseur de couple. Transmission intégrale M xDrive ou propulsion RWD sélectionnable. Launch Control de série.',sp:[['Type','8 rapports M Steptronic'],['Propulsion','xDrive / RWD sélect.'],['Launch Control','Oui'],['Diff.','M Active LSD arrière'],['Modes','4WD · 4WD Sport · 2WD']]},
-  {k:'freinage',i:'🔴',n:'Freinage M Compound',s:'400 mm · 6 pistons av.',d:'Étriers M 6 pistons monobloc à l'avant, disques ventilés 400 mm. Option BMW M Carbon Ceramic Brake (MCCB) 400/380 mm.',sp:[['Ø avant','400 mm'],['Ø arrière','380 mm'],['Étriers av.','6 pistons M monobloc'],['Étriers ar.','1 piston flottant'],['Option','MCCB Carbon Ceramic']]},
-  {k:'carrosserie',i:'🚗',n:'Berline G80 2025',s:'Acier/Alu · 1 725 kg · Cx 0.29',d:'Structure légère acier haute résistance et aluminium. Carrosserie G80 restylée pour 2025 : nouveaux boucliers, grille M redessinée, feux LED Matrix de série. Passages de roues élargis M.',sp:[['Longueur','4 794 mm'],['Largeur','1 903 mm'],['Hauteur','1 433 mm'],['Poids','1 725 kg (xDrive)'],['Cx','0.29'],['Toit','Acier / Carbone option']]},
-  {k:'suspensions',i:'⬇',n:'M Adaptive EDC',s:'Comfort / Sport / Sport+ / Track',d:'Double triangulation avant, essieu arrière 5 bras développé par M GmbH. Amortisseurs électroniques adaptatifs EDC avec 4 modes. Barres anti-roulis renforcées M.',sp:[['Avant','Double triangulation M'],['Arrière','Essieu 5 bras M'],['Amort.','EDC adaptatif continu'],['Modes','Comfort/Sport/Sport+/Track'],['Géom.','Réglage M GmbH']]},
-  {k:'jantes',i:'⭕',n:'M Double Spoke 826M',s:'19" av. · 20" ar.',d:'Jantes forgées 826M Competition de série sur la M3 Competition 2025. Pneumatiques Michelin Pilot Sport 4S co-développés BMW M.',sp:[['Avant','275/35 ZR19'],['Arrière','285/30 ZR20'],['Design','826M Double Spoke forgé'],['Pneus','Michelin PS4S'],['Option','Jantes légères 825M']]},
-  {k:'aero',i:'💨',n:'Aérodynamique M 2025',s:'Diffuseur · Splitter · Aileron',d:'Bouclier avant avec splitter intégré redessiné pour 2025, diffuseur arrière double sortie carbone, aileron actif en option.',sp:[['Splitter','Intégré bumper AV'],['Diffuseur','Double sortie carbone'],['Aileron','Fixe — option actif'],['Refroidissement','Intercooler eau optimisé']]},
-  {k:'technologie',i:'🖥',n:'M Curved Display 2025',s:'12.3" + 14.9" · OS9 · M Drive',d:'Nouveau Curved Display double écran 12.3" + 14.9" BMW OS 9. M Drive Professional avec cartographie de circuit, télémétrie, M Track Mode et analyse de performance GPS.',sp:[['Tableau de bord','12.3" numérique'],['Écran central','14.9" tactile'],['Système','BMW OS 9'],['M Drive','Pro · Track · Laptimer'],['Assist.','Driving Assist Pro']]},
-  {k:'interieur',i:'💺',n:'Habitacle M3 G80 2025',s:'Baquets M · HUD · Merino',d:'Sièges baquets M Sport en cuir Merino ou tissu M. Volant M chauffant avec paddles. HUD M couleur. Ambiance lumineuse intérieure M.',sp:[['Sièges','M Sport baquets Merino'],['Volant','M Performance carbone opt.'],['HUD','M Head-Up couleur'],['Audio','Harman Kardon 16HP'],['Ambiance','LED intérieure M']]},
+  {k:'moteur', i:'&#9881;', n:'Moteur S58 B30T0', s:'3.0L I6 530 ch Competition',
+   d:'Six cylindres en ligne biturbo S58, exclusivement developpe par BMW M GmbH. Architecture 2025 avec injection haute pression amelioree et turbocompresseurs a debit optimise.',
+   sp:[['Type','L6 Biturbo DOHC'],['Cylindree','2 993 cm3'],['Puissance','530 ch / 390 kW'],['Couple','650 Nm'],['Regime max','7 200 tr/min'],['Injection','Haute pression directe']],
+   sound:true},
+  {k:'transmission', i:'&#128297;', n:'M Steptronic 8 rapports', s:'Launch Control xDrive',
+   d:'Boite automatique 8 rapports M Steptronic avec convertisseur de couple. Transmission integrale M xDrive ou propulsion RWD selectionnable. Launch Control de serie.',
+   sp:[['Type','8 rapports M Steptronic'],['Propulsion','xDrive / RWD select.'],['Launch Control','Oui'],['Diff.','M Active LSD arriere'],['Modes','4WD 4WD Sport 2WD']]},
+  {k:'freinage', i:'&#128308;', n:'Freinage M Compound', s:'400 mm 6 pistons av.',
+   d:'Etriers M 6 pistons monobloc a lavant, disques ventiles 400 mm. Option BMW M Carbon Ceramic Brake (MCCB) 400/380 mm.',
+   sp:[['Diam avant','400 mm'],['Diam arriere','380 mm'],['Etriers av.','6 pistons M monobloc'],['Etriers ar.','1 piston flottant'],['Option','MCCB Carbon Ceramic']]},
+  {k:'carrosserie', i:'&#128663;', n:'Berline G80 2025', s:'Acier Alu 1725 kg Cx 0.29',
+   d:'Structure legere acier haute resistance et aluminium. G80 restylee 2025 : nouveaux boucliers, grille M redessinee, feux LED Matrix de serie. Passages de roues elargis M.',
+   sp:[['Longueur','4 794 mm'],['Largeur','1 903 mm'],['Hauteur','1 433 mm'],['Poids','1 725 kg xDrive'],['Cx','0.29'],['Toit','Acier / Carbone option']]},
+  {k:'suspensions', i:'&#11015;', n:'M Adaptive EDC', s:'Comfort Sport Sport+ Track',
+   d:'Double triangulation avant, essieu arriere 5 bras developpe par M GmbH. Amortisseurs electroniques adaptatifs EDC avec 4 modes. Barres anti-roulis renforcees M.',
+   sp:[['Avant','Double triangulation M'],['Arriere','Essieu 5 bras M'],['Amort.','EDC adaptatif continu'],['Modes','Comfort Sport Sport+ Track'],['Geom.','Reglage M GmbH']]},
+  {k:'jantes', i:'&#11093;', n:'M Double Spoke 826M', s:'19 av. 20 ar.',
+   d:'Jantes forgees 826M Competition de serie sur la M3 Competition 2025. Pneumatiques Michelin Pilot Sport 4S co-developpes BMW M.',
+   sp:[['Avant','275/35 ZR19'],['Arriere','285/30 ZR20'],['Design','826M Double Spoke forge'],['Pneus','Michelin PS4S'],['Option','Jantes legeres 825M']]},
+  {k:'aero', i:'&#128168;', n:'Aerodynamique M 2025', s:'Diffuseur Splitter Aileron',
+   d:'Bouclier avant avec splitter integre redessinee pour 2025, diffuseur arriere double sortie carbone, aileron actif en option.',
+   sp:[['Splitter','Integre bumper AV'],['Diffuseur','Double sortie carbone'],['Aileron','Fixe option actif'],['Refroidissement','Intercooler eau optimise']]},
+  {k:'technologie', i:'&#128421;', n:'M Curved Display 2025', s:'12.3 + 14.9 OS9 M Drive',
+   d:'Nouveau Curved Display double ecran 12.3 + 14.9 pouces BMW OS 9. M Drive Professional avec cartographie de circuit, telemetrie, M Track Mode et analyse de performance GPS.',
+   sp:[['Tableau de bord','12.3 pouces numerique'],['Ecran central','14.9 pouces tactile'],['Systeme','BMW OS 9'],['M Drive','Pro Track Laptimer'],['Assist.','Driving Assist Pro']]},
+  {k:'interieur', i:'&#128186;', n:'Habitacle M3 G80 2025', s:'Baquets M HUD Merino',
+   d:'Sieges baquets M Sport en cuir Merino ou tissu M. Volant M chauffant avec paddles. HUD M couleur. Ambiance lumineuse interieure M.',
+   sp:[['Sieges','M Sport baquets Merino'],['Volant','M Performance carbone opt.'],['HUD','M Head-Up couleur'],['Audio','Harman Kardon 16HP'],['Ambiance','LED interieure M']]}
 ];
 
 let color = COLORS[0].h, selPart = null, rotOn = true, wireOn = false, carModel = null, urlIdx = 0;
@@ -253,7 +263,7 @@ controls.maxPolarAngle = Math.PI * 0.55;
 controls.autoRotate = true;
 controls.autoRotateSpeed = 0.9;
 controls.target.set(0, 0.5, 0);
-  
+
 scene.add(new THREE.AmbientLight(0x334466, 1.2));
 const sun = new THREE.DirectionalLight(0xfff5e8, 3.5);
 sun.position.set(6, 12, 6);
@@ -309,30 +319,30 @@ function tryLoad() {
     return;
   }
   const url = MODEL_URLS[urlIdx];
-  const label = ['Chemin local', 'jsDelivr CDN', 'GitHub Raw'][urlIdx] || 'Source ' + urlIdx;
-  setLD(8, 'Connexion — ' + label + '…');
+  const label = ['jsDelivr CDN', 'GitHub Raw', 'Chemin local'][urlIdx] || 'Source ' + urlIdx;
+  setLD(8, 'Connexion ' + label + '...');
   document.getElementById('lspeed').textContent = url;
   const t0 = Date.now();
   gltfLoader.load(
     url,
-    (gltf) => { setLD(92, 'Construction de la scène…'); onModelLoaded(gltf); },
-    (xhr) => {
+    function(gltf) { setLD(92, 'Construction de la scene...'); onModelLoaded(gltf); },
+    function(xhr) {
       if (xhr.total) {
         const pct = xhr.loaded / xhr.total;
         const elapsed = (Date.now() - t0) / 1000;
         const kbps = elapsed > 0 ? Math.round(xhr.loaded / elapsed / 1024) : 0;
         const mb = (xhr.loaded / 1024 / 1024).toFixed(1);
         const tot = (xhr.total / 1024 / 1024).toFixed(1);
-        setLD(10 + pct * 78, 'Téléchargement… ' + mb + ' / ' + tot + ' MB');
-        if (kbps > 0) document.getElementById('lspeed').textContent = kbps + ' KB/s — ' + label;
+        setLD(10 + pct * 78, 'Telechargement ' + mb + ' / ' + tot + ' MB');
+        if (kbps > 0) document.getElementById('lspeed').textContent = kbps + ' KB/s ' + label;
       }
     },
-    (err) => { console.warn('[' + label + '] Échec:', err.message || err); urlIdx++; setTimeout(tryLoad, 400); }
+    function(err) { console.warn('[' + label + '] Echec:', err.message || err); urlIdx++; setTimeout(tryLoad, 400); }
   );
 }
 
 function onModelLoaded(gltf) {
-  if (carModel) { scene.remove(carModel); carModel.traverse(c => { if (c.geometry) c.geometry.dispose(); }); }
+  if (carModel) { scene.remove(carModel); carModel.traverse(function(c) { if (c.geometry) c.geometry.dispose(); }); }
   carModel = gltf.scene;
   const box = new THREE.Box3().setFromObject(carModel);
   const size = box.getSize(new THREE.Vector3());
@@ -342,11 +352,11 @@ function onModelLoaded(gltf) {
   carModel.position.sub(center.multiplyScalar(scale));
   const box2 = new THREE.Box3().setFromObject(carModel);
   carModel.position.y -= box2.min.y;
-  carModel.traverse(n => {
+  carModel.traverse(function(n) {
     if (!n.isMesh) return;
     n.castShadow = true; n.receiveShadow = true;
     const mats = Array.isArray(n.material) ? n.material : [n.material];
-    mats.forEach(m => { if (m) { m.envMapIntensity = 1.4; m.needsUpdate = true; }});
+    mats.forEach(function(m) { if (m) { m.envMapIntensity = 1.4; m.needsUpdate = true; }});
   });
   scene.add(carModel);
   const box3 = new THREE.Box3().setFromObject(carModel);
@@ -354,11 +364,11 @@ function onModelLoaded(gltf) {
   camera.position.set(sz.x * 0.9, sz.y * 0.85, sz.z * 1.7);
   controls.target.set(0, sz.y * 0.36, 0);
   controls.update();
-  setLD(100, 'Modèle chargé ✓');
-  setTimeout(() => {
+  setLD(100, 'Modele charge !');
+  setTimeout(function() {
     document.getElementById('ld').classList.add('out');
-    setTimeout(() => document.getElementById('ld').style.display = 'none', 900);
-    setTimeout(() => document.getElementById('hint').style.opacity = '0', 6000);
+    setTimeout(function() { document.getElementById('ld').style.display = 'none'; }, 900);
+    setTimeout(function() { document.getElementById('hint').style.opacity = '0'; }, 6000);
   }, 500);
   applyColor(color);
   renderUI();
@@ -372,18 +382,18 @@ function setLD(pct, txt) {
 const WHEEL_KEYS = ['wheel','roue','jante','tire','tyre','pneu','rim','felge','roda','ruota','brake','disque','caliper','etrier'];
 function isWheelMesh(name) {
   const n = (name || '').toLowerCase();
-  return WHEEL_KEYS.some(k => n.includes(k));
+  return WHEEL_KEYS.some(function(k) { return n.includes(k); });
 }
 
 function applyColor(hex) {
   color = hex;
   if (!carModel) { renderUI(); return; }
   const c = new THREE.Color(hex);
-  carModel.traverse(n => {
+  carModel.traverse(function(n) {
     if (!n.isMesh) return;
     if (isWheelMesh(n.name)) return;
     const mats = Array.isArray(n.material) ? n.material : [n.material];
-    mats.forEach(m => {
+    mats.forEach(function(m) {
       if (!m || !m.color) return;
       if (m.metalness > 0.85 && m.roughness < 0.18) return;
       if (m.emissive && (m.emissive.r + m.emissive.g + m.emissive.b) > 0.15) return;
@@ -395,23 +405,23 @@ function applyColor(hex) {
 }
 
 function renderUI() {
-  document.getElementById('sws').innerHTML = COLORS.map(c =>
-    '<div class="sw' + (c.h === color ? ' on' : '') + '" style="background:' + c.h + '" title="' + c.n + '" onclick="applyColor(\'' + c.h + '\')"></div>'
-  ).join('');
-  document.getElementById('pl').innerHTML = PARTS.map(pt =>
-    '<div class="pi' + (selPart === pt.k ? ' on' : '') + '" onclick="selP(\'' + pt.k + '\')">' +
-    '<div class="pico">' + pt.i + '</div>' +
-    '<div style="flex:1"><div class="pn">' + pt.n + '</div><div class="ps">' + pt.s + '</div></div>' +
-    '<div class="pa">›</div></div>'
-  ).join('');
+  document.getElementById('sws').innerHTML = COLORS.map(function(c) {
+    return '<div class="sw' + (c.h === color ? ' on' : '') + '" style="background:' + c.h + '" title="' + c.n + '" onclick="applyColor(\'' + c.h + '\')"></div>';
+  }).join('');
+  document.getElementById('pl').innerHTML = PARTS.map(function(pt) {
+    return '<div class="pi' + (selPart === pt.k ? ' on' : '') + '" onclick="selP(\'' + pt.k + '\')">' +
+      '<div class="pico">' + pt.i + '</div>' +
+      '<div style="flex:1"><div class="pn">' + pt.n + '</div><div class="ps">' + pt.s + '</div></div>' +
+      '<div class="pa">&#8250;</div></div>';
+  }).join('');
   if (selPart) {
-    const pt = PARTS.find(x => x.k === selPart);
+    const pt = PARTS.find(function(x) { return x.k === selPart; });
     if (pt) {
       document.getElementById('rtitle').textContent = pt.n;
       document.getElementById('rdesc').textContent = pt.d;
-      document.getElementById('rsl').innerHTML = pt.sp.map(([k, v]) =>
-        '<div class="sr"><span class="sk">' + k + '</span><span class="sv">' + v + '</span></div>'
-      ).join('');
+      document.getElementById('rsl').innerHTML = pt.sp.map(function(row) {
+        return '<div class="sr"><span class="sk">' + row[0] + '</span><span class="sv">' + row[1] + '</span></div>';
+      }).join('');
       document.getElementById('sndBox').style.display = pt.sound ? 'block' : 'none';
       document.getElementById('rp').classList.add('on');
       document.getElementById('bb').classList.add('rpon');
@@ -429,9 +439,8 @@ function closeRP() {
   document.getElementById('rp').classList.remove('on');
   document.getElementById('bb').classList.remove('rpon');
   selPart = null;
-  document.querySelectorAll('.pi').forEach(e => e.classList.remove('on'));
+  document.querySelectorAll('.pi').forEach(function(e) { e.classList.remove('on'); });
 }
-
 function toggleRot() {
   rotOn = !rotOn;
   controls.autoRotate = rotOn;
@@ -441,10 +450,10 @@ function toggleWire() {
   wireOn = !wireOn;
   document.getElementById('wirebtn').className = 'hbtn' + (wireOn ? ' on' : '');
   if (!carModel) return;
-  carModel.traverse(n => {
+  carModel.traverse(function(n) {
     if (!n.isMesh) return;
     const mats = Array.isArray(n.material) ? n.material : [n.material];
-    mats.forEach(m => { if (m) m.wireframe = wireOn; });
+    mats.forEach(function(m) { if (m) m.wireframe = wireOn; });
   });
 }
 function resetCam() { camera.position.set(5, 2.5, 7); controls.target.set(0, 0.5, 0); controls.update(); }
@@ -470,9 +479,7 @@ animate();
 renderUI();
 tryLoad();
 
-/* ═══════════════════════════════
-   AUDIO PLAYER
-═══════════════════════════════ */
+/* AUDIO */
 var sndEl      = document.getElementById('sndAudio');
 var sndReady   = false;
 var sndPlaying = false;
@@ -480,7 +487,6 @@ var sndWaveId  = null;
 var sndACtx    = null;
 var sndAnalyser= null;
 var sndSrc     = null;
-
 var SND_URLS = [
   'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/S58_moteur.mp3',
   'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/S58_moteur.mp3',
@@ -489,71 +495,52 @@ var SND_URLS = [
 var sndIdx = 0;
 
 function sndLoad() {
-  if (sndIdx >= SND_URLS.length) {
-    document.getElementById('sndStatus').textContent = '⚠ Audio indisponible';
-    return;
-  }
+  if (sndIdx >= SND_URLS.length) { document.getElementById('sndStatus').textContent = 'Audio indisponible'; return; }
   sndEl.src = SND_URLS[sndIdx];
   sndEl.load();
   sndEl.oncanplaythrough = function() {
-    sndEl.oncanplaythrough = null;
-    sndEl.onerror = null;
+    sndEl.oncanplaythrough = null; sndEl.onerror = null;
     sndReady = true;
-    document.getElementById('sndStatus').textContent = 'Prêt — appuyer sur ▶';
+    document.getElementById('sndStatus').textContent = 'Pret - appuyer sur play';
   };
   sndEl.onerror = function() {
-    sndEl.oncanplaythrough = null;
-    sndEl.onerror = null;
-    sndIdx++;
-    setTimeout(sndLoad, 200);
+    sndEl.oncanplaythrough = null; sndEl.onerror = null;
+    sndIdx++; setTimeout(sndLoad, 200);
   };
 }
 sndLoad();
 
 function sndToggle() {
-  if (!sndReady) { document.getElementById('sndStatus').textContent = '⏳ Pas encore prêt…'; return; }
-
-  if (sndPlaying) {
-    sndStop();
-    return;
-  }
-
+  if (!sndReady) { document.getElementById('sndStatus').textContent = 'Chargement...'; return; }
+  if (sndPlaying) { sndStop(); return; }
   if (!sndACtx) {
     try {
       sndACtx = new (window.AudioContext || window.webkitAudioContext)();
-      sndAnalyser = sndACtx.createAnalyser();
-      sndAnalyser.fftSize = 64;
+      sndAnalyser = sndACtx.createAnalyser(); sndAnalyser.fftSize = 64;
       sndSrc = sndACtx.createMediaElementSource(sndEl);
-      sndSrc.connect(sndAnalyser);
-      sndAnalyser.connect(sndACtx.destination);
+      sndSrc.connect(sndAnalyser); sndAnalyser.connect(sndACtx.destination);
     } catch(e) { sndACtx = null; }
   }
   if (sndACtx && sndACtx.state === 'suspended') sndACtx.resume();
-
   sndEl.volume = document.getElementById('sndVol').value / 100;
-
   sndEl.play().then(function() {
     sndPlaying = true;
-    document.getElementById('sndPlayBtn').textContent = '⏹';
+    document.getElementById('sndPlayBtn').textContent = '&#9209;';
     document.getElementById('sndPlayBtn').classList.add('on');
-    document.getElementById('sndStatus').textContent = '🔥 S58 B30T0 en marche';
+    document.getElementById('sndStatus').textContent = 'S58 B30T0 en marche';
     sndWaveStart();
-  }).catch(function(e) {
-    document.getElementById('sndStatus').textContent = '⚠ Cliquer à nouveau';
-  });
+  }).catch(function() { document.getElementById('sndStatus').textContent = 'Cliquer a nouveau'; });
 }
 
 function sndStop() {
   if (!sndPlaying) return;
-  sndEl.pause();
-  sndEl.currentTime = 0;
+  sndEl.pause(); sndEl.currentTime = 0;
   sndPlaying = false;
-  document.getElementById('sndPlayBtn').textContent = '▶';
+  document.getElementById('sndPlayBtn').innerHTML = '&#9654;';
   document.getElementById('sndPlayBtn').classList.remove('on');
-  document.getElementById('sndStatus').textContent = 'Arrêté';
+  document.getElementById('sndStatus').textContent = 'Arrete';
   sndWaveStop();
 }
-
 function sndSetVol(v) { sndEl.volume = v / 100; }
 
 function sndWaveStart() {
@@ -561,11 +548,9 @@ function sndWaveStart() {
   w.innerHTML = '';
   for (var i = 0; i < 14; i++) {
     var b = document.createElement('div');
-    b.className = 'sndBar';
-    w.appendChild(b);
+    b.className = 'sndBar'; w.appendChild(b);
   }
   var bars = w.querySelectorAll('.sndBar');
-
   if (sndAnalyser) {
     var data = new Uint8Array(sndAnalyser.frequencyBinCount);
     (function tick() {
@@ -587,13 +572,12 @@ function sndWaveStart() {
     })();
   }
 }
-
 function sndWaveStop() {
   if (sndWaveId) { cancelAnimationFrame(sndWaveId); sndWaveId = null; }
-  var bars = document.querySelectorAll('#sndWave .sndBar');
-  bars.forEach(function(b) { b.style.height = '3px'; b.style.background = 'var(--blue)'; });
+  document.querySelectorAll('#sndWave .sndBar').forEach(function(b) {
+    b.style.height = '3px'; b.style.background = 'var(--blue)';
+  });
 }
-
 </script>
 </body>
 </html>
