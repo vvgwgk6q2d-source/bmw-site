@@ -39,8 +39,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .pn{font-size:.8rem;font-weight:600;color:#fff}.ps{font-size:.64rem;color:var(--muted);margin-top:.05rem}
 .pa{color:var(--blue);font-size:.8rem;opacity:0;transition:opacity .2s;margin-left:auto}
 .pi.on .pa,.pi:hover .pa{opacity:1}
-
-/* RIGHT PANEL */
 #rp{position:fixed;right:0;top:52px;bottom:64px;width:290px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:20;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
 #rp.on{transform:translateX(0)}
 .rph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
@@ -55,57 +53,32 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sr:last-child{border:none}
 .sk{font-size:.72rem;color:var(--muted)}.sv{font-size:.74rem;color:#fff;font-weight:600;text-align:right}
 
-/* ENGINE SOUND PLAYER */
+/* SOUND PANEL */
 #soundPanel{margin:0 1.2rem .8rem;border-radius:12px;background:linear-gradient(135deg,rgba(10,20,50,.95),rgba(4,12,30,.98));border:1px solid rgba(30,144,255,.3);overflow:hidden;flex-shrink:0}
 .sp-header{padding:.65rem 1rem;border-bottom:1px solid rgba(30,144,255,.15);display:flex;align-items:center;gap:.5rem}
 .sp-icon{font-size:1rem}
 .sp-title{font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:700}
 .sp-body{padding:.75rem 1rem}
-.sp-modes{display:flex;gap:.4rem;margin-bottom:.7rem}
-.sp-mode{flex:1;padding:.3rem .2rem;font-size:.55rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(30,144,255,.2);border-radius:5px;background:transparent;color:var(--muted);cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;transition:all .2s;text-align:center}
-.sp-mode:hover{border-color:rgba(30,144,255,.5);color:#fff}
-.sp-mode.on{border-color:var(--blue);color:var(--blue);background:rgba(30,144,255,.1);box-shadow:0 0 8px rgba(30,144,255,.15)}
 .sp-controls{display:flex;align-items:center;gap:.7rem}
-.sp-play{width:38px;height:38px;border-radius:50%;border:2px solid var(--blue);background:rgba(30,144,255,.12);color:var(--blue);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0}
-.sp-play:hover{background:rgba(30,144,255,.25);box-shadow:0 0 16px rgba(30,144,255,.3)}
-.sp-play.playing{border-color:#ff6b35;color:#ff6b35;background:rgba(255,107,53,.12);animation:pulsePlay .8s ease-in-out infinite}
-@keyframes pulsePlay{0%,100%{box-shadow:0 0 0 0 rgba(255,107,53,.3)}50%{box-shadow:0 0 0 8px rgba(255,107,53,0)}}
-.sp-right{flex:1;display:flex;flex-direction:column;gap:.4rem}
-.sp-rpm-row{display:flex;align-items:center;justify-content:space-between}
-.sp-rpm-val{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:#fff}
-.sp-rpm-label{font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700}
-.sp-rpm-bar{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;position:relative}
-.sp-rpm-fill{height:100%;border-radius:2px;transition:width .05s linear;background:linear-gradient(90deg,#1E90FF,#00e5ff,#ff6b35)}
-.sp-wave{display:flex;align-items:center;gap:2px;height:22px}
-.sp-bar{width:3px;border-radius:2px;background:var(--blue);transition:height .08s ease;opacity:.7}
+.sp-play{width:42px;height:42px;border-radius:50%;border:2px solid var(--blue);background:rgba(30,144,255,.12);color:var(--blue);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;outline:none}
+.sp-play:hover{background:rgba(30,144,255,.28);box-shadow:0 0 18px rgba(30,144,255,.35)}
+.sp-play.playing{border-color:#ff6b35;color:#ff6b35;background:rgba(255,107,53,.14);animation:pulsePlay .8s ease-in-out infinite}
+@keyframes pulsePlay{0%,100%{box-shadow:0 0 0 0 rgba(255,107,53,.35)}50%{box-shadow:0 0 0 9px rgba(255,107,53,0)}}
+.sp-right{flex:1;display:flex;flex-direction:column;gap:.42rem}
+.sp-wave{display:flex;align-items:center;gap:2px;height:24px;margin-bottom:.2rem}
+.sp-bar{width:3px;border-radius:2px;background:var(--blue);opacity:.75}
+.sp-row{display:flex;align-items:center;gap:.5rem}
+.sp-lbl{font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;flex-shrink:0;width:36px}
+.sp-slider{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:rgba(255,255,255,.08);border-radius:2px;outline:none;cursor:pointer}
+.sp-slider::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--blue);border:2px solid rgba(30,144,255,.3);box-shadow:0 0 7px rgba(30,144,255,.5);cursor:pointer}
+.sp-val{font-size:.6rem;font-weight:700;color:var(--blue);font-family:'Orbitron',monospace;width:32px;text-align:right;flex-shrink:0}
+.sp-status{font-size:.56rem;color:rgba(255,255,255,.3);text-align:center;margin-top:.5rem;letter-spacing:.8px;min-height:1.2em}
+.sp-loading{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.6rem 0}
+.sp-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:dotPulse 1.2s ease-in-out infinite}
+.sp-dot:nth-child(2){animation-delay:.2s}.sp-dot:nth-child(3){animation-delay:.4s}
+@keyframes dotPulse{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.sp-err{font-size:.62rem;color:rgba(255,100,100,.7);text-align:center;padding:.5rem 0}
 
-/* RPM THROTTLE */
-.sp-throttle{display:flex;align-items:center;gap:.5rem;margin-top:.5rem}
-.sp-throttle-label{font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;flex-shrink:0}
-.sp-throttle-slider{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:rgba(255,255,255,.08);border-radius:2px;outline:none;cursor:pointer}
-.sp-throttle-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--blue);border:2px solid rgba(30,144,255,.3);box-shadow:0 0 8px rgba(30,144,255,.5);cursor:pointer}
-.sp-throttle-val{font-size:.62rem;font-weight:700;color:var(--blue);font-family:'Orbitron',monospace;width:30px;text-align:right;flex-shrink:0}
-
-/* EXHAUST MODE LABEL */
-.sp-exhaust{font-size:.56rem;color:rgba(255,255,255,.28);text-align:center;margin-top:.4rem;letter-spacing:1px}
-
-/* SOURCE SWITCHER */
-.sp-source-row{display:flex;gap:.4rem;margin-bottom:.65rem}
-.sp-source-btn{flex:1;padding:.28rem .2rem;font-size:.55rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);border-radius:5px;background:transparent;color:var(--muted);cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;transition:all .2s;text-align:center}
-.sp-source-btn:hover{border-color:rgba(30,144,255,.4);color:#fff}
-.sp-source-btn.on{border-color:var(--blue);color:var(--blue);background:rgba(30,144,255,.1)}
-
-/* DROPZONE */
-.sp-dropzone{border:1.5px dashed rgba(30,144,255,.28);border-radius:10px;padding:.9rem .5rem;text-align:center;cursor:pointer;transition:all .2s;background:rgba(30,144,255,.03)}
-.sp-dropzone:hover,.sp-dropzone.drag{border-color:var(--blue);background:rgba(30,144,255,.08)}
-.sp-drop-icon{font-size:1.4rem;margin-bottom:.3rem}
-.sp-drop-title{font-size:.72rem;font-weight:700;color:#fff;margin-bottom:.15rem}
-.sp-drop-sub{font-size:.6rem;color:var(--muted)}
-
-/* FILE NAME */
-.sp-file-name{font-size:.6rem;color:var(--blue);font-weight:700;letter-spacing:1px;text-align:center;padding:.3rem .5rem;background:rgba(30,144,255,.07);border-radius:5px;margin-bottom:.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* BOTTOM BAR */
 #bb{position:fixed;bottom:0;left:255px;right:0;height:64px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:20;transition:right .3s}
 #bb.rpon{right:290px}
 .sb{display:flex;flex-direction:column;align-items:center;padding:0 1.6rem;border-right:1px solid var(--border)}
@@ -113,8 +86,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sn{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;color:#fff;line-height:1}
 .sn span{font-size:.68rem;color:var(--blue)}
 .sl2{font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:.22rem;font-weight:700}
-
-/* LOADING */
 #ld{position:fixed;inset:0;background:var(--dark);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;transition:opacity .8s}
 #ld.out{opacity:0;pointer-events:none}
 .ll{font-family:'Orbitron',monospace;font-size:3rem;font-weight:900;letter-spacing:8px;color:#fff}
@@ -124,28 +95,18 @@ canvas{display:block;width:100%!important;height:100%!important}
 .lbar{height:100%;background:var(--blue);width:0;border-radius:3px;transition:width .3s ease}
 .ltxt{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center}
 .lspeed{font-size:.6rem;color:rgba(30,144,255,.6);font-weight:600;min-height:1em;text-align:center;max-width:400px;word-break:break-all}
-
-/* ERROR */
 #errmsg{position:fixed;inset:0;background:var(--dark);z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;text-align:center;padding:2rem}
 #errmsg.active{display:flex}
-.err-icon{font-size:2.5rem}
-.err-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:#fff}
-.err-sub{font-size:.76rem;color:var(--muted);line-height:1.8;max-width:420px}
-.err-sub code{color:rgba(30,144,255,.7);font-size:.68rem}
-
-/* CORNERS & HINT */
 .corner{position:fixed;width:28px;height:28px;z-index:25;pointer-events:none}
 .corner.tl{top:60px;left:262px;border-top:1px solid rgba(30,144,255,.2);border-left:1px solid rgba(30,144,255,.2)}
 .corner.tr{top:60px;right:6px;border-top:1px solid rgba(30,144,255,.2);border-right:1px solid rgba(30,144,255,.2)}
 .corner.bl{bottom:70px;left:262px;border-bottom:1px solid rgba(30,144,255,.2);border-left:1px solid rgba(30,144,255,.2)}
 .corner.br{bottom:70px;right:6px;border-bottom:1px solid rgba(30,144,255,.2);border-right:1px solid rgba(30,144,255,.2)}
 #hint{position:fixed;bottom:78px;left:50%;transform:translateX(-50%);background:rgba(4,7,15,.92);border:1px solid var(--border);border-radius:20px;padding:.28rem .95rem;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);pointer-events:none;z-index:30;transition:opacity 1.2s;white-space:nowrap}
-
-/* BRAKE HEAT ANIM */
-@keyframes brakeGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,60,0,0)}50%{box-shadow:0 0 18px 4px rgba(255,60,0,.25)}}
 </style>
 </head>
 <body>
+
 <div id="ld">
   <div class="ll">BM<em>W</em></div>
   <div class="lsub">M4 F82 · Configurateur 3D</div>
@@ -154,14 +115,11 @@ canvas{display:block;width:100%!important;height:100%!important}
   <div class="lspeed" id="lspeed"></div>
 </div>
 <div id="errmsg">
-  <div class="err-icon">⚠</div>
-  <div class="err-title">Modèle introuvable</div>
-  <div class="err-sub">
-    Le fichier <code>bmw_m4_f82.glb</code> n'a pas pu être chargé.<br>
-    Vérifiez que le repo est <strong style="color:rgba(255,255,255,.5)">public</strong><br>
-    et que le fichier est à la racine sur la branche <code>main</code>.
-  </div>
+  <div style="font-size:2.5rem">⚠</div>
+  <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:#fff">Modèle introuvable</div>
+  <div style="font-size:.76rem;color:var(--muted);line-height:1.8;max-width:420px">Le fichier <code style="color:rgba(30,144,255,.7)">bmw_m4_f82.glb</code> n'a pas pu être chargé.</div>
 </div>
+
 <div id="hdr">
   <a href="index.html" class="logo">BM<em>W</em></a>
   <div style="display:flex;align-items:center;gap:.8rem">
@@ -174,6 +132,7 @@ canvas{display:block;width:100%!important;height:100%!important}
     <button class="hbtn" id="wirebtn" onclick="toggleWire()">◻ Wireframe</button>
   </div>
 </div>
+
 <div id="lp">
   <div class="lph">
     <span class="lbadge">BMW M Series · F82 Coupé</span>
@@ -194,7 +153,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 <div class="corner tl"></div><div class="corner tr"></div>
 <div class="corner bl"></div><div class="corner br"></div>
 
-<!-- RIGHT PANEL -->
 <div id="rp">
   <div class="rph">
     <div><span class="rl">Spécifications techniques</span><h3 id="rtitle">—</h3></div>
@@ -202,84 +160,45 @@ canvas{display:block;width:100%!important;height:100%!important}
   </div>
   <div class="rdesc" id="rdesc"></div>
 
-  <!-- ENGINE SOUND PANEL (shown only for moteur) -->
+  <!-- SOUND PANEL — moteur uniquement -->
   <div id="soundPanel" style="display:none">
     <div class="sp-header">
       <span class="sp-icon">🔊</span>
       <span class="sp-title">Écouter le moteur S55</span>
     </div>
     <div class="sp-body">
-
-      <!-- FILE SOURCE SELECTOR -->
-      <div class="sp-source-row">
-        <div class="sp-source-btn on" id="srcFile" onclick="switchSource('file')">Fichier MP3</div>
-        <div class="sp-source-btn" id="srcSynth" onclick="switchSource('synth')">Synthèse</div>
+      <div id="spLoading" class="sp-loading">
+        <div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div>
+        <span style="font-size:.6rem;color:var(--muted);margin-left:.4rem">Chargement audio…</span>
       </div>
-
-      <!-- FILE MODE -->
-      <div id="fileMode">
-        <div class="sp-dropzone" id="dropzone" onclick="document.getElementById('audioFileInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="onFileDrop(event)">
-          <div class="sp-drop-icon">⏳</div>
-          <div class="sp-drop-title" id="dropTitle">Chargement…</div>
-          <div class="sp-drop-sub" id="dropSub">S55 moteur.mp3 depuis le repo</div>
-        </div>
-        <input type="file" id="audioFileInput" accept="audio/*" style="display:none" onchange="onFileSelect(event)">
-
-        <!-- PLAYER (hidden until file loaded) -->
-        <div id="filePlayer" style="display:none">
-          <div class="sp-file-name" id="fileName">—</div>
-          <audio id="engineAudio" loop preload="auto"></audio>
-          <div class="sp-controls" style="margin-top:.55rem">
-            <button class="sp-play" id="playBtnFile" onclick="toggleFileSound()">▶</button>
-            <div class="sp-right">
-              <div class="sp-wave" id="waveVizFile"></div>
-              <div class="sp-throttle" style="margin-top:.35rem">
-                <span class="sp-throttle-label">Volume</span>
-                <input type="range" class="sp-throttle-slider" id="volSlider" min="0" max="100" value="80" oninput="setVolume(this.value)">
-                <span class="sp-throttle-val" id="volVal">80%</span>
-              </div>
-              <div class="sp-throttle" style="margin-top:.25rem">
-                <span class="sp-throttle-label">Vitesse</span>
-                <input type="range" class="sp-throttle-slider" id="rateSlider" min="50" max="200" value="100" oninput="setRate(this.value)">
-                <span class="sp-throttle-val" id="rateVal">1×</span>
-              </div>
-            </div>
-          </div>
-          <div class="sp-exhaust" id="exhaustLabelFile">Prêt — appuyer sur ▶ pour démarrer</div>
-        </div>
-      </div>
-
-      <!-- SYNTH MODE -->
-      <div id="synthMode" style="display:none">
-        <div class="sp-modes">
-          <div class="sp-mode on" id="modeIdle" onclick="setMode('idle')">Ralenti</div>
-          <div class="sp-mode" id="modeRev" onclick="setMode('rev')">Montée</div>
-          <div class="sp-mode" id="modeLaunch" onclick="setMode('launch')">Launch</div>
-        </div>
+      <div id="spError" class="sp-err" style="display:none">⚠ Audio indisponible — vérifier le repo</div>
+      <div id="spPlayer" style="display:none">
         <div class="sp-controls">
-          <button class="sp-play" id="playBtn" onclick="toggleSound()">▶</button>
+          <button class="sp-play" id="playBtnFile" onclick="toggleFileSound()">▶</button>
           <div class="sp-right">
-            <div class="sp-rpm-row">
-              <span class="sp-rpm-val" id="rpmVal">850</span>
-              <span class="sp-rpm-label">tr/min</span>
+            <div class="sp-wave" id="waveVizFile"></div>
+            <div class="sp-row">
+              <span class="sp-lbl">Volume</span>
+              <input type="range" class="sp-slider" id="volSlider" min="0" max="100" value="80" oninput="setVol(this.value)">
+              <span class="sp-val" id="volVal">80%</span>
             </div>
-            <div class="sp-rpm-bar"><div class="sp-rpm-fill" id="rpmFill" style="width:2%"></div></div>
-            <div class="sp-wave" id="waveViz"></div>
+            <div class="sp-row" style="margin-top:.28rem">
+              <span class="sp-lbl">Vitesse</span>
+              <input type="range" class="sp-slider" id="rateSlider" min="50" max="200" value="100" oninput="setRate(this.value)">
+              <span class="sp-val" id="rateVal">1.0×</span>
+            </div>
           </div>
         </div>
-        <div class="sp-throttle">
-          <span class="sp-throttle-label">Gaz</span>
-          <input type="range" class="sp-throttle-slider" id="throttleSlider" min="0" max="100" value="0" oninput="onThrottle(this.value)">
-          <span class="sp-throttle-val" id="throttleVal">0%</span>
-        </div>
-        <div class="sp-exhaust" id="exhaustLabel">Mode : Ralenti — papillons fermés</div>
+        <div class="sp-status" id="spStatus">Prêt — appuyer sur ▶</div>
       </div>
-
     </div>
   </div>
 
   <div class="rsl" id="rsl"></div>
 </div>
+
+<!-- Élément audio hors du flux visible -->
+<audio id="engineAudio" loop preload="auto" crossorigin="anonymous"></audio>
 
 <div id="bb">
   <div class="sb"><div class="sn">431<span>ch</span></div><div class="sl2">Puissance</div></div>
@@ -295,15 +214,22 @@ canvas{display:block;width:100%!important;height:100%!important}
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script>
-
-/* ─────────────────────────────────────────────
+/* ═══════════════════════════════
    DATA
-───────────────────────────────────────────── */
+═══════════════════════════════ */
 const MODEL_URLS = [
   './bmw_m4_f82.glb',
   'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/bmw_m4_f82.glb',
   'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/bmw_m4_f82.glb',
 ];
+
+// URLs du MP3 dans l'ordre de priorité
+const AUDIO_URLS = [
+  'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/S55_moteur.mp3',
+  'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/S55_moteur.mp3',
+  './S55_moteur.mp3',
+];
+
 const COLORS = [
   {h:'#1a1a2e',n:'Noir Saphir'},{h:'#b8b8b8',n:'Argent Brooklands'},
   {h:'#1B3A8C',n:'Bleu Lagoon'},{h:'#8B1A1A',n:'Rouge Imola'},
@@ -313,6 +239,7 @@ const COLORS = [
   {h:'#7a1f3d',n:'Violet Twilight'},{h:'#2d2d2d',n:'Gris Frozen'},
   {h:'#b5451b',n:'Orange Atacama'},
 ];
+
 const PARTS = [
   {k:'moteur',i:'⚙',n:'Moteur S55 B30T0',s:'3.0L I6 · 431 ch',d:'Six cylindres en ligne, deux turbos Twin-Scroll séquentiels. Conçu exclusivement pour BMW M GmbH.',sp:[['Type','L6 Biturbo DOHC'],['Cylindrée','2 979 cm³'],['Puissance','431 ch'],['Couple','550 Nm'],['Régime max','7 600 tr/min']],sound:true},
   {k:'boite',i:'🔩',n:'M-DCT 7 rapports',s:'< 80 ms · Launch Control',d:'Double embrayage 7 rapports, passages ultra-rapides, Launch Control, paddles au volant.',sp:[['Type','DCT 7 rapports'],['Passages','< 80 ms'],['Launch Control','Oui'],['Diff.','M Active LSD'],['Propulsion','RWD']]},
@@ -324,458 +251,265 @@ const PARTS = [
   {k:'interieur',i:'💺',n:'Habitacle F82',s:'Baquets · HUD · iDrive 6',d:'Sièges baquets M Sport, volant M chauffant paddles, HUD M, iDrive 6.',sp:[['Sièges','M Sport baquets'],['Volant','M + paddles'],['HUD','M Head-Up'],['Système','iDrive 6']]},
 ];
 
-/* ─────────────────────────────────────────────
-   THREE.JS SETUP
-───────────────────────────────────────────── */
-let color = COLORS[0].h, selPart = null, rotOn = true, wireOn = false, carModel = null, urlIdx = 0;
-const cv = document.getElementById('c');
-const renderer = new THREE.WebGLRenderer({canvas: cv, antialias: true, alpha: false});
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.5;
-renderer.outputEncoding = THREE.sRGBEncoding;
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x04070f);
-scene.fog = new THREE.FogExp2(0x04070f, 0.028);
-const camera = new THREE.PerspectiveCamera(42, 1, 0.05, 100);
-camera.position.set(5, 2.5, 7);
-const controls = new THREE.OrbitControls(camera, cv);
-controls.enableDamping = true; controls.dampingFactor = 0.055;
-controls.minDistance = 1.5; controls.maxDistance = 18;
-controls.maxPolarAngle = Math.PI * 0.55;
-controls.autoRotate = true; controls.autoRotateSpeed = 0.9;
-controls.target.set(0, 0.5, 0);
-scene.add(new THREE.AmbientLight(0x334466, 1.2));
-const sun = new THREE.DirectionalLight(0xfff5e8, 3.5);
-sun.position.set(6,12,6); sun.castShadow = true;
+/* ═══════════════════════════════
+   THREE.JS
+═══════════════════════════════ */
+let color=COLORS[0].h, selPart=null, rotOn=true, wireOn=false, carModel=null, urlIdx=0;
+const cv=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.5;
+renderer.outputEncoding=THREE.sRGBEncoding;
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x04070f);
+scene.fog=new THREE.FogExp2(0x04070f,0.028);
+const camera=new THREE.PerspectiveCamera(42,1,0.05,100);
+camera.position.set(5,2.5,7);
+const controls=new THREE.OrbitControls(camera,cv);
+controls.enableDamping=true; controls.dampingFactor=0.055;
+controls.minDistance=1.5; controls.maxDistance=18;
+controls.maxPolarAngle=Math.PI*0.55;
+controls.autoRotate=true; controls.autoRotateSpeed=0.9;
+controls.target.set(0,0.5,0);
+scene.add(new THREE.AmbientLight(0x334466,1.2));
+const sun=new THREE.DirectionalLight(0xfff5e8,3.5);
+sun.position.set(6,12,6); sun.castShadow=true;
 sun.shadow.mapSize.set(2048,2048);
-sun.shadow.camera.left=-8;sun.shadow.camera.right=8;
-sun.shadow.camera.top=7;sun.shadow.camera.bottom=-4;
+sun.shadow.camera.left=-8; sun.shadow.camera.right=8;
+sun.shadow.camera.top=7; sun.shadow.camera.bottom=-4;
 sun.shadow.bias=-0.0003; scene.add(sun);
-const fill = new THREE.DirectionalLight(0x2244bb, 0.9);
-fill.position.set(-6,3,-4); scene.add(fill);
-const rim = new THREE.DirectionalLight(0x88aaff, 2.0);
-rim.position.set(0,6,-8); scene.add(rim);
-scene.add(new THREE.PointLight(0x0d2266,0.7,18));
-try{const pmrem=new THREE.PMREMGenerator(renderer);pmrem.compileEquirectangularShader();scene.environment=pmrem.fromScene(new THREE.RoomEnvironment()).texture;}catch(e){}
+scene.add(Object.assign(new THREE.DirectionalLight(0x2244bb,.9),{position:{x:-6,y:3,z:-4}}));
+scene.add(Object.assign(new THREE.DirectionalLight(0x88aaff,2.0),{position:{x:0,y:6,z:-8}}));
+scene.add(new THREE.PointLight(0x0d2266,.7,18));
+try{const p=new THREE.PMREMGenerator(renderer);p.compileEquirectangularShader();scene.environment=p.fromScene(new THREE.RoomEnvironment()).texture;}catch(e){}
 const gnd=new THREE.Mesh(new THREE.CircleGeometry(14,64),new THREE.MeshStandardMaterial({color:0x060b1a,roughness:.03,metalness:.95}));
-gnd.rotation.x=-Math.PI/2;gnd.receiveShadow=true;scene.add(gnd);
-const grid=new THREE.GridHelper(24,24,0x0d2255,0x070e28);grid.position.y=.001;scene.add(grid);
+gnd.rotation.x=-Math.PI/2; gnd.receiveShadow=true; scene.add(gnd);
+scene.add(Object.assign(new THREE.GridHelper(24,24,0x0d2255,0x070e28),{position:{x:0,y:.001,z:0}}));
 const ring=new THREE.Mesh(new THREE.RingGeometry(2,2.5,64),new THREE.MeshBasicMaterial({color:0x1E90FF,transparent:true,opacity:.1,side:THREE.DoubleSide}));
-ring.rotation.x=-Math.PI/2;ring.position.y=.002;scene.add(ring);
+ring.rotation.x=-Math.PI/2; ring.position.y=.002; scene.add(ring);
 
-/* ─────────────────────────────────────────────
-   MODEL LOADING
-───────────────────────────────────────────── */
-const gltfLoader = new THREE.GLTFLoader();
-const dracoLoader = new THREE.DRACOLoader();
+const gltfLoader=new THREE.GLTFLoader();
+const dracoLoader=new THREE.DRACOLoader();
 dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
 gltfLoader.setDRACOLoader(dracoLoader);
+
 function tryLoad(){
   if(urlIdx>=MODEL_URLS.length){document.getElementById('ld').style.display='none';document.getElementById('errmsg').classList.add('active');return;}
   const url=MODEL_URLS[urlIdx];
   const label=['Chemin local','jsDelivr CDN','GitHub Raw'][urlIdx]||'Source '+urlIdx;
-  setLD(8,`Connexion — ${label}…`);
-  document.getElementById('lspeed').textContent=url;
+  setLD(8,'Connexion — '+label+'…'); document.getElementById('lspeed').textContent=url;
   const t0=Date.now();
-  gltfLoader.load(url,(gltf)=>{setLD(92,'Construction de la scène…');onModelLoaded(gltf);},
-    (xhr)=>{if(xhr.total){const pct=xhr.loaded/xhr.total,elapsed=(Date.now()-t0)/1000,kbps=elapsed>0?Math.round(xhr.loaded/elapsed/1024):0,mb=(xhr.loaded/1024/1024).toFixed(1),tot=(xhr.total/1024/1024).toFixed(1);setLD(10+pct*78,`Téléchargement… ${mb} / ${tot} MB`);if(kbps>0)document.getElementById('lspeed').textContent=`${kbps} KB/s — ${label}`;}},
-    (err)=>{console.warn(`[${label}] Échec:`,err.message||err);urlIdx++;setTimeout(tryLoad,400);}
+  gltfLoader.load(url,gltf=>{setLD(92,'Construction de la scène…');onModelLoaded(gltf);},
+    xhr=>{if(xhr.total){const pct=xhr.loaded/xhr.total,e=(Date.now()-t0)/1000,kbps=e>0?Math.round(xhr.loaded/e/1024):0,mb=(xhr.loaded/1024/1024).toFixed(1),tot=(xhr.total/1024/1024).toFixed(1);setLD(10+pct*78,'Téléchargement… '+mb+' / '+tot+' MB');if(kbps>0)document.getElementById('lspeed').textContent=kbps+' KB/s — '+label;}},
+    err=>{console.warn('['+label+'] Échec:',err.message||err);urlIdx++;setTimeout(tryLoad,400);}
   );
 }
+
 function onModelLoaded(gltf){
   if(carModel){scene.remove(carModel);carModel.traverse(c=>{if(c.geometry)c.geometry.dispose();});}
   carModel=gltf.scene;
   const box=new THREE.Box3().setFromObject(carModel),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3()),scale=5.2/Math.max(size.x,size.y,size.z);
-  carModel.scale.setScalar(scale);carModel.position.sub(center.multiplyScalar(scale));
-  const box2=new THREE.Box3().setFromObject(carModel);carModel.position.y-=box2.min.y;
+  carModel.scale.setScalar(scale); carModel.position.sub(center.multiplyScalar(scale));
+  const box2=new THREE.Box3().setFromObject(carModel); carModel.position.y-=box2.min.y;
   carModel.traverse(n=>{if(!n.isMesh)return;n.castShadow=true;n.receiveShadow=true;const mats=Array.isArray(n.material)?n.material:[n.material];mats.forEach(m=>{if(m){m.envMapIntensity=1.4;m.needsUpdate=true;}});});
   scene.add(carModel);
   const box3=new THREE.Box3().setFromObject(carModel),sz=box3.getSize(new THREE.Vector3());
-  camera.position.set(sz.x*.9,sz.y*.85,sz.z*1.7);controls.target.set(0,sz.y*.36,0);controls.update();
+  camera.position.set(sz.x*.9,sz.y*.85,sz.z*1.7); controls.target.set(0,sz.y*.36,0); controls.update();
   setLD(100,'Modèle chargé ✓');
   setTimeout(()=>{document.getElementById('ld').classList.add('out');setTimeout(()=>document.getElementById('ld').style.display='none',900);setTimeout(()=>document.getElementById('hint').style.opacity='0',6000);},500);
-  applyColor(color);renderUI();
+  applyColor(color); renderUI();
 }
-function setLD(pct,txt){document.getElementById('lbar').style.width=pct+'%';document.getElementById('ltxt').textContent=txt;}
-const WHEEL_KEYS=['wheel','roue','jante','tire','tyre','pneu','rim','felge','roda','ruota','brake','disque','caliper','etrier'];
-function isWheelMesh(name){const n=(name||'').toLowerCase();return WHEEL_KEYS.some(k=>n.includes(k));}
+
+function setLD(p,t){document.getElementById('lbar').style.width=p+'%';document.getElementById('ltxt').textContent=t;}
+const WK=['wheel','roue','jante','tire','tyre','pneu','rim','felge','roda','ruota','brake','disque','caliper','etrier'];
+function isWheel(n){const s=(n||'').toLowerCase();return WK.some(k=>s.includes(k));}
+
 function applyColor(hex){
-  color=hex;if(!carModel){renderUI();return;}
+  color=hex; if(!carModel){renderUI();return;}
   const c=new THREE.Color(hex);
-  carModel.traverse(n=>{if(!n.isMesh)return;if(isWheelMesh(n.name))return;
+  carModel.traverse(n=>{
+    if(!n.isMesh||isWheel(n.name))return;
     const mats=Array.isArray(n.material)?n.material:[n.material];
-    mats.forEach(m=>{if(!m||!m.color)return;if(m.metalness>.85&&m.roughness<.18)return;if(m.emissive&&(m.emissive.r+m.emissive.g+m.emissive.b)>.15)return;if(m.transparent&&m.opacity<.6)return;m.color.set(c);m.needsUpdate=true;});});
+    mats.forEach(m=>{
+      if(!m||!m.color)return;
+      if(m.metalness>.85&&m.roughness<.18)return;
+      if(m.emissive&&(m.emissive.r+m.emissive.g+m.emissive.b)>.15)return;
+      if(m.transparent&&m.opacity<.6)return;
+      m.color.set(c); m.needsUpdate=true;
+    });
+  });
   renderUI();
 }
 
-/* ─────────────────────────────────────────────
-   AUDIO — MODE SWITCHER
-───────────────────────────────────────────── */
-let audioSource = 'file'; // 'file' | 'synth'
-
-function switchSource(src) {
-  // Stop everything first
-  if (isFilePlaying) stopFileSound();
-  if (isPlaying) { isPlaying = false; stopEngine(); stopRPMAnimation(); stopWaveAnim(); const b=document.getElementById('playBtn'); if(b){b.textContent='▶';b.classList.remove('playing');} }
-  audioSource = src;
-  document.getElementById('srcFile').classList.toggle('on', src==='file');
-  document.getElementById('srcSynth').classList.toggle('on', src==='synth');
-  document.getElementById('fileMode').style.display  = src==='file'  ? 'block' : 'none';
-  document.getElementById('synthMode').style.display = src==='synth' ? 'block' : 'none';
-}
-
-/* ─────────────────────────────────────────────
-   AUDIO — REAL FILE PLAYER
-───────────────────────────────────────────── */
+/* ═══════════════════════════════
+   AUDIO
+═══════════════════════════════ */
+const audio = document.getElementById('engineAudio');
+let audioReady = false;
 let isFilePlaying = false;
-let fileWaveAnimId = null;
-let fileAudioCtx = null, fileAnalyser = null, fileSource2 = null;
+let audioCtxFile = null, analyser = null, mediaSource = null;
+let waveAnimId = null;
 
-function onFileSelect(e) { loadAudioFile(e.target.files[0]); }
-function onFileDrop(e) {
-  e.preventDefault();
-  document.getElementById('dropzone').classList.remove('drag');
-  const f = e.dataTransfer.files[0];
-  if (f && f.type.startsWith('audio/')) loadAudioFile(f);
-}
-
-// Auto-load from GitHub repo
-const REPO_MP3_URLS = [
-  'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/S55%20moteur.mp3',
-  'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/S55%20moteur.mp3',
-];
-
-function autoLoadRepoAudio() {
+// Chargement automatique du MP3 depuis le repo
+(function initAudioPlayer() {
   let idx = 0;
-  function tryUrl() {
-    if (idx >= REPO_MP3_URLS.length) {
-      // All failed — show manual drop zone
-      document.getElementById('dropTitle').textContent = 'Glisser le MP3 ici';
-      document.getElementById('dropSub').textContent = 'ou cliquer pour parcourir';
-      document.querySelector('#dropzone .sp-drop-icon').textContent = '🎵';
+  function tryNext() {
+    if (idx >= AUDIO_URLS.length) {
+      document.getElementById('spLoading').style.display = 'none';
+      document.getElementById('spError').style.display = 'block';
       return;
     }
-    const url = REPO_MP3_URLS[idx];
-    const audio = document.getElementById('engineAudio');
+    const url = AUDIO_URLS[idx];
     audio.src = url;
-    audio.volume = 0.8;
-    audio.oncanplaythrough = () => {
-      document.getElementById('fileName').textContent = '🎵 S55 moteur.mp3';
-      document.getElementById('dropzone').style.display = 'none';
-      document.getElementById('filePlayer').style.display = 'block';
-      document.getElementById('exhaustLabelFile').textContent = 'Fichier chargé — appuyer sur ▶';
-      audio.oncanplaythrough = null;
-      audio.onerror = null;
-    };
-    audio.onerror = () => {
-      audio.onerror = null;
-      audio.oncanplaythrough = null;
-      idx++;
-      tryUrl();
-    };
     audio.load();
-  }
-  tryUrl();
-}
 
-function loadAudioFile(file) {
-  if (!file) return;
-  const audio = document.getElementById('engineAudio');
-  audio.src = URL.createObjectURL(file);
-  audio.volume = document.getElementById('volSlider').value / 100;
-  audio.playbackRate = document.getElementById('rateSlider').value / 100;
-  document.getElementById('fileName').textContent = '🎵 ' + file.name;
-  document.getElementById('dropzone').style.display = 'none';
-  document.getElementById('filePlayer').style.display = 'block';
-  document.getElementById('exhaustLabelFile').textContent = 'Fichier chargé — appuyer sur ▶';
-}
+    audio.oncanplaythrough = function() {
+      audio.oncanplaythrough = null;
+      audio.onerror = null;
+      audioReady = true;
+      document.getElementById('spLoading').style.display = 'none';
+      document.getElementById('spPlayer').style.display = 'block';
+      console.log('[Audio] ✓', url);
+    };
+
+    audio.onerror = function() {
+      audio.oncanplaythrough = null;
+      audio.onerror = null;
+      console.warn('[Audio] ✗', url);
+      idx++;
+      setTimeout(tryNext, 200);
+    };
+  }
+  tryNext();
+})();
 
 function toggleFileSound() {
-  const audio = document.getElementById('engineAudio');
-  const btn = document.getElementById('playBtnFile');
-  if (!audio.src) return;
-
-  if (audio.paused) {
-    // Créer AudioContext sur geste utilisateur (obligatoire pour Chrome/Safari)
-    if (!fileAudioCtx) {
-      try {
-        fileAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        fileAnalyser = fileAudioCtx.createAnalyser();
-        fileAnalyser.fftSize = 64;
-        fileSource2 = fileAudioCtx.createMediaElementSource(audio);
-        fileSource2.connect(fileAnalyser);
-        fileAnalyser.connect(fileAudioCtx.destination);
-      } catch(e) { fileAudioCtx = null; }
-    }
-    if (fileAudioCtx && fileAudioCtx.state === 'suspended') fileAudioCtx.resume();
-
-    const p = audio.play();
-    if (p !== undefined) {
-      p.then(() => {
-        isFilePlaying = true;
-        btn.textContent = '⏹';
-        btn.classList.add('playing');
-        startFileWaveAnim();
-        document.getElementById('exhaustLabelFile').textContent = '🔥 S55 B30T0 — 3.0L I6 Biturbo en marche';
-      }).catch(() => {
-        document.getElementById('exhaustLabelFile').textContent = '⚠ Cliquer à nouveau pour démarrer';
-      });
-    } else {
-      isFilePlaying = true;
-      btn.textContent = '⏹';
-      btn.classList.add('playing');
-      startFileWaveAnim();
-      document.getElementById('exhaustLabelFile').textContent = '🔥 S55 B30T0 — 3.0L I6 Biturbo en marche';
-    }
-  } else {
-    stopFileSound();
+  if (!audioReady) {
+    document.getElementById('spStatus').textContent = '⏳ Audio en cours de chargement…';
+    return;
   }
+
+  if (isFilePlaying) {
+    // STOP
+    audio.pause();
+    audio.currentTime = 0;
+    isFilePlaying = false;
+    document.getElementById('playBtnFile').textContent = '▶';
+    document.getElementById('playBtnFile').classList.remove('playing');
+    document.getElementById('spStatus').textContent = 'Arrêté';
+    stopWave();
+    return;
+  }
+
+  // PLAY — AudioContext créé obligatoirement dans le geste utilisateur
+  if (!audioCtxFile) {
+    try {
+      audioCtxFile = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioCtxFile.createAnalyser();
+      analyser.fftSize = 64;
+      mediaSource = audioCtxFile.createMediaElementSource(audio);
+      mediaSource.connect(analyser);
+      analyser.connect(audioCtxFile.destination);
+    } catch(e) {
+      audioCtxFile = null;
+      console.warn('[AudioCtx] Erreur:', e);
+    }
+  }
+
+  if (audioCtxFile && audioCtxFile.state === 'suspended') {
+    audioCtxFile.resume();
+  }
+
+  audio.volume = document.getElementById('volSlider').value / 100;
+  audio.playbackRate = document.getElementById('rateSlider').value / 100;
+
+  audio.play()
+    .then(() => {
+      isFilePlaying = true;
+      document.getElementById('playBtnFile').textContent = '⏹';
+      document.getElementById('playBtnFile').classList.add('playing');
+      document.getElementById('spStatus').textContent = '🔥 S55 B30T0 · 3.0L I6 Biturbo en marche';
+      startWave();
+    })
+    .catch(err => {
+      console.error('[Audio] play() refusé:', err);
+      document.getElementById('spStatus').textContent = '⚠ Cliquer à nouveau pour démarrer';
+    });
 }
 
-function stopFileSound() {
-  const audio = document.getElementById('engineAudio');
-  audio.pause(); audio.currentTime = 0;
-  isFilePlaying = false;
-  const btn = document.getElementById('playBtnFile');
-  if (btn) { btn.textContent = '▶'; btn.classList.remove('playing'); }
-  stopFileWaveAnim();
-  const lbl = document.getElementById('exhaustLabelFile');
-  if (lbl) lbl.textContent = 'Arrêté — appuyer sur ▶ pour redémarrer';
-}
-
-function setVolume(v) {
+function setVol(v) {
   document.getElementById('volVal').textContent = v + '%';
-  const a = document.getElementById('engineAudio');
-  if (a) a.volume = v / 100;
+  if (audio) audio.volume = v / 100;
 }
 
 function setRate(v) {
-  const rate = (v / 100).toFixed(2);
-  document.getElementById('rateVal').textContent = rate + '×';
-  const a = document.getElementById('engineAudio');
-  if (a) a.playbackRate = parseFloat(rate);
-  // Update label hint
-  const lbl = document.getElementById('exhaustLabelFile');
-  if (lbl && isFilePlaying) {
-    lbl.textContent = v < 80  ? '🧊 Ralenti simulé — vitesse réduite' :
-                      v > 140 ? '🔥 Régime élevé — vitesse augmentée' :
-                      '🔥 S55 B30T0 — 3.0L I6 Biturbo en marche';
+  const r = (v / 100).toFixed(1);
+  document.getElementById('rateVal').textContent = r + '×';
+  if (audio) audio.playbackRate = parseFloat(r);
+  if (isFilePlaying) {
+    document.getElementById('spStatus').textContent =
+      v < 80  ? '🧊 Ralenti simulé — vitesse réduite' :
+      v > 140 ? '🔥 Régime élevé — vitesse augmentée' :
+      '🔥 S55 B30T0 · 3.0L I6 Biturbo en marche';
   }
 }
 
-function buildWaveBarsFor(id) {
-  const w = document.getElementById(id);
-  if (!w) return;
+function startWave() {
+  const w = document.getElementById('waveVizFile');
   w.innerHTML = '';
   for (let i = 0; i < 16; i++) {
     const b = document.createElement('div');
     b.className = 'sp-bar'; b.style.flex = '1'; b.style.height = '3px';
     w.appendChild(b);
   }
-}
+  const bars = Array.from(w.querySelectorAll('.sp-bar'));
 
-function startFileWaveAnim() {
-  buildWaveBarsFor('waveVizFile');
-  const bars = document.querySelectorAll('#waveVizFile .sp-bar');
-  const audio = document.getElementById('engineAudio');
-  // Utilise l'analyser déjà créé dans toggleFileSound (geste utilisateur)
-  if (fileAnalyser) {
-    try {
-      if (fileAudioCtx.state === 'suspended') fileAudioCtx.resume();
-      const dataArr = new Uint8Array(fileAnalyser.frequencyBinCount);
-      function tick() {
-        fileAnalyser.getByteFrequencyData(dataArr);
-        bars.forEach((b, i) => {
-          const val = dataArr[i] || 0;
-          const h = 2 + (val / 255) * 18;
-          b.style.height = h.toFixed(1) + 'px';
-          const ratio = val / 255;
-          b.style.background = `rgb(${Math.round(30+ratio*225)},${Math.round(144-ratio*80)},${Math.round(255-ratio*200)})`;
-        });
-        fileWaveAnimId = requestAnimationFrame(tick);
-      }
-      tick();
-      return;
-    } catch(e) {}
+  if (analyser) {
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    (function tick() {
+      analyser.getByteFrequencyData(data);
+      bars.forEach((b, i) => {
+        const v = data[Math.floor(i * data.length / bars.length)] || 0;
+        b.style.height = (2 + v / 255 * 20).toFixed(1) + 'px';
+        const r = v / 255;
+        b.style.background = `rgb(${Math.round(30+r*225)},${Math.round(144-r*80)},${Math.round(255-r*200)})`;
+      });
+      waveAnimId = requestAnimationFrame(tick);
+    })();
+  } else {
+    (function tick() {
+      const rate = audio.playbackRate || 1;
+      bars.forEach((b, i) => {
+        b.style.height = (2 + Math.abs(Math.sin(Date.now()/(100+i*15)*rate+i))*18).toFixed(1) + 'px';
+        b.style.background = `hsl(${205+i*4},80%,55%)`;
+      });
+      waveAnimId = requestAnimationFrame(tick);
+    })();
   }
-  function tickFallback() {
-    const rate = audio.playbackRate || 1;
-    bars.forEach((b, i) => {
-      const h = 2 + Math.abs(Math.sin(Date.now() / (100 + i * 18) * rate + i)) * 16;
-      b.style.height = h.toFixed(1) + 'px';
-      b.style.background = `hsl(${200 + i * 5}, 80%, 55%)`;
-    });
-    fileWaveAnimId = requestAnimationFrame(tickFallback);
-  }
-  tickFallback();
 }
 
-function stopFileWaveAnim() {
-  if (fileWaveAnimId) cancelAnimationFrame(fileWaveAnimId);
-  fileWaveAnimId = null;
-  document.querySelectorAll('#waveVizFile .sp-bar').forEach(b => { b.style.height='3px'; b.style.background='var(--blue)'; });
+function stopWave() {
+  if (waveAnimId) { cancelAnimationFrame(waveAnimId); waveAnimId = null; }
+  document.querySelectorAll('#waveVizFile .sp-bar').forEach(b => {
+    b.style.height = '3px'; b.style.background = 'var(--blue)';
+  });
 }
 
-/* ─────────────────────────────────────────────
-   WEB AUDIO ENGINE — S55 B30T0 SYNTHESIZER
-───────────────────────────────────────────── */
-let audioCtx = null, engineNodes = null, isPlaying = false;
-let currentMode = 'idle', throttleVal = 0;
-let rpmTarget = 850, rpmCurrent = 850;
-let rpmAnimId = null, waveAnimId = null;
-
-const MODES = {
-  idle:   { rpm: 850,  throttle: 0,   label: 'Mode : Ralenti — papillons fermés' },
-  rev:    { rpm: 5500, throttle: 65,  label: 'Mode : Montée régime — papillons ouverts' },
-  launch: { rpm: 7200, throttle: 100, label: 'Mode : Launch Control — régime maxi !' },
-};
-
-function initAudio() {
-  if (audioCtx) return true;
-  try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return true; } catch(e) { return false; }
+function stopAudio() {
+  if (!isFilePlaying) return;
+  audio.pause(); audio.currentTime = 0;
+  isFilePlaying = false;
+  const btn = document.getElementById('playBtnFile');
+  if (btn) { btn.textContent = '▶'; btn.classList.remove('playing'); }
+  const st = document.getElementById('spStatus');
+  if (st) st.textContent = 'Arrêté';
+  stopWave();
 }
 
-function buildEngine() {
-  if (!audioCtx) return;
-  if (engineNodes) stopEngine();
-  const now = audioCtx.currentTime;
-  const masterGain = audioCtx.createGain();
-  masterGain.gain.setValueAtTime(0.001, now);
-  masterGain.gain.linearRampToValueAtTime(0.72, now + 0.18);
-  masterGain.connect(audioCtx.destination);
-  const comp = audioCtx.createDynamicsCompressor();
-  comp.threshold.value=-14; comp.knee.value=6; comp.ratio.value=4; comp.attack.value=0.002; comp.release.value=0.12;
-  comp.connect(masterGain);
-  const lpf = audioCtx.createBiquadFilter(); lpf.type='lowpass'; lpf.frequency.value=2200; lpf.Q.value=0.8; lpf.connect(comp);
-  const hpf = audioCtx.createBiquadFilter(); hpf.type='highpass'; hpf.frequency.value=55; hpf.Q.value=0.5; hpf.connect(lpf);
-  const fundFreq = rpmToFundamental(rpmCurrent);
-  const osc1 = audioCtx.createOscillator(); osc1.type='sawtooth'; osc1.frequency.value=fundFreq;
-  const g1 = audioCtx.createGain(); g1.gain.value=0.55; osc1.connect(g1); g1.connect(hpf);
-  const osc2 = audioCtx.createOscillator(); osc2.type='square'; osc2.frequency.value=fundFreq*2;
-  const g2 = audioCtx.createGain(); g2.gain.value=0.28; osc2.connect(g2); g2.connect(hpf);
-  const osc3 = audioCtx.createOscillator(); osc3.type='sawtooth'; osc3.frequency.value=fundFreq*3;
-  const g3 = audioCtx.createGain(); g3.gain.value=0.14; osc3.connect(g3); g3.connect(hpf);
-  const sub = audioCtx.createOscillator(); sub.type='sine'; sub.frequency.value=fundFreq*0.5;
-  const gs = audioCtx.createGain(); gs.gain.value=0.35; sub.connect(gs); gs.connect(comp);
-  const bufLen = audioCtx.sampleRate*2;
-  const noiseBuffer = audioCtx.createBuffer(1,bufLen,audioCtx.sampleRate);
-  const nd = noiseBuffer.getChannelData(0); for(let i=0;i<bufLen;i++) nd[i]=Math.random()*2-1;
-  const noiseSource = audioCtx.createBufferSource(); noiseSource.buffer=noiseBuffer; noiseSource.loop=true;
-  const noiseBpf = audioCtx.createBiquadFilter(); noiseBpf.type='bandpass'; noiseBpf.frequency.value=800; noiseBpf.Q.value=2.5;
-  const ng = audioCtx.createGain(); ng.gain.value=0.06; noiseSource.connect(noiseBpf); noiseBpf.connect(ng); ng.connect(hpf);
-  const turbo = audioCtx.createOscillator(); turbo.type='sine'; turbo.frequency.value=3800;
-  const tg = audioCtx.createGain(); tg.gain.value=0.0; turbo.connect(tg); tg.connect(masterGain);
-  const crackleGain = audioCtx.createGain(); crackleGain.gain.value=0; crackleGain.connect(masterGain);
-  [osc1,osc2,osc3,sub,turbo,noiseSource].forEach(n=>n.start());
-  engineNodes={osc1,osc2,osc3,sub,turbo,noiseSource,g1,g2,g3,gs,ng,tg,masterGain,lpf,noiseBpf,crackleGain};
-  scheduleExhaustPops();
-}
-
-function scheduleExhaustPops() {
-  if (!engineNodes||!isPlaying) return;
-  if (currentMode==='idle'||rpmCurrent<3000){setTimeout(scheduleExhaustPops,800);return;}
-  const now=audioCtx.currentTime;
-  const clickBuf=audioCtx.createBuffer(1,Math.floor(audioCtx.sampleRate*0.012),audioCtx.sampleRate);
-  const d=clickBuf.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.exp(-i/(d.length*0.3));
-  const src=audioCtx.createBufferSource(); src.buffer=clickBuf;
-  const g=audioCtx.createGain(); g.gain.value=0.18+Math.random()*0.22;
-  src.connect(g); g.connect(engineNodes.masterGain); src.start(now);
-  setTimeout(scheduleExhaustPops,60+Math.random()*120);
-}
-
-function rpmToFundamental(rpm){ return (rpm*6)/2/60; }
-
-function updateEngineRPM(rpm) {
-  if (!engineNodes) return;
-  const f=rpmToFundamental(rpm), now=audioCtx.currentTime, smooth=0.08;
-  engineNodes.osc1.frequency.linearRampToValueAtTime(f,       now+smooth);
-  engineNodes.osc2.frequency.linearRampToValueAtTime(f*2,     now+smooth);
-  engineNodes.osc3.frequency.linearRampToValueAtTime(f*3,     now+smooth);
-  engineNodes.sub.frequency.linearRampToValueAtTime(f*0.5,    now+smooth);
-  engineNodes.masterGain.gain.linearRampToValueAtTime(0.38+(rpm/7600)*0.42, now+smooth);
-  engineNodes.lpf.frequency.linearRampToValueAtTime(900+(rpm/7600)*2800, now+smooth);
-  const turboAmt=Math.max(0,(rpm-2500)/7600)*0.04;
-  engineNodes.tg.gain.linearRampToValueAtTime(turboAmt, now+smooth);
-  engineNodes.turbo.frequency.linearRampToValueAtTime(3200+rpm*0.12, now+smooth);
-  engineNodes.ng.gain.linearRampToValueAtTime(0.04+throttleVal/100*0.12, now+smooth);
-}
-
-function stopEngine() {
-  if (!engineNodes) return;
-  const now=audioCtx.currentTime;
-  engineNodes.masterGain.gain.linearRampToValueAtTime(0.001,now+0.25);
-  setTimeout(()=>{try{[engineNodes.osc1,engineNodes.osc2,engineNodes.osc3,engineNodes.sub,engineNodes.turbo,engineNodes.noiseSource].forEach(n=>n.stop());}catch(e){}engineNodes=null;},280);
-}
-
-function toggleSound() {
-  if (!initAudio()) return;
-  if (audioCtx.state==='suspended') audioCtx.resume();
-  isPlaying=!isPlaying;
-  const btn=document.getElementById('playBtn');
-  if (isPlaying){buildEngine();startRPMAnimation();startWaveAnim();btn.textContent='⏹';btn.classList.add('playing');}
-  else{stopEngine();stopRPMAnimation();stopWaveAnim();btn.textContent='▶';btn.classList.remove('playing');document.getElementById('rpmVal').textContent='0';document.getElementById('rpmFill').style.width='0%';}
-}
-
-function setMode(mode) {
-  currentMode=mode;
-  ['Idle','Rev','Launch'].forEach(m=>document.getElementById('mode'+m).classList.remove('on'));
-  document.getElementById('mode'+mode.charAt(0).toUpperCase()+mode.slice(1)).classList.add('on');
-  const cfg=MODES[mode]; rpmTarget=cfg.rpm;
-  document.getElementById('throttleSlider').value=cfg.throttle;
-  throttleVal=cfg.throttle;
-  document.getElementById('throttleVal').textContent=cfg.throttle+'%';
-  document.getElementById('exhaustLabel').textContent=cfg.label;
-  if(isPlaying) scheduleExhaustPops();
-}
-
-function onThrottle(val) {
-  throttleVal=parseInt(val);
-  document.getElementById('throttleVal').textContent=val+'%';
-  rpmTarget=850+(throttleVal/100)*(7200-850);
-  document.getElementById('exhaustLabel').textContent=
-    throttleVal<10?'Mode : Ralenti — papillons fermés':
-    throttleVal<50?'Mode : Charge partielle — couple disponible':
-    throttleVal<85?'Mode : Pleine charge — turbos en pression':
-    '🔥 Mode : Régime rouge — 7 600 tr/min !';
-}
-
-function startRPMAnimation() {
-  function tick(){
-    const diff=rpmTarget-rpmCurrent, speed=Math.abs(diff)>2000?0.04:0.018;
-    rpmCurrent+=diff*speed; if(Math.abs(diff)<5) rpmCurrent=rpmTarget;
-    const rpm=Math.round(rpmCurrent);
-    document.getElementById('rpmVal').textContent=rpm.toLocaleString('fr-FR');
-    document.getElementById('rpmFill').style.width=((rpm-500)/7100*100).toFixed(1)+'%';
-    updateEngineRPM(rpmCurrent);
-    rpmAnimId=requestAnimationFrame(tick);
-  }
-  tick();
-}
-function stopRPMAnimation(){ if(rpmAnimId) cancelAnimationFrame(rpmAnimId); rpmAnimId=null; }
-
-function startWaveAnim() {
-  buildWaveBarsFor('waveViz');
-  const bars=document.querySelectorAll('#waveViz .sp-bar');
-  function tick(){
-    const intensity=0.3+(rpmCurrent/7600)*0.7;
-    bars.forEach((b,i)=>{
-      const h=2+Math.abs(Math.sin(Date.now()/(120+i*20)+i))*18*intensity;
-      b.style.height=h.toFixed(1)+'px';
-      const ratio=rpmCurrent/7600;
-      b.style.background=`rgb(${Math.round(30+ratio*225)},${Math.round(144-ratio*80)},${Math.round(255-ratio*200)})`;
-    });
-    waveAnimId=requestAnimationFrame(tick);
-  }
-  tick();
-}
-function stopWaveAnim(){ if(waveAnimId) cancelAnimationFrame(waveAnimId); waveAnimId=null; document.querySelectorAll('#waveViz .sp-bar').forEach(b=>{b.style.height='3px';b.style.background='var(--blue)';}); }
-
-/* ─────────────────────────────────────────────
-   UI RENDERING
-───────────────────────────────────────────── */
+/* ═══════════════════════════════
+   UI
+═══════════════════════════════ */
 function renderUI() {
   document.getElementById('sws').innerHTML = COLORS.map(c =>
     `<div class="sw${c.h===color?' on':''}" style="background:${c.h}" title="${c.n}" onclick="applyColor('${c.h}')"></div>`
@@ -787,7 +521,6 @@ function renderUI() {
       <div class="pa">›</div>
     </div>`
   ).join('');
-
   if (selPart) {
     const pt = PARTS.find(x => x.k === selPart);
     if (pt) {
@@ -796,9 +529,7 @@ function renderUI() {
       document.getElementById('rsl').innerHTML = pt.sp.map(([k,v]) =>
         `<div class="sr"><span class="sk">${k}</span><span class="sv">${v}</span></div>`
       ).join('');
-      // Show / hide sound panel
-      const sp = document.getElementById('soundPanel');
-      sp.style.display = pt.sound ? 'block' : 'none';
+      document.getElementById('soundPanel').style.display = pt.sound ? 'block' : 'none';
       document.getElementById('rp').classList.add('on');
       document.getElementById('bb').classList.add('rpon');
     }
@@ -806,28 +537,22 @@ function renderUI() {
 }
 
 function selP(k) {
-  // Stop any playing audio when switching parts
-  if (selPart === 'moteur' && k !== 'moteur') {
-    if (isFilePlaying) stopFileSound();
-    if (isPlaying) { isPlaying=false; stopEngine(); stopRPMAnimation(); stopWaveAnim(); const b=document.getElementById('playBtn'); if(b){b.textContent='▶';b.classList.remove('playing');} }
-  }
-  selPart = k;
-  renderUI();
+  if (selPart === 'moteur' && k !== 'moteur') stopAudio();
+  selPart = k; renderUI();
 }
 function closeRP() {
-  if (isFilePlaying) stopFileSound();
-  if (isPlaying) { isPlaying=false; stopEngine(); stopRPMAnimation(); stopWaveAnim(); }
+  stopAudio();
   document.getElementById('rp').classList.remove('on');
   document.getElementById('bb').classList.remove('rpon');
   selPart = null;
   document.querySelectorAll('.pi').forEach(e => e.classList.remove('on'));
 }
 
-/* ─────────────────────────────────────────────
-   CONTROLS
-───────────────────────────────────────────── */
-function toggleRot() { rotOn=!rotOn;controls.autoRotate=rotOn;document.getElementById('rotbtn').className='hbtn'+(rotOn?' on':''); }
-function toggleWire() {
+/* ═══════════════════════════════
+   CONTRÔLES
+═══════════════════════════════ */
+function toggleRot(){rotOn=!rotOn;controls.autoRotate=rotOn;document.getElementById('rotbtn').className='hbtn'+(rotOn?' on':'');}
+function toggleWire(){
   wireOn=!wireOn;document.getElementById('wirebtn').className='hbtn'+(wireOn?' on':'');
   if(!carModel)return;
   carModel.traverse(n=>{if(!n.isMesh)return;const mats=Array.isArray(n.material)?n.material:[n.material];mats.forEach(m=>{if(m)m.wireframe=wireOn;});});
@@ -839,10 +564,10 @@ window.addEventListener('resize',onResize);
 onResize();
 const clk=new THREE.Clock();
 function animate(){requestAnimationFrame(animate);controls.update();ring.material.opacity=0.07+Math.sin(clk.getElapsedTime()*1.3)*0.04;renderer.render(scene,camera);}
+
 animate();
 renderUI();
 tryLoad();
-autoLoadRepoAudio();
 </script>
 </body>
 </html>
