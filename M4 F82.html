@@ -39,7 +39,7 @@ canvas{display:block;width:100%!important;height:100%!important}
 .pn{font-size:.8rem;font-weight:600;color:#fff}.ps{font-size:.64rem;color:var(--muted);margin-top:.05rem}
 .pa{color:var(--blue);font-size:.8rem;opacity:0;transition:opacity .2s;margin-left:auto}
 .pi.on .pa,.pi:hover .pa{opacity:1}
-#rp{position:fixed;right:0;top:52px;bottom:64px;width:290px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:20;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+#rp{position:fixed;right:0;top:52px;bottom:64px;width:270px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:20;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
 #rp.on{transform:translateX(0)}
 .rph{padding:1.1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
 .rl{font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;display:block;margin-bottom:.28rem}
@@ -53,34 +53,24 @@ canvas{display:block;width:100%!important;height:100%!important}
 .sr:last-child{border:none}
 .sk{font-size:.72rem;color:var(--muted)}.sv{font-size:.74rem;color:#fff;font-weight:600;text-align:right}
 
-/* SOUND PANEL */
-#soundPanel{margin:0 1.2rem .8rem;border-radius:12px;background:linear-gradient(135deg,rgba(10,20,50,.95),rgba(4,12,30,.98));border:1px solid rgba(30,144,255,.3);overflow:hidden;flex-shrink:0}
-.sp-header{padding:.65rem 1rem;border-bottom:1px solid rgba(30,144,255,.15);display:flex;align-items:center;gap:.5rem}
-.sp-icon{font-size:1rem}
-.sp-title{font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:700}
-.sp-body{padding:.75rem 1rem}
-.sp-controls{display:flex;align-items:center;gap:.7rem}
-.sp-play{width:42px;height:42px;border-radius:50%;border:2px solid var(--blue);background:rgba(30,144,255,.12);color:var(--blue);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;outline:none}
-.sp-play:hover{background:rgba(30,144,255,.28);box-shadow:0 0 18px rgba(30,144,255,.35)}
-.sp-play.playing{border-color:#ff6b35;color:#ff6b35;background:rgba(255,107,53,.14);animation:pulsePlay .8s ease-in-out infinite}
-@keyframes pulsePlay{0%,100%{box-shadow:0 0 0 0 rgba(255,107,53,.35)}50%{box-shadow:0 0 0 9px rgba(255,107,53,0)}}
-.sp-right{flex:1;display:flex;flex-direction:column;gap:.42rem}
-.sp-wave{display:flex;align-items:center;gap:2px;height:24px;margin-bottom:.2rem}
-.sp-bar{width:3px;border-radius:2px;background:var(--blue);opacity:.75}
-.sp-row{display:flex;align-items:center;gap:.5rem}
-.sp-lbl{font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;flex-shrink:0;width:36px}
-.sp-slider{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:rgba(255,255,255,.08);border-radius:2px;outline:none;cursor:pointer}
-.sp-slider::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--blue);border:2px solid rgba(30,144,255,.3);box-shadow:0 0 7px rgba(30,144,255,.5);cursor:pointer}
-.sp-val{font-size:.6rem;font-weight:700;color:var(--blue);font-family:'Orbitron',monospace;width:32px;text-align:right;flex-shrink:0}
-.sp-status{font-size:.56rem;color:rgba(255,255,255,.3);text-align:center;margin-top:.5rem;letter-spacing:.8px;min-height:1.2em}
-.sp-loading{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.6rem 0}
-.sp-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:dotPulse 1.2s ease-in-out infinite}
-.sp-dot:nth-child(2){animation-delay:.2s}.sp-dot:nth-child(3){animation-delay:.4s}
-@keyframes dotPulse{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
-.sp-err{font-size:.62rem;color:rgba(255,100,100,.7);text-align:center;padding:.5rem 0}
+/* ── SOUND PLAYER ── */
+#sndBox{margin:.7rem 1.2rem;padding:.8rem;border-radius:10px;background:rgba(30,144,255,.06);border:1px solid rgba(30,144,255,.25)}
+#sndBox .stitle{font-size:.55rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:.6rem}
+#sndBox .srow{display:flex;align-items:center;gap:.6rem}
+#sndPlayBtn{width:36px;height:36px;border-radius:50%;border:2px solid var(--blue);background:rgba(30,144,255,.1);color:var(--blue);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;outline:none;transition:all .2s}
+#sndPlayBtn:hover{background:rgba(30,144,255,.25)}
+#sndPlayBtn.on{border-color:#ff6b35;color:#ff6b35;background:rgba(255,107,53,.12);animation:sndPulse .8s ease-in-out infinite}
+@keyframes sndPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,53,.3)}50%{box-shadow:0 0 0 8px rgba(255,107,53,0)}}
+.sndR{flex:1;display:flex;flex-direction:column;gap:.35rem}
+.sndWave{display:flex;align-items:center;gap:2px;height:20px}
+.sndBar{flex:1;border-radius:2px;background:var(--blue);height:3px;opacity:.7}
+.sndSlider{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;outline:none;cursor:pointer}
+.sndSlider::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--blue);cursor:pointer}
+.sndLabel{font-size:.55rem;color:rgba(255,255,255,.28);letter-spacing:.5px;text-align:center}
+#sndStatus{font-size:.55rem;color:rgba(255,255,255,.3);margin-top:.3rem;min-height:1em}
 
 #bb{position:fixed;bottom:0;left:255px;right:0;height:64px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:20;transition:right .3s}
-#bb.rpon{right:290px}
+#bb.rpon{right:270px}
 .sb{display:flex;flex-direction:column;align-items:center;padding:0 1.6rem;border-right:1px solid var(--border)}
 .sb:last-child{border:none}
 .sn{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;color:#fff;line-height:1}
@@ -97,6 +87,10 @@ canvas{display:block;width:100%!important;height:100%!important}
 .lspeed{font-size:.6rem;color:rgba(30,144,255,.6);font-weight:600;min-height:1em;text-align:center;max-width:400px;word-break:break-all}
 #errmsg{position:fixed;inset:0;background:var(--dark);z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;text-align:center;padding:2rem}
 #errmsg.active{display:flex}
+.err-icon{font-size:2.5rem}
+.err-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:#fff}
+.err-sub{font-size:.76rem;color:var(--muted);line-height:1.8;max-width:420px}
+.err-sub code{color:rgba(30,144,255,.7);font-size:.68rem}
 .corner{position:fixed;width:28px;height:28px;z-index:25;pointer-events:none}
 .corner.tl{top:60px;left:262px;border-top:1px solid rgba(30,144,255,.2);border-left:1px solid rgba(30,144,255,.2)}
 .corner.tr{top:60px;right:6px;border-top:1px solid rgba(30,144,255,.2);border-right:1px solid rgba(30,144,255,.2)}
@@ -106,7 +100,6 @@ canvas{display:block;width:100%!important;height:100%!important}
 </style>
 </head>
 <body>
-
 <div id="ld">
   <div class="ll">BM<em>W</em></div>
   <div class="lsub">M4 F82 · Configurateur 3D</div>
@@ -115,11 +108,15 @@ canvas{display:block;width:100%!important;height:100%!important}
   <div class="lspeed" id="lspeed"></div>
 </div>
 <div id="errmsg">
-  <div style="font-size:2.5rem">⚠</div>
-  <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:#fff">Modèle introuvable</div>
-  <div style="font-size:.76rem;color:var(--muted);line-height:1.8;max-width:420px">Le fichier <code style="color:rgba(30,144,255,.7)">bmw_m4_f82.glb</code> n'a pas pu être chargé.</div>
+  <div class="err-icon">⚠</div>
+  <div class="err-title">Modèle introuvable</div>
+  <div class="err-sub">
+    Le fichier <code>bmw_m4_f82.glb</code> n'a pas pu être chargé.<br>
+    Vérifiez que le repo <code>vvgwgk6q2d-source/bmw-site</code> est <strong style="color:rgba(255,255,255,.5)">public</strong><br>
+    et que le fichier est à la racine sur la branche <code>main</code>.<br><br>
+    Ouvrez cette page via <strong style="color:rgba(255,255,255,.5)">GitHub Pages</strong> pour éviter les restrictions CORS.
+  </div>
 </div>
-
 <div id="hdr">
   <a href="index.html" class="logo">BM<em>W</em></a>
   <div style="display:flex;align-items:center;gap:.8rem">
@@ -132,7 +129,6 @@ canvas{display:block;width:100%!important;height:100%!important}
     <button class="hbtn" id="wirebtn" onclick="toggleWire()">◻ Wireframe</button>
   </div>
 </div>
-
 <div id="lp">
   <div class="lph">
     <span class="lbadge">BMW M Series · F82 Coupé</span>
@@ -160,45 +156,25 @@ canvas{display:block;width:100%!important;height:100%!important}
   </div>
   <div class="rdesc" id="rdesc"></div>
 
-  <!-- SOUND PANEL — moteur uniquement -->
-  <div id="soundPanel" style="display:none">
-    <div class="sp-header">
-      <span class="sp-icon">🔊</span>
-      <span class="sp-title">Écouter le moteur S55</span>
-    </div>
-    <div class="sp-body">
-      <div id="spLoading" class="sp-loading">
-        <div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div>
-        <span style="font-size:.6rem;color:var(--muted);margin-left:.4rem">Chargement audio…</span>
-      </div>
-      <div id="spError" class="sp-err" style="display:none">⚠ Audio indisponible — vérifier le repo</div>
-      <div id="spPlayer" style="display:none">
-        <div class="sp-controls">
-          <button class="sp-play" id="playBtnFile" onclick="toggleFileSound()">▶</button>
-          <div class="sp-right">
-            <div class="sp-wave" id="waveVizFile"></div>
-            <div class="sp-row">
-              <span class="sp-lbl">Volume</span>
-              <input type="range" class="sp-slider" id="volSlider" min="0" max="100" value="80" oninput="setVol(this.value)">
-              <span class="sp-val" id="volVal">80%</span>
-            </div>
-            <div class="sp-row" style="margin-top:.28rem">
-              <span class="sp-lbl">Vitesse</span>
-              <input type="range" class="sp-slider" id="rateSlider" min="50" max="200" value="100" oninput="setRate(this.value)">
-              <span class="sp-val" id="rateVal">1.0×</span>
-            </div>
-          </div>
-        </div>
-        <div class="sp-status" id="spStatus">Prêt — appuyer sur ▶</div>
+  <!-- SOUND PLAYER — visible uniquement pour le moteur -->
+  <div id="sndBox" style="display:none">
+    <div class="stitle">🔊 Écouter le moteur S55</div>
+    <div class="srow">
+      <button id="sndPlayBtn" onclick="sndToggle()">▶</button>
+      <div class="sndR">
+        <div class="sndWave" id="sndWave"></div>
+        <input type="range" class="sndSlider" id="sndVol" min="0" max="100" value="80" oninput="sndSetVol(this.value)">
+        <div class="sndLabel">Volume</div>
       </div>
     </div>
+    <div id="sndStatus">Chargement…</div>
   </div>
 
   <div class="rsl" id="rsl"></div>
 </div>
 
-<!-- Élément audio hors du flux visible -->
-<audio id="engineAudio" loop preload="auto" crossorigin="anonymous"></audio>
+<!-- Élément audio -->
+<audio id="sndAudio" loop preload="auto" crossorigin="anonymous"></audio>
 
 <div id="bb">
   <div class="sb"><div class="sn">431<span>ch</span></div><div class="sl2">Puissance</div></div>
@@ -214,32 +190,27 @@ canvas{display:block;width:100%!important;height:100%!important}
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script>
-/* ═══════════════════════════════
-   DATA
-═══════════════════════════════ */
+
 const MODEL_URLS = [
   './bmw_m4_f82.glb',
   'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/bmw_m4_f82.glb',
   'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/bmw_m4_f82.glb',
 ];
-
-// URLs du MP3 dans l'ordre de priorité
-const AUDIO_URLS = [
-  'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/S55_moteur.mp3',
-  'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/S55_moteur.mp3',
-  './S55_moteur.mp3',
-];
-
 const COLORS = [
-  {h:'#1a1a2e',n:'Noir Saphir'},{h:'#b8b8b8',n:'Argent Brooklands'},
-  {h:'#1B3A8C',n:'Bleu Lagoon'},{h:'#8B1A1A',n:'Rouge Imola'},
-  {h:'#edecea',n:'Blanc Alpine'},{h:'#080808',n:'Noir Carbone'},
-  {h:'#2a4a1e',n:'Vert Brooklyn'},{h:'#6b3d1e',n:'Cognac Mat'},
-  {h:'#c8860a',n:'Jaune M Competition'},{h:'#1a3a2a',n:'Vert Isle of Man'},
-  {h:'#7a1f3d',n:'Violet Twilight'},{h:'#2d2d2d',n:'Gris Frozen'},
-  {h:'#b5451b',n:'Orange Atacama'},
+  {h:'#1a1a2e', n:'Noir Saphir'},
+  {h:'#b8b8b8', n:'Argent Brooklands'},
+  {h:'#1B3A8C', n:'Bleu Lagoon'},
+  {h:'#8B1A1A', n:'Rouge Imola'},
+  {h:'#edecea', n:'Blanc Alpine'},
+  {h:'#080808', n:'Noir Carbone'},
+  {h:'#2a4a1e', n:'Vert Brooklyn'},
+  {h:'#6b3d1e', n:'Cognac Mat'},
+  {h:'#c8860a', n:'Jaune M Competition'},
+  {h:'#1a3a2a', n:'Vert Isle of Man'},
+  {h:'#7a1f3d', n:'Violet Twilight'},
+  {h:'#2d2d2d', n:'Gris Frozen'},
+  {h:'#b5451b', n:'Orange Atacama'},
 ];
-
 const PARTS = [
   {k:'moteur',i:'⚙',n:'Moteur S55 B30T0',s:'3.0L I6 · 431 ch',d:'Six cylindres en ligne, deux turbos Twin-Scroll séquentiels. Conçu exclusivement pour BMW M GmbH.',sp:[['Type','L6 Biturbo DOHC'],['Cylindrée','2 979 cm³'],['Puissance','431 ch'],['Couple','550 Nm'],['Régime max','7 600 tr/min']],sound:true},
   {k:'boite',i:'🔩',n:'M-DCT 7 rapports',s:'< 80 ms · Launch Control',d:'Double embrayage 7 rapports, passages ultra-rapides, Launch Control, paddles au volant.',sp:[['Type','DCT 7 rapports'],['Passages','< 80 ms'],['Launch Control','Oui'],['Diff.','M Active LSD'],['Propulsion','RWD']]},
@@ -251,285 +222,192 @@ const PARTS = [
   {k:'interieur',i:'💺',n:'Habitacle F82',s:'Baquets · HUD · iDrive 6',d:'Sièges baquets M Sport, volant M chauffant paddles, HUD M, iDrive 6.',sp:[['Sièges','M Sport baquets'],['Volant','M + paddles'],['HUD','M Head-Up'],['Système','iDrive 6']]},
 ];
 
-/* ═══════════════════════════════
-   THREE.JS
-═══════════════════════════════ */
-let color=COLORS[0].h, selPart=null, rotOn=true, wireOn=false, carModel=null, urlIdx=0;
-const cv=document.getElementById('c');
-const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.5;
-renderer.outputEncoding=THREE.sRGBEncoding;
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0x04070f);
-scene.fog=new THREE.FogExp2(0x04070f,0.028);
-const camera=new THREE.PerspectiveCamera(42,1,0.05,100);
-camera.position.set(5,2.5,7);
-const controls=new THREE.OrbitControls(camera,cv);
-controls.enableDamping=true; controls.dampingFactor=0.055;
-controls.minDistance=1.5; controls.maxDistance=18;
-controls.maxPolarAngle=Math.PI*0.55;
-controls.autoRotate=true; controls.autoRotateSpeed=0.9;
-controls.target.set(0,0.5,0);
-scene.add(new THREE.AmbientLight(0x334466,1.2));
-const sun=new THREE.DirectionalLight(0xfff5e8,3.5);
-sun.position.set(6,12,6); sun.castShadow=true;
-sun.shadow.mapSize.set(2048,2048);
-sun.shadow.camera.left=-8; sun.shadow.camera.right=8;
-sun.shadow.camera.top=7; sun.shadow.camera.bottom=-4;
-sun.shadow.bias=-0.0003; scene.add(sun);
-scene.add(Object.assign(new THREE.DirectionalLight(0x2244bb,.9),{position:{x:-6,y:3,z:-4}}));
-scene.add(Object.assign(new THREE.DirectionalLight(0x88aaff,2.0),{position:{x:0,y:6,z:-8}}));
-scene.add(new THREE.PointLight(0x0d2266,.7,18));
-try{const p=new THREE.PMREMGenerator(renderer);p.compileEquirectangularShader();scene.environment=p.fromScene(new THREE.RoomEnvironment()).texture;}catch(e){}
-const gnd=new THREE.Mesh(new THREE.CircleGeometry(14,64),new THREE.MeshStandardMaterial({color:0x060b1a,roughness:.03,metalness:.95}));
-gnd.rotation.x=-Math.PI/2; gnd.receiveShadow=true; scene.add(gnd);
-scene.add(Object.assign(new THREE.GridHelper(24,24,0x0d2255,0x070e28),{position:{x:0,y:.001,z:0}}));
-const ring=new THREE.Mesh(new THREE.RingGeometry(2,2.5,64),new THREE.MeshBasicMaterial({color:0x1E90FF,transparent:true,opacity:.1,side:THREE.DoubleSide}));
-ring.rotation.x=-Math.PI/2; ring.position.y=.002; scene.add(ring);
+let color = COLORS[0].h, selPart = null, rotOn = true, wireOn = false, carModel = null, urlIdx = 0;
+const cv = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({canvas: cv, antialias: true, alpha: false});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.5;
+renderer.outputEncoding = THREE.sRGBEncoding;
 
-const gltfLoader=new THREE.GLTFLoader();
-const dracoLoader=new THREE.DRACOLoader();
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x04070f);
+scene.fog = new THREE.FogExp2(0x04070f, 0.028);
+
+const camera = new THREE.PerspectiveCamera(42, 1, 0.05, 100);
+camera.position.set(5, 2.5, 7);
+
+const controls = new THREE.OrbitControls(camera, cv);
+controls.enableDamping = true;
+controls.dampingFactor = 0.055;
+controls.minDistance = 1.5;
+controls.maxDistance = 18;
+controls.maxPolarAngle = Math.PI * 0.55;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.9;
+controls.target.set(0, 0.5, 0);
+  
+scene.add(new THREE.AmbientLight(0x334466, 1.2));
+const sun = new THREE.DirectionalLight(0xfff5e8, 3.5);
+sun.position.set(6, 12, 6);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.left = -8; sun.shadow.camera.right = 8;
+sun.shadow.camera.top = 7; sun.shadow.camera.bottom = -4;
+sun.shadow.bias = -0.0003;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0x2244bb, 0.9);
+fill.position.set(-6, 3, -4);
+scene.add(fill);
+const rim = new THREE.DirectionalLight(0x88aaff, 2.0);
+rim.position.set(0, 6, -8);
+scene.add(rim);
+scene.add(new THREE.PointLight(0x0d2266, 0.7, 18));
+
+try {
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  pmrem.compileEquirectangularShader();
+  scene.environment = pmrem.fromScene(new THREE.RoomEnvironment()).texture;
+} catch(e) {}
+
+const gnd = new THREE.Mesh(
+  new THREE.CircleGeometry(14, 64),
+  new THREE.MeshStandardMaterial({color: 0x060b1a, roughness: 0.03, metalness: 0.95})
+);
+gnd.rotation.x = -Math.PI / 2;
+gnd.receiveShadow = true;
+scene.add(gnd);
+
+const grid = new THREE.GridHelper(24, 24, 0x0d2255, 0x070e28);
+grid.position.y = 0.001;
+scene.add(grid);
+
+const ring = new THREE.Mesh(
+  new THREE.RingGeometry(2, 2.5, 64),
+  new THREE.MeshBasicMaterial({color: 0x1E90FF, transparent: true, opacity: 0.1, side: THREE.DoubleSide})
+);
+ring.rotation.x = -Math.PI / 2;
+ring.position.y = 0.002;
+scene.add(ring);
+
+const gltfLoader = new THREE.GLTFLoader();
+const dracoLoader = new THREE.DRACOLoader();
 dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
 gltfLoader.setDRACOLoader(dracoLoader);
 
-function tryLoad(){
-  if(urlIdx>=MODEL_URLS.length){document.getElementById('ld').style.display='none';document.getElementById('errmsg').classList.add('active');return;}
-  const url=MODEL_URLS[urlIdx];
-  const label=['Chemin local','jsDelivr CDN','GitHub Raw'][urlIdx]||'Source '+urlIdx;
-  setLD(8,'Connexion — '+label+'…'); document.getElementById('lspeed').textContent=url;
-  const t0=Date.now();
-  gltfLoader.load(url,gltf=>{setLD(92,'Construction de la scène…');onModelLoaded(gltf);},
-    xhr=>{if(xhr.total){const pct=xhr.loaded/xhr.total,e=(Date.now()-t0)/1000,kbps=e>0?Math.round(xhr.loaded/e/1024):0,mb=(xhr.loaded/1024/1024).toFixed(1),tot=(xhr.total/1024/1024).toFixed(1);setLD(10+pct*78,'Téléchargement… '+mb+' / '+tot+' MB');if(kbps>0)document.getElementById('lspeed').textContent=kbps+' KB/s — '+label;}},
-    err=>{console.warn('['+label+'] Échec:',err.message||err);urlIdx++;setTimeout(tryLoad,400);}
+function tryLoad() {
+  if (urlIdx >= MODEL_URLS.length) {
+    document.getElementById('ld').style.display = 'none';
+    document.getElementById('errmsg').classList.add('active');
+    return;
+  }
+  const url = MODEL_URLS[urlIdx];
+  const label = ['Chemin local', 'jsDelivr CDN', 'GitHub Raw'][urlIdx] || 'Source ' + urlIdx;
+  setLD(8, 'Connexion — ' + label + '…');
+  document.getElementById('lspeed').textContent = url;
+  const t0 = Date.now();
+  gltfLoader.load(
+    url,
+    (gltf) => { setLD(92, 'Construction de la scène…'); onModelLoaded(gltf); },
+    (xhr) => {
+      if (xhr.total) {
+        const pct = xhr.loaded / xhr.total;
+        const elapsed = (Date.now() - t0) / 1000;
+        const kbps = elapsed > 0 ? Math.round(xhr.loaded / elapsed / 1024) : 0;
+        const mb = (xhr.loaded / 1024 / 1024).toFixed(1);
+        const tot = (xhr.total / 1024 / 1024).toFixed(1);
+        setLD(10 + pct * 78, 'Téléchargement… ' + mb + ' / ' + tot + ' MB');
+        if (kbps > 0) document.getElementById('lspeed').textContent = kbps + ' KB/s — ' + label;
+      }
+    },
+    (err) => { console.warn('[' + label + '] Échec:', err.message || err); urlIdx++; setTimeout(tryLoad, 400); }
   );
 }
 
-function onModelLoaded(gltf){
-  if(carModel){scene.remove(carModel);carModel.traverse(c=>{if(c.geometry)c.geometry.dispose();});}
-  carModel=gltf.scene;
-  const box=new THREE.Box3().setFromObject(carModel),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3()),scale=5.2/Math.max(size.x,size.y,size.z);
-  carModel.scale.setScalar(scale); carModel.position.sub(center.multiplyScalar(scale));
-  const box2=new THREE.Box3().setFromObject(carModel); carModel.position.y-=box2.min.y;
-  carModel.traverse(n=>{if(!n.isMesh)return;n.castShadow=true;n.receiveShadow=true;const mats=Array.isArray(n.material)?n.material:[n.material];mats.forEach(m=>{if(m){m.envMapIntensity=1.4;m.needsUpdate=true;}});});
+function onModelLoaded(gltf) {
+  if (carModel) { scene.remove(carModel); carModel.traverse(c => { if (c.geometry) c.geometry.dispose(); }); }
+  carModel = gltf.scene;
+  const box = new THREE.Box3().setFromObject(carModel);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  const scale = 5.2 / Math.max(size.x, size.y, size.z);
+  carModel.scale.setScalar(scale);
+  carModel.position.sub(center.multiplyScalar(scale));
+  const box2 = new THREE.Box3().setFromObject(carModel);
+  carModel.position.y -= box2.min.y;
+  carModel.traverse(n => {
+    if (!n.isMesh) return;
+    n.castShadow = true; n.receiveShadow = true;
+    const mats = Array.isArray(n.material) ? n.material : [n.material];
+    mats.forEach(m => { if (m) { m.envMapIntensity = 1.4; m.needsUpdate = true; }});
+  });
   scene.add(carModel);
-  const box3=new THREE.Box3().setFromObject(carModel),sz=box3.getSize(new THREE.Vector3());
-  camera.position.set(sz.x*.9,sz.y*.85,sz.z*1.7); controls.target.set(0,sz.y*.36,0); controls.update();
-  setLD(100,'Modèle chargé ✓');
-  setTimeout(()=>{document.getElementById('ld').classList.add('out');setTimeout(()=>document.getElementById('ld').style.display='none',900);setTimeout(()=>document.getElementById('hint').style.opacity='0',6000);},500);
-  applyColor(color); renderUI();
+  const box3 = new THREE.Box3().setFromObject(carModel);
+  const sz = box3.getSize(new THREE.Vector3());
+  camera.position.set(sz.x * 0.9, sz.y * 0.85, sz.z * 1.7);
+  controls.target.set(0, sz.y * 0.36, 0);
+  controls.update();
+  setLD(100, 'Modèle chargé ✓');
+  setTimeout(() => {
+    document.getElementById('ld').classList.add('out');
+    setTimeout(() => document.getElementById('ld').style.display = 'none', 900);
+    setTimeout(() => document.getElementById('hint').style.opacity = '0', 6000);
+  }, 500);
+  applyColor(color);
+  renderUI();
 }
 
-function setLD(p,t){document.getElementById('lbar').style.width=p+'%';document.getElementById('ltxt').textContent=t;}
-const WK=['wheel','roue','jante','tire','tyre','pneu','rim','felge','roda','ruota','brake','disque','caliper','etrier'];
-function isWheel(n){const s=(n||'').toLowerCase();return WK.some(k=>s.includes(k));}
+function setLD(pct, txt) {
+  document.getElementById('lbar').style.width = pct + '%';
+  document.getElementById('ltxt').textContent = txt;
+}
 
-function applyColor(hex){
-  color=hex; if(!carModel){renderUI();return;}
-  const c=new THREE.Color(hex);
-  carModel.traverse(n=>{
-    if(!n.isMesh||isWheel(n.name))return;
-    const mats=Array.isArray(n.material)?n.material:[n.material];
-    mats.forEach(m=>{
-      if(!m||!m.color)return;
-      if(m.metalness>.85&&m.roughness<.18)return;
-      if(m.emissive&&(m.emissive.r+m.emissive.g+m.emissive.b)>.15)return;
-      if(m.transparent&&m.opacity<.6)return;
-      m.color.set(c); m.needsUpdate=true;
+const WHEEL_KEYS = ['wheel','roue','jante','tire','tyre','pneu','rim','felge','roda','ruota','brake','disque','caliper','etrier'];
+function isWheelMesh(name) {
+  const n = (name || '').toLowerCase();
+  return WHEEL_KEYS.some(k => n.includes(k));
+}
+
+function applyColor(hex) {
+  color = hex;
+  if (!carModel) { renderUI(); return; }
+  const c = new THREE.Color(hex);
+  carModel.traverse(n => {
+    if (!n.isMesh) return;
+    if (isWheelMesh(n.name)) return;
+    const mats = Array.isArray(n.material) ? n.material : [n.material];
+    mats.forEach(m => {
+      if (!m || !m.color) return;
+      if (m.metalness > 0.85 && m.roughness < 0.18) return;
+      if (m.emissive && (m.emissive.r + m.emissive.g + m.emissive.b) > 0.15) return;
+      if (m.transparent && m.opacity < 0.6) return;
+      m.color.set(c); m.needsUpdate = true;
     });
   });
   renderUI();
 }
 
-/* ═══════════════════════════════
-   AUDIO
-═══════════════════════════════ */
-const audio = document.getElementById('engineAudio');
-let audioReady = false;
-let isFilePlaying = false;
-let audioCtxFile = null, analyser = null, mediaSource = null;
-let waveAnimId = null;
-
-// Chargement automatique du MP3 depuis le repo
-(function initAudioPlayer() {
-  let idx = 0;
-  function tryNext() {
-    if (idx >= AUDIO_URLS.length) {
-      document.getElementById('spLoading').style.display = 'none';
-      document.getElementById('spError').style.display = 'block';
-      return;
-    }
-    const url = AUDIO_URLS[idx];
-    audio.src = url;
-    audio.load();
-
-    audio.oncanplaythrough = function() {
-      audio.oncanplaythrough = null;
-      audio.onerror = null;
-      audioReady = true;
-      document.getElementById('spLoading').style.display = 'none';
-      document.getElementById('spPlayer').style.display = 'block';
-      console.log('[Audio] ✓', url);
-    };
-
-    audio.onerror = function() {
-      audio.oncanplaythrough = null;
-      audio.onerror = null;
-      console.warn('[Audio] ✗', url);
-      idx++;
-      setTimeout(tryNext, 200);
-    };
-  }
-  tryNext();
-})();
-
-function toggleFileSound() {
-  if (!audioReady) {
-    document.getElementById('spStatus').textContent = '⏳ Audio en cours de chargement…';
-    return;
-  }
-
-  if (isFilePlaying) {
-    // STOP
-    audio.pause();
-    audio.currentTime = 0;
-    isFilePlaying = false;
-    document.getElementById('playBtnFile').textContent = '▶';
-    document.getElementById('playBtnFile').classList.remove('playing');
-    document.getElementById('spStatus').textContent = 'Arrêté';
-    stopWave();
-    return;
-  }
-
-  // PLAY — AudioContext créé obligatoirement dans le geste utilisateur
-  if (!audioCtxFile) {
-    try {
-      audioCtxFile = new (window.AudioContext || window.webkitAudioContext)();
-      analyser = audioCtxFile.createAnalyser();
-      analyser.fftSize = 64;
-      mediaSource = audioCtxFile.createMediaElementSource(audio);
-      mediaSource.connect(analyser);
-      analyser.connect(audioCtxFile.destination);
-    } catch(e) {
-      audioCtxFile = null;
-      console.warn('[AudioCtx] Erreur:', e);
-    }
-  }
-
-  if (audioCtxFile && audioCtxFile.state === 'suspended') {
-    audioCtxFile.resume();
-  }
-
-  audio.volume = document.getElementById('volSlider').value / 100;
-  audio.playbackRate = document.getElementById('rateSlider').value / 100;
-
-  audio.play()
-    .then(() => {
-      isFilePlaying = true;
-      document.getElementById('playBtnFile').textContent = '⏹';
-      document.getElementById('playBtnFile').classList.add('playing');
-      document.getElementById('spStatus').textContent = '🔥 S55 B30T0 · 3.0L I6 Biturbo en marche';
-      startWave();
-    })
-    .catch(err => {
-      console.error('[Audio] play() refusé:', err);
-      document.getElementById('spStatus').textContent = '⚠ Cliquer à nouveau pour démarrer';
-    });
-}
-
-function setVol(v) {
-  document.getElementById('volVal').textContent = v + '%';
-  if (audio) audio.volume = v / 100;
-}
-
-function setRate(v) {
-  const r = (v / 100).toFixed(1);
-  document.getElementById('rateVal').textContent = r + '×';
-  if (audio) audio.playbackRate = parseFloat(r);
-  if (isFilePlaying) {
-    document.getElementById('spStatus').textContent =
-      v < 80  ? '🧊 Ralenti simulé — vitesse réduite' :
-      v > 140 ? '🔥 Régime élevé — vitesse augmentée' :
-      '🔥 S55 B30T0 · 3.0L I6 Biturbo en marche';
-  }
-}
-
-function startWave() {
-  const w = document.getElementById('waveVizFile');
-  w.innerHTML = '';
-  for (let i = 0; i < 16; i++) {
-    const b = document.createElement('div');
-    b.className = 'sp-bar'; b.style.flex = '1'; b.style.height = '3px';
-    w.appendChild(b);
-  }
-  const bars = Array.from(w.querySelectorAll('.sp-bar'));
-
-  if (analyser) {
-    const data = new Uint8Array(analyser.frequencyBinCount);
-    (function tick() {
-      analyser.getByteFrequencyData(data);
-      bars.forEach((b, i) => {
-        const v = data[Math.floor(i * data.length / bars.length)] || 0;
-        b.style.height = (2 + v / 255 * 20).toFixed(1) + 'px';
-        const r = v / 255;
-        b.style.background = `rgb(${Math.round(30+r*225)},${Math.round(144-r*80)},${Math.round(255-r*200)})`;
-      });
-      waveAnimId = requestAnimationFrame(tick);
-    })();
-  } else {
-    (function tick() {
-      const rate = audio.playbackRate || 1;
-      bars.forEach((b, i) => {
-        b.style.height = (2 + Math.abs(Math.sin(Date.now()/(100+i*15)*rate+i))*18).toFixed(1) + 'px';
-        b.style.background = `hsl(${205+i*4},80%,55%)`;
-      });
-      waveAnimId = requestAnimationFrame(tick);
-    })();
-  }
-}
-
-function stopWave() {
-  if (waveAnimId) { cancelAnimationFrame(waveAnimId); waveAnimId = null; }
-  document.querySelectorAll('#waveVizFile .sp-bar').forEach(b => {
-    b.style.height = '3px'; b.style.background = 'var(--blue)';
-  });
-}
-
-function stopAudio() {
-  if (!isFilePlaying) return;
-  audio.pause(); audio.currentTime = 0;
-  isFilePlaying = false;
-  const btn = document.getElementById('playBtnFile');
-  if (btn) { btn.textContent = '▶'; btn.classList.remove('playing'); }
-  const st = document.getElementById('spStatus');
-  if (st) st.textContent = 'Arrêté';
-  stopWave();
-}
-
-/* ═══════════════════════════════
-   UI
-═══════════════════════════════ */
 function renderUI() {
   document.getElementById('sws').innerHTML = COLORS.map(c =>
-    `<div class="sw${c.h===color?' on':''}" style="background:${c.h}" title="${c.n}" onclick="applyColor('${c.h}')"></div>`
+    '<div class="sw' + (c.h === color ? ' on' : '') + '" style="background:' + c.h + '" title="' + c.n + '" onclick="applyColor(\'' + c.h + '\')"></div>'
   ).join('');
   document.getElementById('pl').innerHTML = PARTS.map(pt =>
-    `<div class="pi${selPart===pt.k?' on':''}" onclick="selP('${pt.k}')">
-      <div class="pico">${pt.i}</div>
-      <div style="flex:1"><div class="pn">${pt.n}</div><div class="ps">${pt.s}</div></div>
-      <div class="pa">›</div>
-    </div>`
+    '<div class="pi' + (selPart === pt.k ? ' on' : '') + '" onclick="selP(\'' + pt.k + '\')">' +
+    '<div class="pico">' + pt.i + '</div>' +
+    '<div style="flex:1"><div class="pn">' + pt.n + '</div><div class="ps">' + pt.s + '</div></div>' +
+    '<div class="pa">›</div></div>'
   ).join('');
   if (selPart) {
     const pt = PARTS.find(x => x.k === selPart);
     if (pt) {
       document.getElementById('rtitle').textContent = pt.n;
       document.getElementById('rdesc').textContent = pt.d;
-      document.getElementById('rsl').innerHTML = pt.sp.map(([k,v]) =>
-        `<div class="sr"><span class="sk">${k}</span><span class="sv">${v}</span></div>`
+      document.getElementById('rsl').innerHTML = pt.sp.map(([k, v]) =>
+        '<div class="sr"><span class="sk">' + k + '</span><span class="sv">' + v + '</span></div>'
       ).join('');
-      document.getElementById('soundPanel').style.display = pt.sound ? 'block' : 'none';
+      document.getElementById('sndBox').style.display = pt.sound ? 'block' : 'none';
       document.getElementById('rp').classList.add('on');
       document.getElementById('bb').classList.add('rpon');
     }
@@ -537,37 +415,182 @@ function renderUI() {
 }
 
 function selP(k) {
-  if (selPart === 'moteur' && k !== 'moteur') stopAudio();
-  selPart = k; renderUI();
+  if (selPart === 'moteur' && k !== 'moteur') sndStop();
+  selPart = k;
+  renderUI();
 }
 function closeRP() {
-  stopAudio();
+  sndStop();
   document.getElementById('rp').classList.remove('on');
   document.getElementById('bb').classList.remove('rpon');
   selPart = null;
   document.querySelectorAll('.pi').forEach(e => e.classList.remove('on'));
 }
 
-/* ═══════════════════════════════
-   CONTRÔLES
-═══════════════════════════════ */
-function toggleRot(){rotOn=!rotOn;controls.autoRotate=rotOn;document.getElementById('rotbtn').className='hbtn'+(rotOn?' on':'');}
-function toggleWire(){
-  wireOn=!wireOn;document.getElementById('wirebtn').className='hbtn'+(wireOn?' on':'');
-  if(!carModel)return;
-  carModel.traverse(n=>{if(!n.isMesh)return;const mats=Array.isArray(n.material)?n.material:[n.material];mats.forEach(m=>{if(m)m.wireframe=wireOn;});});
+function toggleRot() {
+  rotOn = !rotOn;
+  controls.autoRotate = rotOn;
+  document.getElementById('rotbtn').className = 'hbtn' + (rotOn ? ' on' : '');
 }
-function resetCam(){camera.position.set(5,2.5,7);controls.target.set(0,.5,0);controls.update();}
-cv.addEventListener('dblclick',resetCam);
-function onResize(){const w=innerWidth-255,h=innerHeight-52-64;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}
-window.addEventListener('resize',onResize);
-onResize();
-const clk=new THREE.Clock();
-function animate(){requestAnimationFrame(animate);controls.update();ring.material.opacity=0.07+Math.sin(clk.getElapsedTime()*1.3)*0.04;renderer.render(scene,camera);}
+function toggleWire() {
+  wireOn = !wireOn;
+  document.getElementById('wirebtn').className = 'hbtn' + (wireOn ? ' on' : '');
+  if (!carModel) return;
+  carModel.traverse(n => {
+    if (!n.isMesh) return;
+    const mats = Array.isArray(n.material) ? n.material : [n.material];
+    mats.forEach(m => { if (m) m.wireframe = wireOn; });
+  });
+}
+function resetCam() { camera.position.set(5, 2.5, 7); controls.target.set(0, 0.5, 0); controls.update(); }
+cv.addEventListener('dblclick', resetCam);
 
+function onResize() {
+  const w = innerWidth - 255, h = innerHeight - 52 - 64;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', onResize);
+onResize();
+
+const clk = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  ring.material.opacity = 0.07 + Math.sin(clk.getElapsedTime() * 1.3) * 0.04;
+  renderer.render(scene, camera);
+}
 animate();
 renderUI();
 tryLoad();
+
+/* ═══════════════════════════════
+   AUDIO PLAYER
+═══════════════════════════════ */
+var sndEl      = document.getElementById('sndAudio');
+var sndReady   = false;
+var sndPlaying = false;
+var sndWaveId  = null;
+var sndACtx    = null;
+var sndAnalyser= null;
+var sndSrc     = null;
+
+// Charger le MP3 dès le démarrage
+var SND_URLS = [
+  'https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/S55_moteur.mp3',
+  'https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/S55_moteur.mp3',
+  './S55_moteur.mp3'
+];
+var sndIdx = 0;
+
+function sndLoad() {
+  if (sndIdx >= SND_URLS.length) {
+    document.getElementById('sndStatus').textContent = '⚠ Audio indisponible';
+    return;
+  }
+  sndEl.src = SND_URLS[sndIdx];
+  sndEl.load();
+  sndEl.oncanplaythrough = function() {
+    sndEl.oncanplaythrough = null;
+    sndEl.onerror = null;
+    sndReady = true;
+    document.getElementById('sndStatus').textContent = 'Prêt — appuyer sur ▶';
+  };
+  sndEl.onerror = function() {
+    sndEl.oncanplaythrough = null;
+    sndEl.onerror = null;
+    sndIdx++;
+    setTimeout(sndLoad, 200);
+  };
+}
+sndLoad();
+
+function sndToggle() {
+  if (!sndReady) { document.getElementById('sndStatus').textContent = '⏳ Pas encore prêt…'; return; }
+
+  if (sndPlaying) {
+    sndStop();
+    return;
+  }
+
+  // Créer AudioContext dans le geste utilisateur
+  if (!sndACtx) {
+    try {
+      sndACtx = new (window.AudioContext || window.webkitAudioContext)();
+      sndAnalyser = sndACtx.createAnalyser();
+      sndAnalyser.fftSize = 64;
+      sndSrc = sndACtx.createMediaElementSource(sndEl);
+      sndSrc.connect(sndAnalyser);
+      sndAnalyser.connect(sndACtx.destination);
+    } catch(e) { sndACtx = null; }
+  }
+  if (sndACtx && sndACtx.state === 'suspended') sndACtx.resume();
+
+  sndEl.volume = document.getElementById('sndVol').value / 100;
+
+  sndEl.play().then(function() {
+    sndPlaying = true;
+    document.getElementById('sndPlayBtn').textContent = '⏹';
+    document.getElementById('sndPlayBtn').classList.add('on');
+    document.getElementById('sndStatus').textContent = '🔥 S55 B30T0 en marche';
+    sndWaveStart();
+  }).catch(function(e) {
+    document.getElementById('sndStatus').textContent = '⚠ Cliquer à nouveau';
+  });
+}
+
+function sndStop() {
+  if (!sndPlaying) return;
+  sndEl.pause();
+  sndEl.currentTime = 0;
+  sndPlaying = false;
+  document.getElementById('sndPlayBtn').textContent = '▶';
+  document.getElementById('sndPlayBtn').classList.remove('on');
+  document.getElementById('sndStatus').textContent = 'Arrêté';
+  sndWaveStop();
+}
+
+function sndSetVol(v) { sndEl.volume = v / 100; }
+
+function sndWaveStart() {
+  var w = document.getElementById('sndWave');
+  w.innerHTML = '';
+  for (var i = 0; i < 14; i++) {
+    var b = document.createElement('div');
+    b.className = 'sndBar';
+    w.appendChild(b);
+  }
+  var bars = w.querySelectorAll('.sndBar');
+
+  if (sndAnalyser) {
+    var data = new Uint8Array(sndAnalyser.frequencyBinCount);
+    (function tick() {
+      sndAnalyser.getByteFrequencyData(data);
+      bars.forEach(function(b, i) {
+        var v = data[Math.floor(i * data.length / bars.length)] || 0;
+        b.style.height = (2 + v / 255 * 18) + 'px';
+        var r = v / 255;
+        b.style.background = 'rgb(' + Math.round(30+r*225) + ',' + Math.round(144-r*80) + ',' + Math.round(255-r*200) + ')';
+      });
+      sndWaveId = requestAnimationFrame(tick);
+    })();
+  } else {
+    (function tick() {
+      bars.forEach(function(b, i) {
+        b.style.height = (2 + Math.abs(Math.sin(Date.now()/110 + i)) * 16) + 'px';
+      });
+      sndWaveId = requestAnimationFrame(tick);
+    })();
+  }
+}
+
+function sndWaveStop() {
+  if (sndWaveId) { cancelAnimationFrame(sndWaveId); sndWaveId = null; }
+  var bars = document.querySelectorAll('#sndWave .sndBar');
+  bars.forEach(function(b) { b.style.height = '3px'; b.style.background = 'var(--blue)'; });
+}
+
 </script>
 </body>
 </html>
