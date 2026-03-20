@@ -7,23 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#1E90FF;
-  --dark:#04070f;
-  --darker:#020409;
-  --mid:#080f1e;
-  --border:rgba(30,144,255,0.14);
-  --border2:rgba(30,144,255,0.06);
-  --muted:rgba(255,255,255,0.38);
-  --muted2:rgba(255,255,255,0.18);
-}
+:root{--blue:#1E90FF;--dark:#04070f;--darker:#020409;--mid:#080f1e;--border:rgba(30,144,255,0.14);--border2:rgba(30,144,255,0.06);--muted:rgba(255,255,255,0.38);--muted2:rgba(255,255,255,0.18)}
 html{scroll-behavior:smooth}
 body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;overflow-x:hidden}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.02;pointer-events:none;z-index:9999}
-#cdot,#cring{position:fixed;pointer-events:none;z-index:9998;border-radius:50%;transform:translate(-50%,-50%)}
-#cdot{width:5px;height:5px;background:#fff}
-#cring{width:32px;height:32px;border:1px solid rgba(30,144,255,.5);transition:width .22s,height .22s,border-color .22s}
-body.hovered #cring{width:52px;height:52px;border-color:var(--blue)}
+
+
+
+
 header{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(2,4,9,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
 .logo{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;letter-spacing:7px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:.6rem}
 .logo-ring{width:30px;height:30px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:.42rem;letter-spacing:.5px;color:var(--blue);font-weight:700;flex-shrink:0}
@@ -52,8 +43,7 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .hero-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--border)}
 .hp{background:rgba(8,14,26,.92);padding:1.5rem 1.3rem;display:flex;flex-direction:column;gap:.5rem;transition:background .25s}
 .hp:hover{background:rgba(12,20,38,.98)}
-.hp-icon{font-size:1.35rem}
-.hp-title{font-family:'Orbitron',monospace;font-size:.76rem;font-weight:700;color:#fff}
+.hp-icon{font-size:1.35rem}.hp-title{font-family:'Orbitron',monospace;font-size:.76rem;font-weight:700;color:#fff}
 .hp-desc{font-size:.7rem;color:var(--muted);line-height:1.55}
 .scroll-ind{position:absolute;bottom:2.8rem;left:4rem;z-index:1;display:flex;align-items:center;gap:.65rem;font-size:.54rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);animation:fu .8s .55s ease both;transition:opacity 1s}
 .scroll-ind::before{content:'';width:1px;height:28px;background:linear-gradient(to bottom,transparent,rgba(30,144,255,.4));display:block}
@@ -92,48 +82,19 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .rtab{padding:.34rem 1rem;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Rajdhani',sans-serif;border-radius:2px;cursor:pointer;transition:all .22s;border:1px solid var(--border);background:transparent;color:var(--muted)}
 .rtab:hover{color:#fff;border-color:rgba(30,144,255,.4)}
 .rtab.active{background:rgba(30,144,255,.15);border-color:rgba(30,144,255,.5);color:var(--blue)}
-.cars-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;}
-.car-card{
-  background:rgba(8,14,26,.92);
-  border:1px solid var(--border);
-  border-radius:12px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:transform .32s cubic-bezier(.4,0,.2,1), box-shadow .32s, border-color .28s;
-  position:relative;
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;}
-.car-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(30,144,255,.45);
-  box-shadow:0 20px 48px rgba(0,0,0,.5), 0 0 0 1px rgba(30,144,255,.1);}
+.cars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.car-card{background:rgba(8,14,26,.92);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .32s cubic-bezier(.4,0,.2,1),box-shadow .32s,border-color .28s;position:relative;text-decoration:none;display:flex;flex-direction:column}
+.car-card:hover{transform:translateY(-6px);border-color:rgba(30,144,255,.45);box-shadow:0 20px 48px rgba(0,0,0,.5),0 0 0 1px rgba(30,144,255,.1)}
 .car-card.featured{grid-column:1 / -1;flex-direction:row}
 .car-card.span2{grid-column:span 2}
 .card-vis{overflow:hidden;position:relative;flex-shrink:0;background:#060d1c}
 .car-card:not(.featured) .card-vis{height:210px}
 .car-card.featured .card-vis{width:52%;height:300px}
 .car-card.span2:not(.featured) .card-vis{height:210px}
-.card-photo{
-  width:100%;height:100%;
-  object-fit:cover;
-  object-position:center 40%;
-  transition:transform .5s cubic-bezier(.4,0,.2,1),filter .4s;
-  filter:brightness(.85) saturate(1.1);
-  display:block;}
-.car-card:hover .card-photo{
-  transform:scale(1.06);
-  filter:brightness(.95) saturate(1.2);}
-.card-vis-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(8,14,26,.85) 0%,rgba(8,14,26,.2) 45%,transparent 100%);
-  pointer-events:none;}
-.car-card.featured .card-vis-overlay{
-  background:linear-gradient(to right,rgba(8,14,26,.6) 0%,transparent 60%),
-             linear-gradient(to top,rgba(8,14,26,.5) 0%,transparent 50%);}
+.card-photo{width:100%;height:100%;object-fit:cover;object-position:center 40%;transition:transform .5s cubic-bezier(.4,0,.2,1),filter .4s;filter:brightness(.85) saturate(1.1);display:block}
+.car-card:hover .card-photo{transform:scale(1.06);filter:brightness(.95) saturate(1.2)}
+.card-vis-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,14,26,.85) 0%,rgba(8,14,26,.2) 45%,transparent 100%);pointer-events:none}
+.car-card.featured .card-vis-overlay{background:linear-gradient(to right,rgba(8,14,26,.6) 0%,transparent 60%),linear-gradient(to top,rgba(8,14,26,.5) 0%,transparent 50%)}
 .card-badge{position:absolute;top:.9rem;left:.9rem;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.24rem .65rem;border-radius:2px;z-index:2;line-height:1.4}
 .badge-m{background:rgba(30,144,255,.18);border:1px solid rgba(30,144,255,.42);color:var(--blue)}
 .badge-new{background:rgba(255,168,30,.1);border:1px solid rgba(255,168,30,.35);color:#ffa81e}
@@ -160,202 +121,51 @@ h1.hero-h1 small{font-size:.34em;color:var(--muted);letter-spacing:4px;font-weig
 .car-card:hover .card-cta-text{letter-spacing:3px}
 .card-arrow{width:28px;height:28px;border-radius:50%;border:1px solid rgba(30,144,255,.3);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:.85rem;transition:all .25s;flex-shrink:0}
 .car-card:hover .card-arrow{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateX(3px)}
-#heritage{
-  padding:7rem 3.5rem 8rem;
-  background:var(--mid);
-  overflow:hidden;}
-.timeline-header{
-  text-align:center;
-  margin-bottom:5rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.9rem;}
-.timeline-track{
-  position:relative;
-  max-width:1100px;
-  margin:0 auto;}
-.timeline-track::before{
-  content:'';
-  position:absolute;
-  left:0; right:0;
-  top:50%;
-  height:1px;
-  background:linear-gradient(to right,
-    transparent 0%,
-    rgba(30,144,255,.25) 8%,
-    rgba(30,144,255,.25) 92%,
-    transparent 100%);
-  transform:translateY(-50%);
-  pointer-events:none;}
-.timeline-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  row-gap:0;
-  column-gap:1.6rem;
-  position:relative;}
-.te{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:0;
-  position:relative;}
-.te.top{
-  grid-row:1;
-  flex-direction:column-reverse; 
-  padding-bottom:0;}
-.te.bottom{
-  grid-row:2;
-  flex-direction:column; 
-  padding-top:0;}
-.te-connector{
-  width:1px;
-  height:44px;
-  background:linear-gradient(to bottom, rgba(30,144,255,.35), rgba(30,144,255,.1));
-  flex-shrink:0;}
-.te.top .te-connector{
-  background:linear-gradient(to top, rgba(30,144,255,.35), rgba(30,144,255,.1));}
-.te-node{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:5px;
-  flex-shrink:0;
-  z-index:2;}
-.te-dot{
-  width:10px;height:10px;
-  border-radius:50%;
-  background:var(--blue);
-  box-shadow:0 0 0 3px rgba(30,144,255,.15), 0 0 12px rgba(30,144,255,.5);
-  transition:box-shadow .3s;}
-.te:hover .te-dot{
-  box-shadow:0 0 0 5px rgba(30,144,255,.2), 0 0 20px rgba(30,144,255,.7);}
-.te-year{
-  font-family:'Orbitron',monospace;
-  font-size:.58rem;
-  font-weight:700;
-  color:var(--blue);
-  letter-spacing:1px;
-  white-space:nowrap;}
-.te-card{
-  background:rgba(8,14,26,.95);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:1.1rem 1.2rem;
-  width:100%;
-  transition:border-color .3s, background .3s, transform .3s;}
-.te:hover .te-card{
-  border-color:rgba(30,144,255,.38);
-  background:rgba(10,18,36,.98);
-  transform:translateY(-3px);}
-.te.bottom:hover .te-card{
-  transform:translateY(3px);}
-.te-icon{
-  font-size:.9rem;
-  margin-bottom:.4rem;
-  display:block;
-  opacity:.7;}
-.te-title{
-  font-family:'Orbitron',monospace;
-  font-size:.72rem;
-  font-weight:700;
-  color:#fff;
-  margin-bottom:.35rem;
-  line-height:1.2;}
-  .te-badge{
-  display:inline-block;
-  font-size:.44rem;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  font-weight:700;
-  padding:.18rem .55rem;
-  border-radius:2px;
-  background:rgba(30,144,255,.12);
-  border:1px solid rgba(30,144,255,.3);
-  color:var(--blue);
-  margin-bottom:.5rem;}
-.te-desc{
-  font-size:.68rem;
-  color:var(--muted);
-  line-height:1.65;}
-.te.top{ padding-bottom:1px; }
-.te.bottom{ padding-top:1px; }
-.te.top .te-node{flex-direction:column-reverse;}
-.te.top{ justify-content:flex-end; align-self:end; }
-.te.bottom{ justify-content:flex-start; align-self:start; }
+#heritage{padding:7rem 3.5rem 8rem;background:var(--mid);overflow:hidden}
+.timeline-header{text-align:center;margin-bottom:5rem;display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.timeline-track{position:relative;max-width:1100px;margin:0 auto}
+.timeline-track::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(to right,transparent 0%,rgba(30,144,255,.25) 8%,rgba(30,144,255,.25) 92%,transparent 100%);transform:translateY(-50%);pointer-events:none}
+.timeline-grid{display:grid;grid-template-columns:repeat(4,1fr);row-gap:0;column-gap:1.6rem;position:relative}
+.te{display:flex;flex-direction:column;align-items:center;gap:0;position:relative}
+.te.top{grid-row:1;flex-direction:column-reverse;padding-bottom:0}
+.te.bottom{grid-row:2;flex-direction:column;padding-top:0}
+.te-connector{width:1px;height:44px;background:linear-gradient(to bottom,rgba(30,144,255,.35),rgba(30,144,255,.1));flex-shrink:0}
+.te.top .te-connector{background:linear-gradient(to top,rgba(30,144,255,.35),rgba(30,144,255,.1))}
+.te-node{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;z-index:2}
+.te-dot{width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(30,144,255,.15),0 0 12px rgba(30,144,255,.5);transition:box-shadow .3s}
+.te:hover .te-dot{box-shadow:0 0 0 5px rgba(30,144,255,.2),0 0 20px rgba(30,144,255,.7)}
+.te-year{font-family:'Orbitron',monospace;font-size:.58rem;font-weight:700;color:var(--blue);letter-spacing:1px;white-space:nowrap}
+.te-card{background:rgba(8,14,26,.95);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.2rem;width:100%;transition:border-color .3s,background .3s,transform .3s}
+.te:hover .te-card{border-color:rgba(30,144,255,.38);background:rgba(10,18,36,.98);transform:translateY(-3px)}
+.te.bottom:hover .te-card{transform:translateY(3px)}
+.te-icon{font-size:.9rem;margin-bottom:.4rem;display:block;opacity:.7}
+.te-title{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;color:#fff;margin-bottom:.35rem;line-height:1.2}
+.te-badge{display:inline-block;font-size:.44rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.18rem .55rem;border-radius:2px;background:rgba(30,144,255,.12);border:1px solid rgba(30,144,255,.3);color:var(--blue);margin-bottom:.5rem}
+.te-desc{font-size:.68rem;color:var(--muted);line-height:1.65}
+.te.top{padding-bottom:1px}.te.bottom{padding-top:1px}
+.te.top .te-node{flex-direction:column-reverse}
+.te.top{justify-content:flex-end;align-self:end}
+.te.bottom{justify-content:flex-start;align-self:start}
 footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 3.5rem 2.5rem}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
 .footer-logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;letter-spacing:6px;color:#fff;margin-bottom:.9rem}
 .footer-logo em{color:var(--blue);font-style:normal}
 .footer-tagline{font-size:.75rem;color:var(--muted);line-height:1.75;max-width:260px;margin-bottom:1.5rem}
-.footer-col h4{font-size:.53rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:1.1rem}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.65rem}
-.footer-col ul li a{font-size:.76rem;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:600}
-.footer-col ul li a:hover{color:#fff}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;flex-wrap:wrap;gap:1rem}
 .footer-copy{font-size:.62rem;color:var(--muted2)}
 .footer-copy em{color:rgba(30,144,255,.5);font-style:normal}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
-@media(max-width:1100px){
-  .cars-grid{grid-template-columns:1fr 1fr;gap:14px}
-  .car-card.featured{grid-column:span 2;flex-direction:column}
-  .car-card.featured .card-vis{width:100%;height:240px}
-  .car-card.span2{grid-column:span 2}
-  .timeline-grid{grid-template-columns:repeat(4,1fr);column-gap:1rem}}
-@media(max-width:900px){
-  #hero{grid-template-columns:1fr;padding-top:90px}.hero-right{display:none}
-  #brand{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr 1fr}
-  /* Timeline mobile: liste verticale */
-  .timeline-track::before{display:none}
-  .timeline-grid{
-    grid-template-columns:1fr;
-    gap:0; }
-  .te, .te.top, .te.bottom{
-    grid-row:auto;
-    flex-direction:row;
-    align-items:flex-start;
-    justify-content:flex-start;
-    align-self:auto;
-    padding:0;
-    margin-bottom:1.2rem;}
-  .te-node{
-    flex-direction:column;
-    align-items:center;
-    margin-right:1rem;
-    padding-top:.2rem;
-    flex-shrink:0;
-    width:48px;}
-  .te.top .te-node{flex-direction:column;}
-  .te-connector{
-    width:1px;height:100%;min-height:24px;
-    background:linear-gradient(to bottom,rgba(30,144,255,.3),transparent);
-    margin-top:4px;}
-  .te.top .te-connector{
-    background:linear-gradient(to bottom,rgba(30,144,255,.3),transparent); }
-  .te-card{flex:1}
-  .te:hover .te-card, .te.bottom:hover .te-card{transform:translateY(0);}}
-@media(max-width:640px){
-  header{padding:0 1.5rem}nav{display:none}
-  #hero,#brand,#range,#heritage,footer{padding-left:1.5rem;padding-right:1.5rem}
-  .cars-grid{grid-template-columns:1fr;gap:12px}
-  .car-card.featured,.car-card.span2{grid-column:span 1}
-  .car-card.featured{flex-direction:column}
-  .car-card.featured .card-vis{width:100%;height:180px}
-  .timeline-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.cars-grid{grid-template-columns:1fr 1fr;gap:14px}.car-card.featured{grid-column:span 2;flex-direction:column}.car-card.featured .card-vis{width:100%;height:240px}.car-card.span2{grid-column:span 2}.timeline-grid{grid-template-columns:repeat(4,1fr);column-gap:1rem}}
+@media(max-width:900px){#hero{grid-template-columns:1fr;padding-top:90px}.hero-right{display:none}#brand{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr}.timeline-track::before{display:none}.timeline-grid{grid-template-columns:1fr;gap:0}.te,.te.top,.te.bottom{grid-row:auto;flex-direction:row;align-items:flex-start;justify-content:flex-start;align-self:auto;padding:0;margin-bottom:1.2rem}.te-node{flex-direction:column;align-items:center;margin-right:1rem;padding-top:.2rem;flex-shrink:0;width:48px}.te.top .te-node{flex-direction:column}.te-connector{width:1px;height:100%;min-height:24px;background:linear-gradient(to bottom,rgba(30,144,255,.3),transparent);margin-top:4px}.te.top .te-connector{background:linear-gradient(to bottom,rgba(30,144,255,.3),transparent)}.te-card{flex:1}.te:hover .te-card,.te.bottom:hover .te-card{transform:translateY(0)}}
+@media(max-width:640px){header{padding:0 1.5rem}nav{display:none}#hero,#brand,#range,#heritage,footer{padding-left:1.5rem;padding-right:1.5rem}.cars-grid{grid-template-columns:1fr;gap:12px}.car-card.featured,.car-card.span2{grid-column:span 1}.car-card.featured{flex-direction:column}.car-card.featured .card-vis{width:100%;height:180px}.timeline-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div id="cdot"></div>
-<div id="cring"></div>
 
 <header>
-  <a href="#" class="logo">
-    <div class="logo-ring">BMW</div>
-    BM<span style="color:var(--blue)">W</span>
-  </a>
+  <a href="#" class="logo"><div class="logo-ring">BMW</div>BM<span style="color:var(--blue)">W</span></a>
   <nav>
     <a href="#range">Modèles</a>
     <a href="#brand">À Propos</a>
@@ -399,7 +209,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
   <div class="brand-left reveal">
     <div class="section-eyebrow" style="margin-bottom:.9rem">ADN</div>
     <div class="section-title" style="margin-bottom:1.2rem">Une marque,<br><em>une philosophie</em></div>
-    <p>Bayerische Motoren Werke naît officiellement le <strong style="color:#fff">7 mars 1916</strong> à Munich sous le nom de Bayerische Flugzeug-Werke AG. Après l'adoption du nom BMW en 1917, l'entreprise se distingue par ses moteurs aéronautiques — dont le BMW IIIa, champion d'altitude à 9 760 m en 1919.</p>
+    <p>Bayerische Motoren Werke naît officiellement le <strong style="color:#fff">7 mars 1916</strong> à Munich. Après l'adoption du nom BMW en 1917, l'entreprise se distingue par ses moteurs aéronautiques — dont le BMW IIIa, champion d'altitude à 9 760 m en 1919.</p>
     <p>Aujourd'hui, BMW AG est l'un des constructeurs premium les plus respectés au monde. La marque couvre l'ensemble du spectre : berlines sportives, SUV polyvalents, coupés haute performance, et une gamme électrique en expansion sous le label <strong style="color:#fff">BMW i</strong>.</p>
     <p>Le fil rouge de toute l'histoire BMW tient en quatre mots : <strong style="color:var(--blue)">Freude am Fahren</strong> — le plaisir de conduire.</p>
     <div class="brand-nums">
@@ -438,9 +248,17 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 
   <div class="cars-grid reveal" id="cars-grid">
 
+    <!-- ══════════════════════════════════════════
+         CARTE M4 F82 — Photo depuis GitHub repo
+         Priorité : jsDelivr CDN → raw GitHub
+    ══════════════════════════════════════════ -->
     <a href="M4 F82.html" class="car-card featured" data-cat="m">
       <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW M4 F82" loading="eager" onerror="this.style.display='none'">
+        <img class="card-photo"
+             src="https://cdn.jsdelivr.net/gh/vvgwgk6q2d-source/bmw-site@main/BMW_M4.png"
+             alt="BMW M4 F82"
+             loading="eager"
+             onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/vvgwgk6q2d-source/bmw-site/main/BMW_M4.png'">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-3d">3D Interactif</span>
         <span class="card-badge badge-m" style="left:auto;right:.9rem">M Performance</span>
@@ -464,8 +282,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </a>
 
     <div class="car-card" data-cat="m">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW M3 G80" loading="lazy" onerror="this.style.background='#0a1428';this.style.display='block'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-m">M Series</span>
       </div>
@@ -483,8 +300,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </div>
 
     <div class="car-card" data-cat="m">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW M5" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-hybrid">Hybride PHEV</span>
       </div>
@@ -502,8 +318,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </div>
 
     <div class="car-card" data-cat="m">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW M2 G87" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-new">2024</span>
       </div>
@@ -521,8 +336,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </div>
 
     <div class="car-card span2" data-cat="berline">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW Série 3 G20" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-m">Bestseller</span>
       </div>
@@ -541,8 +355,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </div>
 
     <div class="car-card" data-cat="suv">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW X5" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-m">X Series</span>
       </div>
@@ -560,8 +373,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </div>
 
     <div class="car-card span2" data-cat="m">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW M8 Gran Coupé" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-m">Gran Turismo</span>
       </div>
@@ -580,8 +392,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </div>
 
     <div class="car-card" data-cat="electrique">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW iX" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-elec">100% Électrique</span>
       </div>
@@ -599,8 +410,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     </div>
 
     <div class="car-card" data-cat="electrique">
-      <div class="card-vis">
-        <img class="card-photo" src="" alt="BMW i4" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
         <span class="card-badge badge-elec">100% Électrique</span>
       </div>
@@ -627,120 +437,16 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
     <div class="section-title" style="text-align:center">Un siècle de <em>passion</em></div>
     <p class="section-sub" style="text-align:center;margin-top:.5rem">De la Bavière au monde entier — les moments qui ont forgé l'âme BMW.</p>
   </div>
-
   <div class="timeline-track reveal">
     <div class="timeline-grid">
-      <div class="te top">
-        <div class="te-card">
-          <span class="te-icon">✈️</span>
-          <div class="te-badge">Aviation</div>
-          <div class="te-title">Naissance de BMW</div>
-          <div class="te-desc">Le 7 mars 1916, Bayerische Flugzeug-Werke AG est fondée à Munich. Le nom BMW est adopté en 1917. Spécialité : moteurs d'avions. Le BMW IIIa établit un record d'altitude à 9 760 m en 1919.</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">1916</div>
-        </div>
-      </div>
-
-      <div class="te top">
-        <div class="te-card">
-          <span class="te-icon">🎨</span>
-          <div class="te-badge">Design</div>
-          <div class="te-title">La double grille</div>
-          <div class="te-desc">La BMW 303 inaugure la double grille réniforme, signature visuelle de la marque depuis plus de 90 ans. Premier moteur 6 cylindres en ligne BMW sur route.</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">1933</div>
-        </div>
-      </div>
-
-      <div class="te top">
-        <div class="te-card">
-          <span class="te-icon">🏁</span>
-          <div class="te-badge">Motorsport</div>
-          <div class="te-title">Naissance de BMW M</div>
-          <div class="te-desc">Le 1er mai 1972, BMW Motorsport GmbH est fondée à Munich avec 35 employés. Jochen Neerpasch en est le premier directeur. Première victoire dès 1973 avec la 3.0 CSL au championnat d'Europe des voitures de tourisme.</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">1972</div>
-        </div>
-      </div>
-
-      <div class="te top">
-        <div class="te-card">
-          <span class="te-icon">🏆</span>
-          <div class="te-badge">Triple couronne</div>
-          <div class="te-title">M3 E30 — Saison parfaite</div>
-          <div class="te-desc">En 1987, première année en compétition, la M3 E30 remporte en une seule saison le WTCC (Ravaglia), l'ETCC (Vogt) et le DTM (van de Poele). Plus de 1 500 victoires au total sur 5 ans.</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">1987</div>
-        </div>
-      </div>
-
-      <div class="te bottom">
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">1923</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-card">
-          <span class="te-icon">🏍️</span>
-          <div class="te-badge">Moto</div>
-          <div class="te-title">R32 — La première moto</div>
-          <div class="te-desc">Présentée au Salon de Berlin, la R32 est conçue par Max Friz. Moteur boxer à plat refroidi par air, transmission par arbre de cardan — une architecture encore utilisée aujourd'hui sur les motos BMW.</div>
-        </div>
-      </div>
-
-      <div class="te bottom">
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">1959</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-card">
-          <span class="te-icon">💼</span>
-          <div class="te-badge">Indépendance</div>
-          <div class="te-title">BMW reste indépendant</div>
-          <div class="te-desc">Au bord de la faillite, BMW repousse l'offre de rachat de Daimler-Benz. Herbert Quandt prend le contrôle avec une participation majoritaire et sauve la marque. BMW dévoile la Série 700, pivot de son redressement.</div>
-        </div>
-      </div>
-
-      <div class="te bottom">
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">1978</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-card">
-          <span class="te-icon">🚀</span>
-          <div class="te-badge">M Series</div>
-          <div class="te-title">BMW M1 — Premier badge M</div>
-          <div class="te-desc">Première voiture à porter le badge M en production, la M1 est une supercar à moteur central 6 cylindres 277 ch. Carrosserie de Giorgetto Giugiaro. Seulement 456 exemplaires produits. Elle donne naissance à la légende M.</div>
-        </div>
-      </div>
-
-      <div class="te bottom">
-        <div class="te-node">
-          <div class="te-dot"></div>
-          <div class="te-year">2013</div>
-        </div>
-        <div class="te-connector"></div>
-        <div class="te-card">
-          <span class="te-icon">⚡</span>
-          <div class="te-badge">Électrique</div>
-          <div class="te-title">Révolution BMW i</div>
-          <div class="te-desc">Lancement de la i3 en production en série — première grande voiture électrique de luxe à structure en CFRP. La i8 hybride rechargeable suit. BMW est la première grande marque premium à construire une plateforme 100% dédiée à l'électrique.</div>
-        </div>
-      </div>
+      <div class="te top"><div class="te-card"><span class="te-icon">✈️</span><div class="te-badge">Aviation</div><div class="te-title">Naissance de BMW</div><div class="te-desc">Le 7 mars 1916, Bayerische Flugzeug-Werke AG est fondée à Munich. Le nom BMW est adopté en 1917. Spécialité : moteurs d'avions. Le BMW IIIa établit un record d'altitude à 9 760 m en 1919.</div></div><div class="te-connector"></div><div class="te-node"><div class="te-dot"></div><div class="te-year">1916</div></div></div>
+      <div class="te top"><div class="te-card"><span class="te-icon">🎨</span><div class="te-badge">Design</div><div class="te-title">La double grille</div><div class="te-desc">La BMW 303 inaugure la double grille réniforme, signature visuelle de la marque depuis plus de 90 ans. Premier moteur 6 cylindres en ligne BMW sur route.</div></div><div class="te-connector"></div><div class="te-node"><div class="te-dot"></div><div class="te-year">1933</div></div></div>
+      <div class="te top"><div class="te-card"><span class="te-icon">🏁</span><div class="te-badge">Motorsport</div><div class="te-title">Naissance de BMW M</div><div class="te-desc">Le 1er mai 1972, BMW Motorsport GmbH est fondée à Munich avec 35 employés. Jochen Neerpasch en est le premier directeur. Première victoire dès 1973 avec la 3.0 CSL.</div></div><div class="te-connector"></div><div class="te-node"><div class="te-dot"></div><div class="te-year">1972</div></div></div>
+      <div class="te top"><div class="te-card"><span class="te-icon">🏆</span><div class="te-badge">Triple couronne</div><div class="te-title">M3 E30 — Saison parfaite</div><div class="te-desc">En 1987, première année en compétition, la M3 E30 remporte en une seule saison le WTCC, l'ETCC et le DTM. Plus de 1 500 victoires au total sur 5 ans.</div></div><div class="te-connector"></div><div class="te-node"><div class="te-dot"></div><div class="te-year">1987</div></div></div>
+      <div class="te bottom"><div class="te-node"><div class="te-dot"></div><div class="te-year">1923</div></div><div class="te-connector"></div><div class="te-card"><span class="te-icon">🏍️</span><div class="te-badge">Moto</div><div class="te-title">R32 — La première moto</div><div class="te-desc">Présentée au Salon de Berlin, la R32 est conçue par Max Friz. Moteur boxer à plat refroidi par air, transmission par arbre de cardan — architecture encore utilisée aujourd'hui.</div></div></div>
+      <div class="te bottom"><div class="te-node"><div class="te-dot"></div><div class="te-year">1959</div></div><div class="te-connector"></div><div class="te-card"><span class="te-icon">💼</span><div class="te-badge">Indépendance</div><div class="te-title">BMW reste indépendant</div><div class="te-desc">Au bord de la faillite, BMW repousse l'offre de rachat de Daimler-Benz. Herbert Quandt prend le contrôle et sauve la marque. BMW dévoile la Série 700.</div></div></div>
+      <div class="te bottom"><div class="te-node"><div class="te-dot"></div><div class="te-year">1978</div></div><div class="te-connector"></div><div class="te-card"><span class="te-icon">🚀</span><div class="te-badge">M Series</div><div class="te-title">BMW M1 — Premier badge M</div><div class="te-desc">Première voiture à porter le badge M en production. Supercar à moteur central 6 cylindres 277 ch, carrosserie de Giorgetto Giugiaro. Seulement 456 exemplaires produits.</div></div></div>
+      <div class="te bottom"><div class="te-node"><div class="te-dot"></div><div class="te-year">2013</div></div><div class="te-connector"></div><div class="te-card"><span class="te-icon">⚡</span><div class="te-badge">Électrique</div><div class="te-title">Révolution BMW i</div><div class="te-desc">Lancement de la i3 en production en série — première grande voiture électrique de luxe à structure en CFRP. La i8 hybride rechargeable suit.</div></div></div>
     </div>
   </div>
 </section>
@@ -763,9 +469,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 <script>
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.09});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
 setTimeout(()=>{const s=document.getElementById('scrollind');if(s)s.style.opacity='0';},5000);
-
 document.querySelectorAll('.rtab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.rtab').forEach(t=>t.classList.remove('active'));
@@ -781,11 +485,7 @@ document.querySelectorAll('.rtab').forEach(tab=>{
   });
 });
 
-document.querySelectorAll('.card-photo').forEach(img=>{
-  img.addEventListener('error',function(){
-    this.parentElement.style.background='linear-gradient(135deg,#060c1e,#0a1530)';
-  });
-});
+
 </script>
 </body>
 </html>
