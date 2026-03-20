@@ -11,10 +11,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--dark);color:#e8eaf0;font-family:'Rajdhani',sans-serif;overflow-x:hidden}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.02;pointer-events:none;z-index:9999}
-
-
-
-
 header{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(2,4,9,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
 .logo{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;letter-spacing:7px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:.6rem}
 .logo-ring{width:30px;height:30px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:.42rem;letter-spacing:.5px;color:var(--blue);font-weight:700;flex-shrink:0}
@@ -248,10 +244,9 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
 
   <div class="cars-grid reveal" id="cars-grid">
 
-    <!-- ══════════════════════════════════════════
-         CARTE M4 F82 — Photo depuis GitHub repo
-         Priorité : jsDelivr CDN → raw GitHub
-    ══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════
+         CARTE M4 F82 — FEATURED (inchangée)
+    ═══════════════════════════════════════════ -->
     <a href="M4 F82.html" class="car-card featured" data-cat="m">
       <div class="card-vis">
         <img class="card-photo"
@@ -281,24 +276,31 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
       </div>
     </a>
 
-    <div class="car-card" data-cat="m">
+   
+    <a href="M3 G80.html" class="car-card" data-cat="m">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
-        <span class="card-badge badge-m">M Series</span>
+        <span class="card-badge badge-3d">3D Interactif</span>
+        <span class="card-badge badge-new" style="left:auto;right:.9rem">2025</span>
       </div>
       <div class="card-body">
-        <div class="card-series">BMW M · G80 · 2021–présent</div>
+        <div class="card-series">BMW M · G80 · 2025–présent</div>
         <div class="card-name">BMW M3 Competition</div>
-        <div class="card-desc">La berline sportive ultime. S58 510 ch, xDrive disponible. DNA M en 4 portes, approuvé Nürburgring.</div>
+        <div class="card-desc">La berline sportive ultime en version 2025. Moteur S58 biturbo 530 ch, xDrive sélectionnable, Curved Display BMW OS 9. Explorez chaque composant en 3D interactif.</div>
         <div class="card-specs-row">
-          <div class="cs"><div class="csn">510<sub>ch</sub></div><div class="csl">Puissance</div></div>
-          <div class="cs"><div class="csn">3.9<sub>s</sub></div><div class="csl">0–100</div></div>
+          <div class="cs"><div class="csn">530<sub>ch</sub></div><div class="csl">Puissance</div></div>
+          <div class="cs"><div class="csn">3.5<sub>s</sub></div><div class="csl">0–100</div></div>
           <div class="cs"><div class="csn">650<sub>Nm</sub></div><div class="csl">Couple</div></div>
+          <div class="cs"><div class="csn">3.0<sub>S58</sub></div><div class="csl">Moteur</div></div>
         </div>
-        <div class="card-cta-row"><span class="card-cta-text">→ Découvrir</span><div class="card-arrow">›</div></div>
+        <div class="card-cta-row">
+          <span class="card-cta-text">→ Ouvrir le configurateur 3D</span>
+          <div class="card-arrow">›</div>
+        </div>
       </div>
-    </div>
+    </a>
 
+    <!-- M5 -->
     <div class="car-card" data-cat="m">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
@@ -317,6 +319,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
       </div>
     </div>
 
+    <!-- M2 -->
     <div class="car-card" data-cat="m">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
@@ -335,6 +338,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
       </div>
     </div>
 
+    <!-- Série 3/4 -->
     <div class="car-card span2" data-cat="berline">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
@@ -354,6 +358,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
       </div>
     </div>
 
+    <!-- X5 -->
     <div class="car-card" data-cat="suv">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
@@ -372,6 +377,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
       </div>
     </div>
 
+    <!-- M8 Gran Coupé -->
     <div class="car-card span2" data-cat="m">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
@@ -391,6 +397,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
       </div>
     </div>
 
+    <!-- iX -->
     <div class="car-card" data-cat="electrique">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
@@ -409,6 +416,7 @@ footer{background:var(--darker);border-top:1px solid var(--border);padding:4rem 
       </div>
     </div>
 
+    <!-- i4 M50 -->
     <div class="car-card" data-cat="electrique">
       <div class="card-vis" style="background:linear-gradient(135deg,#060c1e,#0a1530)">
         <div class="card-vis-overlay"></div>
@@ -484,8 +492,6 @@ document.querySelectorAll('.rtab').forEach(tab=>{
     });
   });
 });
-
-
 </script>
 </body>
 </html>
